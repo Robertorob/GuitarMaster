@@ -1,0 +1,18 @@
+D:\Visual_Studio_Projects\GuitarMaster\GuitarMaster\bin\Debug\GuitarMaster.exe.config
+D:\Visual_Studio_Projects\GuitarMaster\GuitarMaster\bin\Debug\GuitarMaster.exe
+D:\Visual_Studio_Projects\GuitarMaster\GuitarMaster\bin\Debug\GuitarMaster.pdb
+D:\Visual_Studio_Projects\GuitarMaster\GuitarMaster\obj\Debug\GuitarMaster.Properties.Resources.resources
+D:\Visual_Studio_Projects\GuitarMaster\GuitarMaster\obj\Debug\GuitarMaster.csproj.GenerateResource.Cache
+D:\Visual_Studio_Projects\GuitarMaster\GuitarMaster\obj\Debug\GuitarMaster.exe
+D:\Visual_Studio_Projects\GuitarMaster\GuitarMaster\obj\Debug\GuitarMaster.pdb
+D:\Visual_Studio_Projects\GuitarMaster\GuitarMaster\obj\Debug\GuitarMaster.Form1.resources
+D:\Visual_Studio_Projects\GuitarMaster\GuitarMaster\obj\Debug\GuitarMaster.csprojResolveAssemblyReference.cache
+D:\Robert\универ\3 курс\Курсач. Генерация музыки\GuitarMaster\GuitarMaster\bin\Debug\GuitarMaster.exe.config
+D:\Robert\универ\3 курс\Курсач. Генерация музыки\GuitarMaster\GuitarMaster\obj\Debug\GuitarMaster.exe
+D:\Robert\универ\3 курс\Курсач. Генерация музыки\GuitarMaster\GuitarMaster\obj\Debug\GuitarMaster.pdb
+D:\Robert\универ\3 курс\Курсач. Генерация музыки\GuitarMaster\GuitarMaster\bin\Debug\GuitarMaster.exe
+D:\Robert\универ\3 курс\Курсач. Генерация музыки\GuitarMaster\GuitarMaster\bin\Debug\GuitarMaster.pdb
+D:\Robert\универ\3 курс\Курсач. Генерация музыки\GuitarMaster\GuitarMaster\obj\Debug\GuitarMaster.csprojResolveAssemblyReference.cache
+D:\Robert\универ\3 курс\Курсач. Генерация музыки\GuitarMaster\GuitarMaster\obj\Debug\GuitarMaster.Form1.resources
+D:\Robert\универ\3 курс\Курсач. Генерация музыки\GuitarMaster\GuitarMaster\obj\Debug\GuitarMaster.Properties.Resources.resources
+D:\Robert\универ\3 курс\Курсач. Генерация музыки\GuitarMaster\GuitarMaster\obj\Debug\GuitarMaster.csproj.GenerateResource.Cache
