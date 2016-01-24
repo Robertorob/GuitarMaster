@@ -13,7 +13,27 @@ using MidiExamples;
 using System.Windows.Media;
 using System.IO;
 
-
+/*
+ * Задача: переделать программу.
+ * 1. Аккомпанемент. Будет играть один аккорд. Еще надо решить, 
+ * будет ли мелодия зависеть от аккомпанемента(должна вообще то)
+ * Для начала
+ * запишем аккорд: минорный, мажорный. Пока что в одной тональности. Как быть для восточных ладов? Для блюза?
+ * 2. Гаммы.
+ *  2.1 Нужно, чтобы при создании мелодии брались ноты из гаммы.
+ *  2.2 Сделать добавление своих ладов(на входе: количество нот, интервалы)
+ *  2.3 Самому добавить блюзовую гамму, минорную мажорную, восточную
+ * 3. Ритм. Сделать хоть какой-то римт
+ *  3.1 Создание рандомного ритма
+ *  3.2 Характерные ритмы для блюза, восточной музыки
+ * 4. Мелодия. Как строится мелодия.
+ *  Что на входе?
+ *  Ритм - количество нот и пауз
+ *  Набор нот. Количество должно совпадать естественно
+ *  
+ * 5. Сделать, чтобы мелодия игралась от тоники, выбранной на грифе. Т.е. мелодия
+ * должна играться в любой тональности
+ * */
 namespace GuitarMaster
 {
     public partial class Form1 : Form
@@ -26,9 +46,8 @@ namespace GuitarMaster
         {
             InitializeComponent();
         }
-        public static void Replay(/*object sender, EventArgs e,*/ MediaPlayer player)
+        public static void Replay(MediaPlayer player)
         {
-            //MessageBox.Show("nhfnh");
             if (player.Source.ToString() == "file:///D:/Visual_Studio_Projects/GuitarMaster/GuitarMaster/bin/Debug/Chords/Am.m4a")
             {
                 player.Open(new Uri(Application.StartupPath + "\\Chords\\F.m4a", UriKind.Absolute));
