@@ -14,6 +14,10 @@ using System.Windows.Media;
 using System.IO;
 
 /*
+ * Мелодия.
+ * Фиксированное время проигрывания.
+ * Сделать рандомный ритм.
+ * 
  * Задача: переделать программу.
  * 1. Аккомпанемент. Будет играть один аккорд. Еще надо решить, 
  * будет ли мелодия зависеть от аккомпанемента(должна вообще то)
@@ -46,6 +50,12 @@ namespace GuitarMaster
         {
             InitializeComponent();
         }
+
+        private void newGenerateButton_Click(object sender, EventArgs e)
+        {
+            int[] rhytm = Rhythm.GetRhythm(8, 3);
+        }
+
         public static void Replay(MediaPlayer player)
         {
             if (player.Source.ToString() == "file:///D:/Visual_Studio_Projects/GuitarMaster/GuitarMaster/bin/Debug/Chords/Am.m4a")
@@ -68,6 +78,7 @@ namespace GuitarMaster
                 return;
             }
         }
+
         private void generateButton_Click(object sender, EventArgs e)
         {
 
@@ -187,7 +198,7 @@ namespace GuitarMaster
             //        }
             //    }
             //}
-        }
+        }       
 
         //private void stopButton_Click(object sender, EventArgs e)
         //{
