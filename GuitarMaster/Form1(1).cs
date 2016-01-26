@@ -35,9 +35,6 @@ namespace GuitarMaster
             }
         }
 
-
-
-
         public void DrawGrid(int i, int j, int selectedIndex)//Рисуем сетку
         {
             int jcopy = j;
@@ -55,7 +52,7 @@ namespace GuitarMaster
             for (int m = i; m < 6; m++)
             {
                 int index = -1;
-                //Идем по струне вправо, используя минорный шаблон
+                //Идем по струне вправо, используя шаблон
                 for (int k = j; k < 16; k += pattern[index % 7])
                 {
                     if (k == j || (k - j) % 12 == 0)
@@ -68,7 +65,7 @@ namespace GuitarMaster
                 }
 
                 index = 7;
-                //Идем по струне влево, используя минорный шаблон
+                //Идем по струне влево, используя шаблон
                 for (int k = j; k >= 0; k -= pattern[Math.Abs(index % 7)])
                 {
                     if ((j - k) % 12 == 0)
@@ -124,7 +121,7 @@ namespace GuitarMaster
             for (int m = i; m >= 0; m--)
             {
                 int index = -1;
-                //Идем по струне вправо, используя минорный шаблон
+                //Идем по струне вправо, используя шаблон
                 for (int k = j; k < 16; k += pattern[index % 7])
                 {
                     if (k == j || (k - j) % 12 == 0)
@@ -137,7 +134,7 @@ namespace GuitarMaster
                 }
 
                 index = 7;
-                //Идем по струне вправо, используя минорный шаблон
+                //Идем по струне вправо, используя шаблон
                 for (int k = j; k >= 0; k -= pattern[Math.Abs(index % 7)])
                 {
                     if ((j - k) % 12 == 0)
@@ -264,7 +261,7 @@ namespace GuitarMaster
                     labels[i, j].Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
                     labels[i, j].ForeColor = System.Drawing.Color.Black;
                     Point p = new Point();
-                    p.X = buttons[i, j].Location.X + buttons[i, j].Width / 2;
+                    p.X = buttons[i, j].Location.X;// +buttons[i, j].Width / 2;
                     p.Y = buttons[i, j].Location.Y;
                     labels[i, j].Location = p;
                     labels[i, j].Name = "label" + i.ToString() + j.ToString();
