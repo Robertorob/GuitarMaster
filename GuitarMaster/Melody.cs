@@ -45,7 +45,7 @@ namespace GuitarMaster
                 phrase[i] = 0;
             }
             int stable = stables.Next();
-            int position;
+            int position = 1;
 
             switch (tact)//2 и 3 такт одинаковы, поэтому в параметры передаем всегда 2
             {
@@ -53,20 +53,18 @@ namespace GuitarMaster
                     phrase[0] = 1;
                     position = positions.Next(1, length);
                     phrase[position] = stable;
-                    phrase = Transitions(chord, phrase, stable, position);
                     break;
                 case 2:
                     position = positions.Next(0, length);
                     phrase[position] = stable;
-                    phrase = Transitions(chord, phrase, stable, position);
                     break;
                 case 4:
                     phrase[length - 1] = 1;
                     position = length - 1;
                     stable = 1;
-                    phrase = Transitions(chord, phrase, stable, position);
                     break;
             }
+            phrase = Transitions(chord, phrase, stable, position);
 
             return phrase;
         }
@@ -259,6 +257,29 @@ namespace GuitarMaster
             System.Threading.Thread.Sleep(500);
             Form1.Replay(player);
 
+        }
+
+        public static void PlayPhraseWithRandomRhythm(OutputDevice output, Channel channel, int[] phrase, MediaPlayer player)
+        {
+            //Thread.Sleep(700);
+            int[] rhythm = Rhythm.GetRhythm(12, 6);
+            int j = 0;
+            for (int i = 0; i < rhythm.Length; i++)
+            {
+                if (rhythm[i] == 0)
+                    System.Threading.Thread.Sleep(440);
+                else
+                {
+                    output.SendNoteOn(channel, NoteExtensionMethods.Note(phrase[j], 4), 80);
+                    System.Threading.Thread.Sleep(440);
+                    output.SendNoteOff(channel, NoteExtensionMethods.Note(phrase[j], 4), 80);
+                    j++;
+                    if (j == phrase.Length)
+                        return;
+                }
+            }
+            System.Threading.Thread.Sleep(500);
+            //Form1.Replay(player);
         }
 
     }

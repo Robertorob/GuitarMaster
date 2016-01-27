@@ -80,6 +80,7 @@
     <Compile Include="Percussion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rhythm.cs" />
     <Compile Include="Scale.cs" />
     <Compile Include="ShortMsg.cs" />
     <Compile Include="Win32API.cs" />

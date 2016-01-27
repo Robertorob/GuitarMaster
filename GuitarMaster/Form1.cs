@@ -53,7 +53,9 @@ namespace GuitarMaster
 
         private void newGenerateButton_Click(object sender, EventArgs e)
         {
-            int[] rhytm = Rhythm.GetRhythm(8, 3);
+            int[] rhytm = Rhythm.GetRhythm(10, 6);
+            int[] test = Melody.SetOfNotes(Melody.Chords.Am, 1);
+            Melody.PlayPhraseWithRandomRhythm(outputDevice, Channel.Channel1, test, player);
         }
 
         public static void Replay(MediaPlayer player)
