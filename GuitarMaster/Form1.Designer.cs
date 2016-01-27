@@ -132,7 +132,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.clearGrid = new System.Windows.Forms.Button();
             this.newGenerateButton = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.grifPBox)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // grifPBox
@@ -1013,16 +1020,16 @@
             // 
             // testTextBox
             // 
-            this.testTextBox.Location = new System.Drawing.Point(12, 12);
+            this.testTextBox.Location = new System.Drawing.Point(6, 16);
             this.testTextBox.Multiline = true;
             this.testTextBox.Name = "testTextBox";
-            this.testTextBox.Size = new System.Drawing.Size(209, 51);
+            this.testTextBox.Size = new System.Drawing.Size(327, 51);
             this.testTextBox.TabIndex = 106;
             // 
             // generateButton
             // 
             this.generateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.generateButton.Location = new System.Drawing.Point(12, 69);
+            this.generateButton.Location = new System.Drawing.Point(6, 73);
             this.generateButton.Name = "generateButton";
             this.generateButton.Size = new System.Drawing.Size(104, 53);
             this.generateButton.TabIndex = 2;
@@ -1033,7 +1040,7 @@
             // accompButton
             // 
             this.accompButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.accompButton.Location = new System.Drawing.Point(12, 138);
+            this.accompButton.Location = new System.Drawing.Point(134, 73);
             this.accompButton.Name = "accompButton";
             this.accompButton.Size = new System.Drawing.Size(104, 65);
             this.accompButton.TabIndex = 3;
@@ -1047,7 +1054,7 @@
             this.patternComboBox.Items.AddRange(new object[] {
             "Натуральный минор",
             "Натуральный мажор"});
-            this.patternComboBox.Location = new System.Drawing.Point(350, 41);
+            this.patternComboBox.Location = new System.Drawing.Point(11, 35);
             this.patternComboBox.Name = "patternComboBox";
             this.patternComboBox.Size = new System.Drawing.Size(147, 21);
             this.patternComboBox.TabIndex = 0;
@@ -1056,16 +1063,16 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(345, 12);
+            this.label1.Location = new System.Drawing.Point(6, 6);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 20);
+            this.label1.Size = new System.Drawing.Size(136, 20);
             this.label1.TabIndex = 110;
-            this.label1.Text = "Выберите лад";
+            this.label1.Text = "1. Выберите лад";
             // 
             // clearGrid
             // 
             this.clearGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.clearGrid.Location = new System.Drawing.Point(349, 84);
+            this.clearGrid.Location = new System.Drawing.Point(10, 78);
             this.clearGrid.Name = "clearGrid";
             this.clearGrid.Size = new System.Drawing.Size(115, 46);
             this.clearGrid.TabIndex = 1;
@@ -1076,7 +1083,7 @@
             // newGenerateButton
             // 
             this.newGenerateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.newGenerateButton.Location = new System.Drawing.Point(633, 12);
+            this.newGenerateButton.Location = new System.Drawing.Point(264, 6);
             this.newGenerateButton.Name = "newGenerateButton";
             this.newGenerateButton.Size = new System.Drawing.Size(128, 53);
             this.newGenerateButton.TabIndex = 111;
@@ -1084,18 +1091,61 @@
             this.newGenerateButton.UseVisualStyleBackColor = true;
             this.newGenerateButton.Click += new System.EventHandler(this.newGenerateButton_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(7, 151);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(232, 20);
+            this.label2.TabIndex = 112;
+            this.label2.Text = "2. Выберите тонику на грифе";
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(12, 10);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(834, 219);
+            this.tabControl1.TabIndex = 113;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.clearGrid);
+            this.tabPage1.Controls.Add(this.newGenerateButton);
+            this.tabPage1.Controls.Add(this.patternComboBox);
+            this.tabPage1.Controls.Add(this.label2);
+            this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(826, 193);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "New Project";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.Controls.Add(this.testTextBox);
+            this.tabPage2.Controls.Add(this.generateButton);
+            this.tabPage2.Controls.Add(this.accompButton);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(826, 193);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Old Project";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(879, 419);
-            this.Controls.Add(this.newGenerateButton);
-            this.Controls.Add(this.clearGrid);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.patternComboBox);
-            this.Controls.Add(this.accompButton);
-            this.Controls.Add(this.generateButton);
-            this.Controls.Add(this.testTextBox);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.s615);
             this.Controls.Add(this.s515);
             this.Controls.Add(this.s415);
@@ -1198,8 +1248,12 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.grifPBox)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -1309,6 +1363,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button clearGrid;
         private System.Windows.Forms.Button newGenerateButton;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
     }
 }
 
