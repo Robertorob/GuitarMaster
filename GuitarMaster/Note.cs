@@ -323,13 +323,13 @@ namespace Midi
     /// <summary>
     /// Extension methods for the Note enum.
     /// </summary>
-    public static class NoteExtensionMethods
+    public static class MyNote
     {
         public static Note Note(int note, int octava)
         {
             switch (note)
             {
-                case 1: 
+                case 1:
                     return Midi.Note.A4;
                 case 2:
                     return Midi.Note.B4;
@@ -346,6 +346,9 @@ namespace Midi
             }
             return Midi.Note.A4;
         }
+    }
+    public static class NoteExtensionMethods
+    {        
         /// <summary>
         /// Returns true if note is valid.
         /// </summary>
