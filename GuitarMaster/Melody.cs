@@ -15,7 +15,7 @@ using System.Windows.Media;
 namespace GuitarMaster
 {
 
-    public static class Melody
+    public static partial class Melody
     {
         public enum Chords { Am = 1, Dm = 4, F = 6, E = 5 };
         public static int[] SetOfNotes(Chords chord, int tact)
@@ -250,36 +250,13 @@ namespace GuitarMaster
             Thread.Sleep(700);
             for (int i = 0; i < phrase.Length; i++)
             {
-                output.SendNoteOn(channel, NoteExtensionMethods.Note(phrase[i], 4), 80);
+                output.SendNoteOn(channel, MyNote.Note(phrase[i], 4), 80);
                 System.Threading.Thread.Sleep(440);
-                output.SendNoteOff(channel, NoteExtensionMethods.Note(phrase[i], 4), 80);
+                output.SendNoteOff(channel, MyNote.Note(phrase[i], 4), 80);
             }
             System.Threading.Thread.Sleep(500);
             Form1.Replay(player);
 
-        }
-
-        public static void PlayPhraseWithRandomRhythm(OutputDevice output, Channel channel, int[] phrase, MediaPlayer player)
-        {
-            //Thread.Sleep(700);
-            int[] rhythm = Rhythm.GetRhythm(12, 6);
-            int j = 0;
-            for (int i = 0; i < rhythm.Length; i++)
-            {
-                if (rhythm[i] == 0)
-                    System.Threading.Thread.Sleep(440);
-                else
-                {
-                    output.SendNoteOn(channel, NoteExtensionMethods.Note(phrase[j], 4), 80);
-                    System.Threading.Thread.Sleep(440);
-                    output.SendNoteOff(channel, NoteExtensionMethods.Note(phrase[j], 4), 80);
-                    j++;
-                    if (j == phrase.Length)
-                        return;
-                }
-            }
-            System.Threading.Thread.Sleep(500);
-            //Form1.Replay(player);
         }
 
     }
