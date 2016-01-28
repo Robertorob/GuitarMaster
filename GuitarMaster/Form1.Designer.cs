@@ -1042,7 +1042,7 @@
             this.accompButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.accompButton.Location = new System.Drawing.Point(134, 73);
             this.accompButton.Name = "accompButton";
-            this.accompButton.Size = new System.Drawing.Size(104, 65);
+            this.accompButton.Size = new System.Drawing.Size(136, 65);
             this.accompButton.TabIndex = 3;
             this.accompButton.Text = "Play synthetic accompanement";
             this.accompButton.UseVisualStyleBackColor = true;

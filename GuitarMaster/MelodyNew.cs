@@ -17,25 +17,8 @@ namespace GuitarMaster
     public static partial class Melody
     {
         //public static int[] NewSetOfNotes(int[] scale, int countOfNotes)
-        //{          
-        //    switch (chord)
-        //    {
-        //        case Chords.Am:
-        //            stables = new MyRandom(new int[] { 1, 3, 5 }, new int[] { 33, 33, 34 });
-        //            break;
-        //        case Chords.Dm:
-        //            stables = new MyRandom(new int[] { 1, 3, 5 }, new int[] { 33, 33, 34 });
-        //            break;
-        //        case Chords.E:
-        //            stables = new MyRandom(new int[] { 1, 3, 5 }, new int[] { 33, 33, 34 });
-        //            break;
-        //        case Chords.F:
-        //            stables = new MyRandom(new int[] { 3 }, new int[] { 100 });
-        //            break;
-        //    }
-
-        //    int length = 6;// notesCount.Next(4, 10);//количество нот во фразе
-        //    int[] phrase = new int[length];
+        //{
+        //    int[] phrase = new int[countOfNotes];
         //    for (int i = 0; i < phrase.Length; i++)
         //    {
         //        phrase[i] = 0;
@@ -65,9 +48,8 @@ namespace GuitarMaster
         //    return phrase;
         //}
 
-        public static void PlayPhraseWithRandomRhythm(OutputDevice output, Channel channel, int[] phrase, MediaPlayer player)
+        public static void PlayPhraseWithRhythm(OutputDevice output, Channel channel, int[] phrase, int[] rhythm, int tonica)
         {
-            int[] rhythm = Rhythm.GetRhythm(12, 6);
             int j = 0;
             for (int i = 0; i < rhythm.Length; i++)
             {

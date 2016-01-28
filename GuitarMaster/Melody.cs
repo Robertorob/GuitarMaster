@@ -38,7 +38,7 @@ namespace GuitarMaster
                     break;
             }
 
-            int length = 6;// notesCount.Next(4, 10);//количество нот во фразе
+            int length = 10;// notesCount.Next(4, 10);//количество нот во фразе
             int[] phrase = new int[length];
             for (int i = 0; i < phrase.Length; i++)
             {
@@ -82,7 +82,7 @@ namespace GuitarMaster
                         {
                             if (phrase[i] == 0)
                             {
-                                phrase[i] = (phrase[i - 1] + random.Next(1, 3)) % 7;
+                                phrase[i] = (phrase[i - 1] + random.Next(1, 8)) % 7;
                                 if (phrase[i] == 0)
                                     phrase[i] = 7;
                             }
@@ -91,7 +91,7 @@ namespace GuitarMaster
                         {
                             if (phrase[i] == 0)
                             {
-                                phrase[i] = (Math.Abs(phrase[i - 1] - random.Next(1, 3))) % 7;
+                                phrase[i] = (Math.Abs(phrase[i - 1] - random.Next(1, 8))) % 7;
                                 if (phrase[i] == 0)
                                     phrase[i] = 7;
                             }
@@ -103,7 +103,7 @@ namespace GuitarMaster
                         {
                             if (phrase[i] == 0)
                             {
-                                phrase[i] = (phrase[i + 1] + random.Next(1, 3)) % 7;
+                                phrase[i] = (phrase[i + 1] + random.Next(1, 8)) % 7;
                                 if (phrase[i] == 0)
                                     phrase[i] = 7;
                             }
@@ -112,7 +112,7 @@ namespace GuitarMaster
                         {
                             if (phrase[i] == 0)
                             {
-                                phrase[i] = (Math.Abs(phrase[i + 1] - random.Next(1, 3))) % 7;
+                                phrase[i] = (Math.Abs(phrase[i + 1] - random.Next(1, 8))) % 7;
                                 if (phrase[i] == 0)
                                     phrase[i] = 7;
                             }
@@ -127,7 +127,7 @@ namespace GuitarMaster
                         {
                             if (phrase[i] == 0)
                             {
-                                phrase[i] = (phrase[i - 1] + random.Next(1, 3)) % 7;
+                                phrase[i] = (phrase[i - 1] + random.Next(1, 8)) % 7;
                                 if (phrase[i] == 0)
                                     phrase[i] = 7;
                                 if (phrase[i] == 2)
@@ -138,7 +138,7 @@ namespace GuitarMaster
                         {
                             if (phrase[i] == 0)
                             {
-                                phrase[i] = (Math.Abs(phrase[i - 1] - random.Next(1, 3))) % 7;
+                                phrase[i] = (Math.Abs(phrase[i - 1] - random.Next(1, 8))) % 7;
                                 if (phrase[i] == 0)
                                     phrase[i] = 7;
                                 if (phrase[i] == 2)
@@ -152,7 +152,7 @@ namespace GuitarMaster
                         {
                             if (phrase[i] == 0)
                             {
-                                phrase[i] = (phrase[i + 1] + random.Next(1, 3)) % 7;
+                                phrase[i] = (phrase[i + 1] + random.Next(1, 8)) % 7;
                                 if (phrase[i] == 0)
                                     phrase[i] = 7;
                                 if (phrase[i] == 2)
@@ -163,7 +163,7 @@ namespace GuitarMaster
                         {
                             if (phrase[i] == 0)
                             {
-                                phrase[i] = (Math.Abs(phrase[i + 1] - random.Next(1, 3))) % 7;
+                                phrase[i] = (Math.Abs(phrase[i + 1] - random.Next(1, 8))) % 7;
                                 if (phrase[i] == 0)
                                     phrase[i] = 7;
                                 if (phrase[i] == 2)
@@ -180,7 +180,7 @@ namespace GuitarMaster
                         {
                             if (phrase[i] == 0)
                             {
-                                phrase[i] = (phrase[i + 1] + random.Next(1, 3)) % 7;
+                                phrase[i] = (phrase[i + 1] + random.Next(1, 8)) % 7;
                                 if (phrase[i] == 0)
                                     phrase[i] = 7;
                                 if (phrase[i] == 6)
@@ -191,7 +191,7 @@ namespace GuitarMaster
                         {
                             if (phrase[i] == 0)
                             {
-                                phrase[i] = (Math.Abs(phrase[i + 1] - random.Next(1, 3))) % 7;
+                                phrase[i] = (Math.Abs(phrase[i + 1] - random.Next(1, 8))) % 7;
                                 if (phrase[i] == 0)
                                     phrase[i] = 7;
                                 if (phrase[i] == 6)
