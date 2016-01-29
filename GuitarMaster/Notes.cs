@@ -14,11 +14,19 @@ using System.Windows.Media;
 
 namespace GuitarMaster
 {
-
-    public static partial class Melody
+    /// <summary>
+    /// Класс, поставляющий набор нот для мелодии
+    /// </summary>
+    public static partial class Notes
     {
         public enum Chords { Am = 1, Dm = 4, F = 6, E = 5 };
-        public static int[] SetOfNotes(Chords chord, int tact)
+        /// <summary>
+        /// gchgc
+        /// </summary>
+        /// <param name="chord">аккорд</param>
+        /// <param name="tact">такт</param>
+        /// <returns></returns>
+        public static int[] GetNotes(Chords chord, int tact)
         {
             Random notesCount = new Random(), positions = new Random();//position - позиция устойчивой ноты
             MyRandom stables = new MyRandom(new int[] { 1, 3, 5 }, new int[] { 33, 33, 34 });
@@ -38,7 +46,7 @@ namespace GuitarMaster
                     break;
             }
 
-            int length = 10;// notesCount.Next(4, 10);//количество нот во фразе
+            int length = 16;// notesCount.Next(4, 10);//количество нот во фразе
             int[] phrase = new int[length];
             for (int i = 0; i < phrase.Length; i++)
             {
@@ -244,20 +252,5 @@ namespace GuitarMaster
             }
             return phrase;
         }
-
-        public static void PlayPhrase(OutputDevice output, Channel channel, int[] phrase, MediaPlayer player)
-        {
-            Thread.Sleep(700);
-            for (int i = 0; i < phrase.Length; i++)
-            {
-                output.SendNoteOn(channel, MyNote.Note(phrase[i], 4), 80);
-                System.Threading.Thread.Sleep(440);
-                output.SendNoteOff(channel, MyNote.Note(phrase[i], 4), 80);
-            }
-            System.Threading.Thread.Sleep(500);
-            Form1.Replay(player);
-
-        }
-
     }
 }

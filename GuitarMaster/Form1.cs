@@ -13,7 +13,9 @@ using MidiExamples;
 using System.Windows.Media;
 using System.IO;
 
-/*
+/*Следующая задача: определить, что будет хранить массив мелоди(сейчас он хранит номера ступеней от 1 до 7)
+ * Добавить новую гамму. И прорисовать её на грифе
+ * 
  * Мелодия.
  * Фиксированное время проигрывания.
  * Сделать рандомный ритм.
@@ -53,13 +55,12 @@ namespace GuitarMaster
 
         private void newGenerateButton_Click(object sender, EventArgs e)
         {
-            int countOfNotes = 9;
-            int tonica = 40;
-            int[] rhythm = Rhythm.GetRhythm(16, countOfNotes);
-            int[] test = Melody.SetOfNotes(Melody.Chords.Am, 1);
-            //int[] test = Melody.NewSetOfNotes(int[] scale, countOfNotes);
-            //Играется столько нот, сколько нот в ритме
-            Melody.PlayPhraseWithRhythm(outputDevice, Channel.Channel1, test, rhythm, tonica);
+            int[] rhythm = Rhythm.GetRhythm(15, 10);
+            int[] notes = Notes.GetNotes(Notes.Chords.Am, 1);
+
+            SoundDevices sd = new SoundDevices(outputDevice, Channel.Channel1);
+            
+            MelodyPlayer.PlayMelodyWithRhythm(sd, notes, rhythm, Note.A4, 4);
         }
 
         public static void Replay(MediaPlayer player)
@@ -88,48 +89,48 @@ namespace GuitarMaster
         private void generateButton_Click(object sender, EventArgs e)
         {
 
-            int[] test = Melody.SetOfNotes(Melody.Chords.Am, 1);
-            for (int i = 0; i < test.Length; i++)
+            int[] notes = Notes.GetNotes(Notes.Chords.Am, 1);
+            int[] rhythm = Rhythm.GetRhythm(6, 4);
+
+            for (int i = 0; i < notes.Length; i++)
             {
-                testTextBox.Text += test[i].ToString();
+                testTextBox.Text += notes[i].ToString();
             }
             testTextBox.Text += " ";
-
-            //var th = new System.Threading.Thread(new ParameterizedThreadStart(Accompanement.PlayAccompanement));
-            //th.Start(outputDevice);
+          
             player.Open(new Uri(Application.StartupPath + "\\Chords\\Am.m4a", UriKind.Absolute));
             player.Play();
-            Melody.PlayPhrase(outputDevice, Channel.Channel1, test, player);
 
-            test = Melody.SetOfNotes(Melody.Chords.F, 2);
-            for (int i = 0; i < test.Length; i++)
+            SoundDevices sd = new SoundDevices(outputDevice, Channel.Channel1);
+
+            MelodyPlayer.PlayMelody(sd, notes, player);
+
+            notes = Notes.GetNotes(Notes.Chords.F, 2);
+            for (int i = 0; i < notes.Length; i++)
             {
-                testTextBox.Text += test[i].ToString();
+                testTextBox.Text += notes[i].ToString();
             }
             testTextBox.Text += " ";
 
-            //player_Ended(new object(), new EventArgs());
-            Melody.PlayPhrase(outputDevice, Channel.Channel1, test, player);
+            MelodyPlayer.PlayMelody(sd, notes, player);
 
-            test = Melody.SetOfNotes(Melody.Chords.Dm, 2);
-            for (int i = 0; i < test.Length; i++)
+            notes = Notes.GetNotes(Notes.Chords.Dm, 2);
+            for (int i = 0; i < notes.Length; i++)
             {
-                testTextBox.Text += test[i].ToString();
+                testTextBox.Text += notes[i].ToString();
             }
             testTextBox.Text += " ";
 
-            //player_Ended(new object(), new EventArgs());
-            Melody.PlayPhrase(outputDevice, Channel.Channel1, test, player);
+            MelodyPlayer.PlayMelody(sd, notes, player);
 
-            test = Melody.SetOfNotes(Melody.Chords.E, 4);
-            for (int i = 0; i < test.Length; i++)
+            notes = Notes.GetNotes(Notes.Chords.E, 4);
+            for (int i = 0; i < notes.Length; i++)
             {
-                testTextBox.Text += test[i].ToString();
+                testTextBox.Text += notes[i].ToString();
             }
             testTextBox.Text += " ";
 
-            //player_Ended(new object(), new EventArgs());
-            Melody.PlayPhrase(outputDevice, Channel.Channel1, test, player);
+            MelodyPlayer.PlayMelody(sd, notes, player);
         }
 
         private void grifPBox_MouseMove(object sender, MouseEventArgs e)

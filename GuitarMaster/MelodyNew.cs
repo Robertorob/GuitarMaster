@@ -14,9 +14,9 @@ using System.Windows.Media;
 
 namespace GuitarMaster
 {
-    public static partial class Melody
+    public static partial class Notes
     {
-        //public static int[] NewSetOfNotes(int[] scale, int countOfNotes)
+        //public static int[] NewGetNotes(int[] scale, int countOfNotes)
         //{
         //    int[] phrase = new int[countOfNotes];
         //    for (int i = 0; i < phrase.Length; i++)
@@ -47,24 +47,6 @@ namespace GuitarMaster
 
         //    return phrase;
         //}
-
-        public static void PlayPhraseWithRhythm(OutputDevice output, Channel channel, int[] phrase, int[] rhythm, int tonica)
-        {
-            int j = 0;
-            for (int i = 0; i < rhythm.Length; i++)
-            {
-                if (rhythm[i] == 0)
-                    System.Threading.Thread.Sleep(340);
-                else
-                {
-                    output.SendNoteOn(channel, MyNote.Note(phrase[j], 4), 80);
-                    System.Threading.Thread.Sleep(340);
-                    output.SendNoteOff(channel, MyNote.Note(phrase[j], 4), 80);
-                    j++;
-                    if (j == phrase.Length)
-                        return;
-                }
-            }
-        }
+        
     }
 }

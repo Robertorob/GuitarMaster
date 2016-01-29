@@ -71,8 +71,9 @@
     <Compile Include="InputDevice.cs" />
     <Compile Include="Instrument.cs" />
     <Compile Include="Interval.cs" />
-    <Compile Include="Melody.cs" />
+    <Compile Include="Notes.cs" />
     <Compile Include="MelodyNew.cs" />
+    <Compile Include="MelodyPlayer.cs" />
     <Compile Include="MessageQueue.cs" />
     <Compile Include="Messages.cs" />
     <Compile Include="MyRandom.cs" />
