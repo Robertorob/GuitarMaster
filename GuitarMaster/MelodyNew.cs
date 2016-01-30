@@ -16,7 +16,7 @@ namespace GuitarMaster
 {
     public static partial class Notes
     {
-        //public static int[] NewGetNotes(int[] scale, int countOfNotes)
+        //public static int[] NewGetNotes(int[] scale, int countOfNotes, int[] rhythm)
         //{
         //    int[] phrase = new int[countOfNotes];
         //    for (int i = 0; i < phrase.Length; i++)

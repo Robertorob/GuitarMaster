@@ -17,8 +17,8 @@ using System.IO;
  * Добавить новую гамму. И прорисовать её на грифе
  * 
  * Мелодия.
- * Фиксированное время проигрывания.
- * Сделать рандомный ритм.
+ * Сделать рандомный ритм.(сделано) Также можно задавать темп. Попробовать сделать его тоже рандомным
+ * Добавить приемы: секвенция, вертушка, арпеджио
  * 
  * Задача: переделать программу.
  * 1. Аккомпанемент. Будет играть один аккорд. Еще надо решить, 
@@ -55,7 +55,7 @@ namespace GuitarMaster
 
         private void newGenerateButton_Click(object sender, EventArgs e)
         {
-            int[] rhythm = Rhythm.GetRhythm(15, 10);
+            int[] rhythm = Rhythm.GetRhythm(22, 16);
             int[] notes = Notes.GetNotes(Notes.Chords.Am, 1);
 
             SoundDevices sd = new SoundDevices(outputDevice, Channel.Channel1);

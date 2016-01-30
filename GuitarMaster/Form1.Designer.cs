@@ -1057,7 +1057,7 @@
             this.patternComboBox.Location = new System.Drawing.Point(11, 35);
             this.patternComboBox.Name = "patternComboBox";
             this.patternComboBox.Size = new System.Drawing.Size(147, 21);
-            this.patternComboBox.TabIndex = 0;
+            this.patternComboBox.TabIndex = 2;
             // 
             // label1
             // 
@@ -1075,7 +1075,7 @@
             this.clearGrid.Location = new System.Drawing.Point(10, 78);
             this.clearGrid.Name = "clearGrid";
             this.clearGrid.Size = new System.Drawing.Size(115, 46);
-            this.clearGrid.TabIndex = 1;
+            this.clearGrid.TabIndex = 3;
             this.clearGrid.Text = "Очистить сетку";
             this.clearGrid.UseVisualStyleBackColor = true;
             this.clearGrid.Click += new System.EventHandler(this.clearGrid_Click);
@@ -1086,7 +1086,7 @@
             this.newGenerateButton.Location = new System.Drawing.Point(264, 6);
             this.newGenerateButton.Name = "newGenerateButton";
             this.newGenerateButton.Size = new System.Drawing.Size(128, 53);
-            this.newGenerateButton.TabIndex = 111;
+            this.newGenerateButton.TabIndex = 1;
             this.newGenerateButton.Text = "Generate with one chord";
             this.newGenerateButton.UseVisualStyleBackColor = true;
             this.newGenerateButton.Click += new System.EventHandler(this.newGenerateButton_Click);

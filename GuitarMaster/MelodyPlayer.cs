@@ -38,18 +38,21 @@ namespace GuitarMaster
         /// <param name="notes">Массив нот</param>
         /// <param name="rhythm">Массив, описывающий ритм</param>
         /// <param name="tonica">Нота, от которой играется мелодия</param>
-        /// <param name="duration">Продолжительность такта в секундах</param>
-        public static void PlayMelodyWithRhythm(SoundDevices sd, int[] notes, int[] rhythm, Note tonica, int duration)
+        /// <param name="duration">Продолжительность такта в секундах с точностью до тысячных</param>
+        public static void PlayMelodyWithRhythm(SoundDevices sd, int[] notes, int[] rhythm, Note tonica, double duration)
         {
+            int dur = (int)(duration * 1000);
+            int oneNoteDur = dur / rhythm.Length;//продолжительность звучания одной ноты(или паузы)
+
             int j = 0;
             for (int i = 0; i < rhythm.Length; i++)
             {
                 if (rhythm[i] == 0)
-                    System.Threading.Thread.Sleep(340);
+                    System.Threading.Thread.Sleep(oneNoteDur);
                 else
                 {
                     sd.output.SendNoteOn(sd.channel, MyNote.Note(notes[j], 4), 80);
-                    System.Threading.Thread.Sleep(340);
+                    System.Threading.Thread.Sleep(oneNoteDur);
                     sd.output.SendNoteOff(sd.channel, MyNote.Note(notes[j], 4), 80);
                     j++;
                     if (j == notes.Length)
