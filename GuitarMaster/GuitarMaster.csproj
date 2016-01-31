@@ -72,7 +72,7 @@
     <Compile Include="Instrument.cs" />
     <Compile Include="Interval.cs" />
     <Compile Include="Notes.cs" />
-    <Compile Include="MelodyNew.cs" />
+    <Compile Include="NewNotes.cs" />
     <Compile Include="MelodyPlayer.cs" />
     <Compile Include="MessageQueue.cs" />
     <Compile Include="Messages.cs" />

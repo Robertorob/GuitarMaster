@@ -18,8 +18,9 @@ namespace GuitarMaster
     {
         public static Label[,] labels;
         public Note[,] grifnotes;
-        public int[] minorPattern;
-        public int[] majorPattern;
+        public int[] minorScale;
+        public int[] majorScale;
+        public int[] flamencoScale;
         public bool grid;
         public int[,] gridButtons;//кнопки, которые показывают сетку
 
@@ -38,22 +39,26 @@ namespace GuitarMaster
         public void DrawGrid(int i, int j, int selectedIndex)//Рисуем сетку
         {
             int jcopy = j;
-            int[] pattern = new int[7];
+            int[] scale = new int[7];
             switch (selectedIndex)
             {
                 case 0://Выбран натуральный минор
-                    pattern = minorPattern;
+                    scale = minorScale;
                     break;
                 case 1://Выбран натуральный мажор
-                    pattern = majorPattern;
+                    scale = majorScale;
+                    break;
+                case 2:
+                    scale = flamencoScale;
                     break;
 
             }
+
             for (int m = i; m < 6; m++)
             {
                 int index = -1;
                 //Идем по струне вправо, используя шаблон
-                for (int k = j; k < 16; k += pattern[index % 7])
+                for (int k = j; k < 16; k += scale[index % scale.Length])
                 {
                     if (k == j || (k - j) % 12 == 0)
                     {
@@ -66,7 +71,7 @@ namespace GuitarMaster
 
                 index = 7;
                 //Идем по струне влево, используя шаблон
-                for (int k = j; k >= 0; k -= pattern[Math.Abs(index % 7)])
+                for (int k = j; k >= 0; k -= scale[Math.Abs(index % scale.Length)])
                 {
                     if ((j - k) % 12 == 0)
                     {
@@ -122,7 +127,7 @@ namespace GuitarMaster
             {
                 int index = -1;
                 //Идем по струне вправо, используя шаблон
-                for (int k = j; k < 16; k += pattern[index % 7])
+                for (int k = j; k < 16; k += scale[index % scale.Length])
                 {
                     if (k == j || (k - j) % 12 == 0)
                     {
@@ -135,7 +140,7 @@ namespace GuitarMaster
 
                 index = 7;
                 //Идем по струне вправо, используя шаблон
-                for (int k = j; k >= 0; k -= pattern[Math.Abs(index % 7)])
+                for (int k = j; k >= 0; k -= scale[Math.Abs(index % scale.Length)])
                 {
                     if ((j - k) % 12 == 0)
                     {
@@ -193,8 +198,10 @@ namespace GuitarMaster
 
             gridButtons = new int[6, 16];
 
-            minorPattern = new int[7] { 2, 1, 2, 2, 1, 2, 2 };
-            majorPattern = new int[7] { 2, 2, 1, 2, 2, 2, 1 };
+            minorScale = new int[7] { 2, 1, 2, 2, 1, 2, 2 };
+            majorScale = new int[7] { 2, 2, 1, 2, 2, 2, 1 };
+            flamencoScale = new int[7] { 1, 3, 1, 2, 1, 3, 1 };
+
 
             patternComboBox.SelectedIndex = 0;
 

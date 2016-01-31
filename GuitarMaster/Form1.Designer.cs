@@ -1053,7 +1053,8 @@
             this.patternComboBox.FormattingEnabled = true;
             this.patternComboBox.Items.AddRange(new object[] {
             "Натуральный минор",
-            "Натуральный мажор"});
+            "Натуральный мажор",
+            "Фламенко"});
             this.patternComboBox.Location = new System.Drawing.Point(11, 35);
             this.patternComboBox.Name = "patternComboBox";
             this.patternComboBox.Size = new System.Drawing.Size(147, 21);

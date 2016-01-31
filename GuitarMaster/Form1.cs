@@ -13,12 +13,15 @@ using MidiExamples;
 using System.Windows.Media;
 using System.IO;
 
-/*Следующая задача: определить, что будет хранить массив мелоди(сейчас он хранит номера ступеней от 1 до 7)
+/* Плюшка: можно выводить мелодию в виде текста. Получается её можно проиграть заново.
+ * А еще можно создать базу данных и в нёё класть классные мелодии.
+ * 
+ * Следующая задача: определить, что будет хранить массив мелоди(сейчас он хранит номера ступеней от 1 до 7)
  * Добавить новую гамму. И прорисовать её на грифе
  * 
  * Мелодия.
  * Сделать рандомный ритм.(сделано) Также можно задавать темп. Попробовать сделать его тоже рандомным
- * Добавить приемы: секвенция, вертушка, арпеджио
+ * Добавить приемы: секвенция, вертушка, арпеджио, повышение(понижение октавы)
  * 
  * Задача: переделать программу.
  * 1. Аккомпанемент. Будет играть один аккорд. Еще надо решить, 
@@ -55,12 +58,13 @@ namespace GuitarMaster
 
         private void newGenerateButton_Click(object sender, EventArgs e)
         {
-            int[] rhythm = Rhythm.GetRhythm(22, 16);
+            int[] rhythm = Rhythm.GetRhythm(25, 16);
             int[] notes = Notes.GetNotes(Notes.Chords.Am, 1);
+            //int[] notes = Notes.NewGetNotes(flamencoScale, 16, rhythm);
 
             SoundDevices sd = new SoundDevices(outputDevice, Channel.Channel1);
             
-            MelodyPlayer.PlayMelodyWithRhythm(sd, notes, rhythm, Note.A4, 4);
+            MelodyPlayer.PlayMelodyWithRhythm(sd, notes, rhythm, Note.A4, 5);
         }
 
         public static void Replay(MediaPlayer player)
