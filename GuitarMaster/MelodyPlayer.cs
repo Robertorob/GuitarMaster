@@ -19,6 +19,8 @@ namespace GuitarMaster
         public OutputDevice output;
         public Channel channel;
 
+        public SoundDevices() { }
+
         public SoundDevices(OutputDevice o, Channel c)
         {
             output = o;
@@ -51,9 +53,19 @@ namespace GuitarMaster
                     System.Threading.Thread.Sleep(oneNoteDur);
                 else
                 {
-                    sd.output.SendNoteOn(sd.channel, MyNote.Note(notes[j], 4), 80);
+                    /* 40 - E2, 
+                     * 79 - G5 */
+                    int n = ( (int)tonica - 1 + notes[j] );
+                    while (n > 79)
+                        n = n - 12;
+                    while (n < 40)
+                        n = n + 12;
+
+                    Note note = (Note) n;
+
+                    sd.output.SendNoteOn(sd.channel, note, 80);
                     System.Threading.Thread.Sleep(oneNoteDur);
-                    sd.output.SendNoteOff(sd.channel, MyNote.Note(notes[j], 4), 80);
+                    sd.output.SendNoteOff(sd.channel, note, 80);
                     j++;
                     if (j == notes.Length)
                         return;
