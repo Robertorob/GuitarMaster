@@ -128,14 +128,21 @@
             this.testTextBox = new System.Windows.Forms.TextBox();
             this.generateButton = new System.Windows.Forms.Button();
             this.accompButton = new System.Windows.Forms.Button();
-            this.patternComboBox = new System.Windows.Forms.ComboBox();
+            this.scaleComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.clearGrid = new System.Windows.Forms.Button();
             this.newGenerateButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grifPBox)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1048,17 +1055,17 @@
             this.accompButton.UseVisualStyleBackColor = true;
             this.accompButton.Click += new System.EventHandler(this.accompButton_Click);
             // 
-            // patternComboBox
+            // scaleComboBox
             // 
-            this.patternComboBox.FormattingEnabled = true;
-            this.patternComboBox.Items.AddRange(new object[] {
+            this.scaleComboBox.FormattingEnabled = true;
+            this.scaleComboBox.Items.AddRange(new object[] {
             "Натуральный минор",
             "Натуральный мажор",
             "Фламенко"});
-            this.patternComboBox.Location = new System.Drawing.Point(11, 35);
-            this.patternComboBox.Name = "patternComboBox";
-            this.patternComboBox.Size = new System.Drawing.Size(147, 21);
-            this.patternComboBox.TabIndex = 2;
+            this.scaleComboBox.Location = new System.Drawing.Point(11, 35);
+            this.scaleComboBox.Name = "scaleComboBox";
+            this.scaleComboBox.Size = new System.Drawing.Size(147, 21);
+            this.scaleComboBox.TabIndex = 2;
             // 
             // label1
             // 
@@ -1115,18 +1122,28 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.clearGrid);
             this.tabPage1.Controls.Add(this.newGenerateButton);
-            this.tabPage1.Controls.Add(this.patternComboBox);
+            this.tabPage1.Controls.Add(this.scaleComboBox);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabPage1.Size = new System.Drawing.Size(826, 193);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "New Project";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(450, 64);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(346, 76);
+            this.textBox1.TabIndex = 113;
             // 
             // tabPage2
             // 
@@ -1134,18 +1151,84 @@
             this.tabPage2.Controls.Add(this.testTextBox);
             this.tabPage2.Controls.Add(this.generateButton);
             this.tabPage2.Controls.Add(this.accompButton);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 27);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(826, 193);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Size = new System.Drawing.Size(826, 188);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Old Project";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(850, 361);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(18, 18);
+            this.label3.TabIndex = 114;
+            this.label3.Text = "E";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(852, 243);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(16, 18);
+            this.label4.TabIndex = 115;
+            this.label4.Text = "e";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(851, 265);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(18, 18);
+            this.label5.TabIndex = 116;
+            this.label5.Text = "B";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(849, 290);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(20, 18);
+            this.label6.TabIndex = 117;
+            this.label6.Text = "G";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(849, 315);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(19, 18);
+            this.label7.TabIndex = 118;
+            this.label7.Text = "D";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(851, 336);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(17, 18);
+            this.label8.TabIndex = 119;
+            this.label8.Text = "A";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(879, 419);
+            this.ClientSize = new System.Drawing.Size(883, 419);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.s615);
             this.Controls.Add(this.s515);
@@ -1255,6 +1338,7 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1360,7 +1444,7 @@
         private System.Windows.Forms.TextBox testTextBox;
         private System.Windows.Forms.Button generateButton;
         private System.Windows.Forms.Button accompButton;
-        private System.Windows.Forms.ComboBox patternComboBox;
+        private System.Windows.Forms.ComboBox scaleComboBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button clearGrid;
         private System.Windows.Forms.Button newGenerateButton;
@@ -1368,6 +1452,13 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }
 

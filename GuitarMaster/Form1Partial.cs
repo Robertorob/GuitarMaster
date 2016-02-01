@@ -202,13 +202,13 @@ namespace GuitarMaster
             majorScale = new int[7] { 2, 2, 1, 2, 2, 2, 1 };
             flamencoScale = new int[7] { 1, 3, 1, 2, 1, 3, 1 };
 
+            tonica = Note.A3;
 
-            patternComboBox.SelectedIndex = 0;
+            scaleComboBox.SelectedIndex = 0;
 
             buttons = new Button[6, 16];
             player = new MediaPlayer();
             player.Volume = 0.3;
-            //player.MediaEnded += new EventHandler(player_Ended);
             outputDevice = ExampleUtil.ChooseOutputDeviceFromConsole();
             outputDevice.Open();
             outputDevice.SendProgramChange(Channel.Channel1, Instrument.AcousticGuitarSteel);

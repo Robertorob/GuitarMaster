@@ -13,14 +13,20 @@ using MidiExamples;
 using System.Windows.Media;
 using System.IO;
 
-/* Плюшка: можно выводить мелодию в виде текста. Получается её можно проиграть заново.
- * А еще можно создать базу данных и в нёё класть классные мелодии.
+/* Вынести всё это дело в отдельный поток
+ * 
+ * Доделать shift.Next() для каждой гаммы. Вбить наборы вероятностей
+ * 
+ * Плюшка: можно выводить мелодию в виде текста. Получается её можно проиграть заново.
+ * Можно вбить свою мелодию. На входе: ритм, ноты, темп
+ * А еще можно создать базу данных (или просто текстовые доки) и в нёё класть классные мелодии.
  * 
  * Следующая задача: определить, что будет хранить массив мелоди(сейчас он хранит номера ступеней от 1 до 7)
- * Добавить новую гамму. И прорисовать её на грифе
+ * Добавить новую гамму. И прорисовать её на грифе (СДЕЛАНО)
  * 
  * Мелодия.
- * Сделать рандомный ритм.(сделано) Также можно задавать темп. Попробовать сделать его тоже рандомным
+ * Сделать рандомный ритм.(СДЕЛАНО) Также можно задавать темп. Попробовать сделать его тоже рандомным
+ * 
  * Добавить приемы: секвенция, вертушка, арпеджио, повышение(понижение октавы)
  * 
  * Задача: переделать программу.
@@ -29,25 +35,22 @@ using System.IO;
  * Для начала
  * запишем аккорд: минорный, мажорный. Пока что в одной тональности. Как быть для восточных ладов? Для блюза?
  * 2. Гаммы.
- *  2.1 Нужно, чтобы при создании мелодии брались ноты из гаммы.
+ *  2.1 Нужно, чтобы при создании мелодии брались ноты из гаммы.(СДЕЛАНО)
  *  2.2 Сделать добавление своих ладов(на входе: количество нот, интервалы)
  *  2.3 Самому добавить блюзовую гамму, минорную мажорную, восточную
- * 3. Ритм. Сделать хоть какой-то римт
- *  3.1 Создание рандомного ритма
+ * 3. Ритм. Сделать хоть какой-то римт(СДЕЛАНО)
+ *  3.1 Создание рандомного ритма(СДЕЛАНО)
  *  3.2 Характерные ритмы для блюза, восточной музыки
- * 4. Мелодия. Как строится мелодия.
- *  Что на входе?
- *  Ритм - количество нот и пауз
- *  Набор нот. Количество должно совпадать естественно
  *  
- * 5. Сделать, чтобы мелодия игралась от тоники, выбранной на грифе. Т.е. мелодия
- * должна играться в любой тональности
+ * 4. Сделать, чтобы мелодия игралась от тоники, выбранной на грифе. Т.е. мелодия
+ * должна играться в любой тональности(СДЕЛАНО)
  * */
 namespace GuitarMaster
 {
     public partial class Form1 : Form
     {
         public Button[,] buttons;
+        Note tonica;
         OutputDevice outputDevice;
         public MediaPlayer player;
 
@@ -58,13 +61,39 @@ namespace GuitarMaster
 
         private void newGenerateButton_Click(object sender, EventArgs e)
         {
-            int[] rhythm = Rhythm.GetRhythm(25, 16);
-            int[] notes = Notes.GetNotes(Notes.Chords.Am, 1);
-            //int[] notes = Notes.NewGetNotes(flamencoScale, 16, rhythm);
+            int[] scaleIntervals = minorScale;
+            ScaleName scaleName = ScaleName.minor;
+
+            switch (scaleComboBox.SelectedIndex)
+            {
+                case 0://Выбран натуральный минор
+                    scaleIntervals = minorScale;
+                    scaleName = ScaleName.minor;
+                    break;
+                case 1://Выбран натуральный мажор
+                    scaleIntervals = majorScale;
+                    scaleName = ScaleName.major;
+                    break;
+                case 2:
+                    scaleIntervals = flamencoScale;
+                    scaleName = ScaleName.flamenco;
+                    break;
+            }
+            MyScale scale = new MyScale(scaleName, scaleIntervals);
+
+            int notesCount = 20;
+            int[] rhythm = Rhythm.GetRhythm(24, notesCount);
+            int[] notes = Notes.NewGetNotes(scale, notesCount, rhythm);
+
+            for (int i = 0; i < notes.Length; i++)
+            {
+                textBox1.Text += notes[i].ToString() + " ";
+            }
+            textBox1.Text += "\r\n";
 
             SoundDevices sd = new SoundDevices(outputDevice, Channel.Channel1);
             
-            MelodyPlayer.PlayMelodyWithRhythm(sd, notes, rhythm, Note.A4, 5);
+            MelodyPlayer.PlayMelodyWithRhythm(sd, notes, rhythm, tonica, 6);
         }
 
         public static void Replay(MediaPlayer player)
@@ -161,7 +190,8 @@ namespace GuitarMaster
                         if (!grid)
                         {
                             grid = true;
-                            DrawGrid(i, j, patternComboBox.SelectedIndex);
+                            DrawGrid(i, j, scaleComboBox.SelectedIndex);
+                            tonica = grifnotes[i, j];
                         }
                         return;
                     }

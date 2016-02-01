@@ -46,7 +46,7 @@ namespace GuitarMaster
                     break;
             }
 
-            int length = 16;// notesCount.Next(4, 10);//количество нот во фразе
+            int length = 6;// notesCount.Next(4, 10);//количество нот во фразе
             int[] phrase = new int[length];
             for (int i = 0; i < phrase.Length; i++)
             {
