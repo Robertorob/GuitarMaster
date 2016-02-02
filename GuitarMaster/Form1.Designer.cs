@@ -1061,11 +1061,13 @@
             this.scaleComboBox.Items.AddRange(new object[] {
             "Натуральный минор",
             "Натуральный мажор",
-            "Фламенко"});
+            "Фламенко",
+            "Блюз"});
             this.scaleComboBox.Location = new System.Drawing.Point(11, 35);
             this.scaleComboBox.Name = "scaleComboBox";
             this.scaleComboBox.Size = new System.Drawing.Size(147, 21);
             this.scaleComboBox.TabIndex = 2;
+            this.scaleComboBox.SelectedIndexChanged += new System.EventHandler(this.scaleComboBox_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -1131,7 +1133,7 @@
             this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(826, 193);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "New Project";
@@ -1151,10 +1153,10 @@
             this.tabPage2.Controls.Add(this.testTextBox);
             this.tabPage2.Controls.Add(this.generateButton);
             this.tabPage2.Controls.Add(this.accompButton);
-            this.tabPage2.Location = new System.Drawing.Point(4, 27);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage2.Size = new System.Drawing.Size(826, 188);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(826, 193);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Old Project";
             // 

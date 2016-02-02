@@ -14,13 +14,11 @@ using System.Windows.Media;
 
 namespace GuitarMaster
 {
-    public enum ScaleName {minor, major, flamenco, blues}
+    public enum ScaleName {Minor, Major, Flamenco, Blues, Other}
     public class MyScale
     {
         public ScaleName scaleName;
         public int[] scaleIntervals;
-
-        public MyScale() { }
 
         public MyScale(ScaleName _scaleNamen, int[] _scale)
         {
@@ -38,61 +36,36 @@ namespace GuitarMaster
 
             int[] scaleIntervals = scale.scaleIntervals;
 
+            /* Создадим массив сдвигов и массив вероятностей выбора этого сдвига */
             int[] shiftValues = new int[scaleIntervals.Length];
-            int[] shiftProbab = new int[scaleIntervals.Length];
-
-            switch (scale.scaleName)
-            {
-                case ScaleName.major:
-
-                    break;
-                case ScaleName.minor:
-
-                    break;
-                case ScaleName.flamenco:
-
-                    break;
-                case ScaleName.blues:
-
-                    break;
-            }
-
+            int[] shiftProbab = MyRandom.GetProbabilities(shiftValues, scale.scaleName);
 
             MyRandom shifts = new MyRandom(shiftValues, shiftProbab);
 
             Random random = new Random();
 
-            /* Сдвиг - на сколько ступеней гаммы сдвигаемся*/
-            int shift = 0;
+            /* Сдвиг - на сколько ступеней гаммы сдвигаемся. Случайная величина */
+            int shift;
 
-            /* Куда сдвигаем: 0 - вниз, 1 - наверх*/
-            int upOrDown = 1;
+            /* Куда сдвигаем: 0 - вниз, 1 - наверх. Случайная величина */
+            int upOrDown;
 
             /* Показывает, на какой ступени гаммы мы сейчас находимся(номер элемента массива) */
-            int position = 0;    
+            int position = 0; 
+
+            int[] shiftsOut = new int[notes.Length - 1];//////////////////////////////////////Отладка
+            int[] notesOut = new int[notes.Length];///////////////////////////////////////////Отладка
 
             for (int i = 1; i < notes.Length; i++)
             {
                 upOrDown =  random.Next(0, 2);
 
-                /* Сюда лучше сделать распределение вероятностей */
-                shift =  random.Next(1, 3);///////////////////////////////////////////////////////////
-
-                /* Повышение или понижение на октаву */
-                if (shift == scaleIntervals.Length)
-                {
-                    if (upOrDown == 1)
-                    {
-                        notes[i] = notes[i - 1] + 12;
-                    }
-                    else
-                    {
-                        notes[i] = notes[i - 1] - 12;
-                    }
-                    continue;
-                }
+                shift = shifts.Next();                            
 
                 int sum = 0, k = position;
+
+                shiftsOut[i - 1] = shift;///////////////////////Отладка
+                notesOut[0] = 1;////////////////////////////////Отладка
 
                 if (upOrDown == 1)
                 {
@@ -108,13 +81,26 @@ namespace GuitarMaster
                     for (int j = 0; j < shift; j++)
                     {
                         if (k - 1 < 0)
-                            k  = k  + scaleIntervals.Length;
+                            k = k  + scaleIntervals.Length;
                         sum = sum - scaleIntervals[(k - 1) % scaleIntervals.Length];
-                        k--;
-                        if (k < 0)
-                            k += scaleIntervals.Length;
+                        k--;                        
                     }
                     position = (position + scaleIntervals.Length - shift) % scaleIntervals.Length;
+                }
+
+                notesOut[i] = position;///////////////////////////////////////Отладка
+
+                /* Случайное повышение или понижение на октаву (для разнообразия). Вероятность 0.1 */
+                if (random.Next(0, 10) == 1)
+                {
+                    if (upOrDown == 1)
+                    {
+                        sum += 12;
+                    }
+                    else
+                    {
+                        sum -= 12;
+                    }
                 }
 
                 notes[i] = notes[i - 1] + sum;

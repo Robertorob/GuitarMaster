@@ -13,9 +13,18 @@ using MidiExamples;
 using System.Windows.Media;
 using System.IO;
 
-/* Вынести всё это дело в отдельный поток
+/* Попробовать разработать алгоритм построения ритма характерный для блюза
  * 
- * Доделать shift.Next() для каждой гаммы. Вбить наборы вероятностей
+ * Добавить блюзовую гамму, протестировать.(СДЕЛАНО)
+ * 
+ * Вынести всё это дело в отдельный поток
+ * 
+ * Доделать shift.Next() для каждой гаммы. Вбить наборы вероятностей (СДЕЛАНО) 
+ * 
+ * Пока мы выдаем мелодию только под аккорд тоники, и сама мелодия не зависит от аккорда,
+ * играются все ноты подряд(поэтому эта мелодия подходит в основном только под аккорд тоники
+ * Сделать метод перехода на следующую ступень. Next(int position, chord, scale). Этот метод также 
+ * должен возвращать сдвиг
  * 
  * Плюшка: можно выводить мелодию в виде текста. Получается её можно проиграть заново.
  * Можно вбить свою мелодию. На входе: ритм, ноты, темп
@@ -60,30 +69,10 @@ namespace GuitarMaster
         }
 
         private void newGenerateButton_Click(object sender, EventArgs e)
-        {
-            int[] scaleIntervals = minorScale;
-            ScaleName scaleName = ScaleName.minor;
-
-            switch (scaleComboBox.SelectedIndex)
-            {
-                case 0://Выбран натуральный минор
-                    scaleIntervals = minorScale;
-                    scaleName = ScaleName.minor;
-                    break;
-                case 1://Выбран натуральный мажор
-                    scaleIntervals = majorScale;
-                    scaleName = ScaleName.major;
-                    break;
-                case 2:
-                    scaleIntervals = flamencoScale;
-                    scaleName = ScaleName.flamenco;
-                    break;
-            }
-            MyScale scale = new MyScale(scaleName, scaleIntervals);
-
+        {            
             int notesCount = 20;
-            int[] rhythm = Rhythm.GetRhythm(24, notesCount);
-            int[] notes = Notes.NewGetNotes(scale, notesCount, rhythm);
+            int[] rhythm = Rhythm.GetRhythm(27, notesCount);
+            int[] notes = Notes.NewGetNotes(selectedScale, notesCount, rhythm);
 
             for (int i = 0; i < notes.Length; i++)
             {
@@ -93,7 +82,7 @@ namespace GuitarMaster
 
             SoundDevices sd = new SoundDevices(outputDevice, Channel.Channel1);
             
-            MelodyPlayer.PlayMelodyWithRhythm(sd, notes, rhythm, tonica, 6);
+            MelodyPlayer.PlayMelodyWithRhythm(sd, notes, rhythm, tonica, 5);
         }
 
         public static void Replay(MediaPlayer player)
@@ -239,6 +228,34 @@ namespace GuitarMaster
             //        }
             //    }
             //}
+        }
+
+        private void scaleComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int[] scaleIntervals = minorScale;
+            ScaleName scaleName = ScaleName.Minor;
+            
+            switch (scaleComboBox.SelectedIndex)
+            {
+                case 0://Выбран натуральный минор
+                    scaleIntervals = minorScale;
+                    scaleName = ScaleName.Minor;
+                    break;
+                case 1://Выбран натуральный мажор
+                    scaleIntervals = majorScale;
+                    scaleName = ScaleName.Major;
+                    break;
+                case 2:
+                    scaleIntervals = flamencoScale;
+                    scaleName = ScaleName.Flamenco;
+                    break;
+                case 3:
+                    scaleIntervals = bluesScale;
+                    scaleName = ScaleName.Blues;
+                    break;
+            }
+
+            selectedScale = new MyScale(scaleName, scaleIntervals);
         }       
 
         //private void stopButton_Click(object sender, EventArgs e)

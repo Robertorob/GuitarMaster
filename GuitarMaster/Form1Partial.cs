@@ -18,9 +18,8 @@ namespace GuitarMaster
     {
         public static Label[,] labels;
         public Note[,] grifnotes;
-        public int[] minorScale;
-        public int[] majorScale;
-        public int[] flamencoScale;
+        public int[] minorScale, majorScale, flamencoScale, bluesScale;
+        public MyScale selectedScale;
         public bool grid;
         public int[,] gridButtons;//кнопки, которые показывают сетку
 
@@ -39,20 +38,7 @@ namespace GuitarMaster
         public void DrawGrid(int i, int j, int selectedIndex)//Рисуем сетку
         {
             int jcopy = j;
-            int[] scale = new int[7];
-            switch (selectedIndex)
-            {
-                case 0://Выбран натуральный минор
-                    scale = minorScale;
-                    break;
-                case 1://Выбран натуральный мажор
-                    scale = majorScale;
-                    break;
-                case 2:
-                    scale = flamencoScale;
-                    break;
-
-            }
+            int[] scale = selectedScale.scaleIntervals;
 
             for (int m = i; m < 6; m++)
             {
@@ -69,7 +55,7 @@ namespace GuitarMaster
                     index++;
                 }
 
-                index = 7;
+                index = scale.Length;////////////////////////////
                 //Идем по струне влево, используя шаблон
                 for (int k = j; k >= 0; k -= scale[Math.Abs(index % scale.Length)])
                 {
@@ -81,7 +67,7 @@ namespace GuitarMaster
                     gridButtons[m, k] = 1;
                     index--;
                     if (index == -1)
-                        index = 6;
+                        index = scale.Length - 1;///////////////////////////////
                 }
 
                 //Смещение ладов при переходе на следующую струну
@@ -138,7 +124,7 @@ namespace GuitarMaster
                     index++;
                 }
 
-                index = 7;
+                index = scale.Length;//////////////////////////////////
                 //Идем по струне вправо, используя шаблон
                 for (int k = j; k >= 0; k -= scale[Math.Abs(index % scale.Length)])
                 {
@@ -150,7 +136,7 @@ namespace GuitarMaster
                     gridButtons[m, k] = 1;
                     index--;
                     if (index == -1)
-                        index = 6;
+                        index = scale.Length - 1;///////////////////////////////
                 }
 
                 //Смещение ладов при переходе на следующую струну
@@ -198,9 +184,17 @@ namespace GuitarMaster
 
             gridButtons = new int[6, 16];
 
+            /* Гаммы можно менять, но их длина должна оставаться прежней.
+             * В противном случае, нужно произвести изменения в файле MyRandom.cs
+             */
             minorScale = new int[7] { 2, 1, 2, 2, 1, 2, 2 };
             majorScale = new int[7] { 2, 2, 1, 2, 2, 2, 1 };
             flamencoScale = new int[7] { 1, 3, 1, 2, 1, 3, 1 };
+            bluesScale = new int[] { 3, 2, 1, 1, 3, 2 };
+
+            int[] scaleIntervals = minorScale;
+            ScaleName scaleName = ScaleName.Minor;                    
+            selectedScale = new MyScale(scaleName, scaleIntervals);     
 
             tonica = Note.A3;
 
