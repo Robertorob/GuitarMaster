@@ -37,7 +37,7 @@ namespace GuitarMaster
             int[] scaleIntervals = scale.scaleIntervals;
 
             /* Создадим массив сдвигов и массив вероятностей выбора этого сдвига */
-            int[] shiftValues = new int[scaleIntervals.Length];
+            int[] shiftValues = new int[scaleIntervals.Length + 1];
             int[] shiftProbab = MyRandom.GetProbabilities(shiftValues, scale.scaleName);
 
             MyRandom shifts = new MyRandom(shiftValues, shiftProbab);
@@ -60,7 +60,14 @@ namespace GuitarMaster
             {
                 upOrDown =  random.Next(0, 2);
 
-                shift = shifts.Next();                            
+                shift = shifts.Next();
+
+                /* Повтор ноты */
+                if (shift == 0)
+                {
+                    notes[i] = notes[i - 1];
+                    continue;
+                }
 
                 int sum = 0, k = position;
 
@@ -105,6 +112,8 @@ namespace GuitarMaster
 
                 notes[i] = notes[i - 1] + sum;
             }
+
+            notes[notes.Length - 1] = 1;
 
             return notes;
         }

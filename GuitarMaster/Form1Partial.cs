@@ -17,7 +17,7 @@ namespace GuitarMaster
     public partial class Form1 : Form
     {
         public static Label[,] labels;
-        public Note[,] grifnotes;
+        public Note[,] grifNotes;
         public int[] minorScale, majorScale, flamencoScale, bluesScale;
         public MyScale selectedScale;
         public bool grid;
@@ -207,37 +207,37 @@ namespace GuitarMaster
             outputDevice.Open();
             outputDevice.SendProgramChange(Channel.Channel1, Instrument.AcousticGuitarSteel);
 
-            grifnotes = new Note[6, 16];
+            grifNotes = new Note[6, 16];
 
             //Заполняем 6 струну
-            for (int i = 0; i < 16; i++)
+            for (int i = 0; i < grifNotes.GetLength(1); i++)
             {
-                grifnotes[5, i] = (Note)(40 + i);
+                grifNotes[5, i] = (Note)(40 + i);
             }
             //Заполняем 5 струну
-            for (int i = 0; i < grifnotes.GetLength(1); i++)
+            for (int i = 0; i < grifNotes.GetLength(1); i++)
             {
-                grifnotes[4, i] = (Note)(45 + i);
+                grifNotes[4, i] = (Note)(45 + i);
             }
             //Заполняем 4 струну
-            for (int i = 0; i < grifnotes.GetLength(1); i++)
+            for (int i = 0; i < grifNotes.GetLength(1); i++)
             {
-                grifnotes[3, i] = (Note)(50 + i);
+                grifNotes[3, i] = (Note)(50 + i);
             }
             //Заполняем 3 струну
-            for (int i = 0; i < grifnotes.GetLength(1); i++)
+            for (int i = 0; i < grifNotes.GetLength(1); i++)
             {
-                grifnotes[2, i] = (Note)(55 + i);
+                grifNotes[2, i] = (Note)(55 + i);
             }
             //Заполняем 2 струну
-            for (int i = 0; i < grifnotes.GetLength(1); i++)
+            for (int i = 0; i < grifNotes.GetLength(1); i++)
             {
-                grifnotes[1, i] = (Note)(59 + i);
+                grifNotes[1, i] = (Note)(59 + i);
             }
             //Заполняем 1 струну
-            for (int i = 0; i < grifnotes.GetLength(1); i++)
+            for (int i = 0; i < grifNotes.GetLength(1); i++)
             {
-                grifnotes[0, i] = (Note)(64 + i);
+                grifNotes[0, i] = (Note)(64 + i);
             }
 
             int tabindex = 4;

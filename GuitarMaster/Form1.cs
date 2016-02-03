@@ -13,7 +13,13 @@ using MidiExamples;
 using System.Windows.Media;
 using System.IO;
 
-/* Попробовать разработать алгоритм построения ритма характерный для блюза
+/* Плюшка: можно выводить мелодию в виде текста. Получается её можно проиграть заново.
+ * Можно вбить свою мелодию. На входе: ритм, ноты, темп
+ * А еще можно создать базу данных (или просто текстовые доки) и в нёё класть классные мелодии.
+ * 
+ * Сделать подсветку проигрываемых нот(СДЕЛАНО)
+ * 
+ * Попробовать разработать алгоритм построения ритма характерный для блюза
  * 
  * Добавить блюзовую гамму, протестировать.(СДЕЛАНО)
  * 
@@ -25,10 +31,6 @@ using System.IO;
  * играются все ноты подряд(поэтому эта мелодия подходит в основном только под аккорд тоники
  * Сделать метод перехода на следующую ступень. Next(int position, chord, scale). Этот метод также 
  * должен возвращать сдвиг
- * 
- * Плюшка: можно выводить мелодию в виде текста. Получается её можно проиграть заново.
- * Можно вбить свою мелодию. На входе: ритм, ноты, темп
- * А еще можно создать базу данных (или просто текстовые доки) и в нёё класть классные мелодии.
  * 
  * Следующая задача: определить, что будет хранить массив мелоди(сейчас он хранит номера ступеней от 1 до 7)
  * Добавить новую гамму. И прорисовать её на грифе (СДЕЛАНО)
@@ -69,9 +71,9 @@ namespace GuitarMaster
         }
 
         private void newGenerateButton_Click(object sender, EventArgs e)
-        {            
-            int notesCount = 20;
-            int[] rhythm = Rhythm.GetRhythm(27, notesCount);
+        {    
+            int notesCount = 15;
+            int[] rhythm = Rhythm.GetRhythm(22, notesCount);
             int[] notes = Notes.NewGetNotes(selectedScale, notesCount, rhythm);
 
             for (int i = 0; i < notes.Length; i++)
@@ -82,7 +84,7 @@ namespace GuitarMaster
 
             SoundDevices sd = new SoundDevices(outputDevice, Channel.Channel1);
             
-            MelodyPlayer.PlayMelodyWithRhythm(sd, notes, rhythm, tonica, 5);
+            MelodyPlayer.PlayMelodyWithRhythm(sd, notes, rhythm, tonica, 6, grifNotes, buttons);
         }
 
         public static void Replay(MediaPlayer player)
@@ -175,12 +177,12 @@ namespace GuitarMaster
                 {
                     if ((Button)sender == buttons[i, j])
                     {
-                        outputDevice.SendNoteOn(Channel.Channel1, grifnotes[i, j], 80);
+                        outputDevice.SendNoteOn(Channel.Channel1, grifNotes[i, j], 80);
                         if (!grid)
                         {
                             grid = true;
                             DrawGrid(i, j, scaleComboBox.SelectedIndex);
-                            tonica = grifnotes[i, j];
+                            tonica = grifNotes[i, j];
                         }
                         return;
                     }

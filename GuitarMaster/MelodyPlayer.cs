@@ -19,8 +19,6 @@ namespace GuitarMaster
         public OutputDevice output;
         public Channel channel;
 
-        public SoundDevices() { }
-
         public SoundDevices(OutputDevice o, Channel c)
         {
             output = o;
@@ -29,7 +27,27 @@ namespace GuitarMaster
     }
 
     public static class MelodyPlayer
-    {        
+    {
+        public static Button FindButtonAndChangeColor(Note note, Button[,] buttons, Note[,] grifNotes, out bool visible)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                for (int j = 0; j < 16; j++)
+                {
+                    if (grifNotes[i, j] == note)
+                    {
+                        buttons[i, j].BackColor = System.Drawing.Color.Red;
+                        visible = buttons[i, j].Visible;
+                        buttons[i, j].Visible = true;
+                        Form1.ActiveForm.Refresh();
+                        return buttons[i, j];
+                    }
+                }
+            }
+            visible = false;
+            return buttons[0, 0];
+        }
+
         /// <summary>
         /// Проигрывает мелодию в указанном ритме от указанной ноты. 
         /// С фиксированной продолжительностью такта. 
@@ -41,7 +59,7 @@ namespace GuitarMaster
         /// <param name="rhythm">Массив, описывающий ритм</param>
         /// <param name="tonica">Нота, от которой играется мелодия</param>
         /// <param name="duration">Продолжительность такта в секундах с точностью до тысячных</param>
-        public static void PlayMelodyWithRhythm(SoundDevices sd, int[] notes, int[] rhythm, Note tonica, double duration)
+        public static void PlayMelodyWithRhythm(SoundDevices sd, int[] notes, int[] rhythm, Note tonica, double duration, Note[,] grifNotes, Button[,] buttons)
         {
             /* Продолжительность такта в миллисекундах */
             int dur = (int)(duration * 1000);
@@ -71,8 +89,17 @@ namespace GuitarMaster
                     Note note = (Note)n;
 
                     sd.output.SendNoteOn(sd.channel, note, 80);
+                    bool visible;
+                    Button button = FindButtonAndChangeColor(note, buttons, grifNotes, out visible);                    
+                    
                     System.Threading.Thread.Sleep(oneNoteDur);
                     sd.output.SendNoteOff(sd.channel, note, 80);
+
+                    button.BackColor = default(System.Drawing.Color);
+                    if (!visible)
+                        button.Visible = false;
+                    Form1.ActiveForm.Refresh();
+
                     j++;
                     if (j == notes.Length)
                         return;
