@@ -39,7 +39,8 @@ namespace GuitarMaster
                         buttons[i, j].BackColor = System.Drawing.Color.Red;
                         visible = buttons[i, j].Visible;
                         buttons[i, j].Visible = true;
-                        Form1.ActiveForm.Refresh();
+                        if (Form1.ActiveForm != null)
+                            Form1.ActiveForm.Refresh();
                         return buttons[i, j];
                     }
                 }
@@ -98,13 +99,21 @@ namespace GuitarMaster
                     button.BackColor = default(System.Drawing.Color);
                     if (!visible)
                         button.Visible = false;
-                    Form1.ActiveForm.Refresh();
+                    if(Form1.ActiveForm != null)
+                        Form1.ActiveForm.Refresh();
 
                     j++;
                     if (j == notes.Length)
                         return;
                 }
             }
+        }
+
+        public static void PlayMelodyWithRhythm(SoundDevices sd, Melody melody, Note tonica, double duration, Note[,] grifNotes, Button[,] buttons)
+        {
+            int[] notes = melody.Notes;
+            int[] rhythm = melody.Rhythm;
+            PlayMelodyWithRhythm(sd, notes, rhythm, tonica, duration, grifNotes, buttons);
         }
 
         public static void PlayMelody(SoundDevices sd, int[] phrase, MediaPlayer player)

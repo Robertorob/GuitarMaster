@@ -17,11 +17,19 @@ namespace GuitarMaster
     public partial class Form1 : Form
     {
         public static Label[,] labels;
+        public Button[,] buttons;
         public Note[,] grifNotes;
+        public int[,] gridButtons;//кнопки, которые показывают сетку
+
+        public bool grid = false;
+
         public int[] minorScale, majorScale, flamencoScale, bluesScale;
         public MyScale selectedScale;
-        public bool grid;
-        public int[,] gridButtons;//кнопки, которые показывают сетку
+
+        OutputDevice outputDevice;
+        public MediaPlayer player;
+
+        List<Melody> tmpMelodys;
 
         private void VisibleCoordButtons(Button b, MouseEventArgs e, PictureBox p, int i, int j)
         {
@@ -38,13 +46,13 @@ namespace GuitarMaster
         public void DrawGrid(int i, int j, int selectedIndex)//Рисуем сетку
         {
             int jcopy = j;
-            int[] scale = selectedScale.scaleIntervals;
+            int[] scaleIntervals = selectedScale.scaleIntervals;
 
             for (int m = i; m < 6; m++)
             {
                 int index = -1;
                 //Идем по струне вправо, используя шаблон
-                for (int k = j; k < 16; k += scale[index % scale.Length])
+                for (int k = j; k < 16; k += scaleIntervals[index % scaleIntervals.Length])
                 {
                     if (k == j || (k - j) % 12 == 0)
                     {
@@ -55,9 +63,9 @@ namespace GuitarMaster
                     index++;
                 }
 
-                index = scale.Length;////////////////////////////
+                index = scaleIntervals.Length;////////////////////////////
                 //Идем по струне влево, используя шаблон
-                for (int k = j; k >= 0; k -= scale[Math.Abs(index % scale.Length)])
+                for (int k = j; k >= 0; k -= scaleIntervals[Math.Abs(index % scaleIntervals.Length)])
                 {
                     if ((j - k) % 12 == 0)
                     {
@@ -67,7 +75,7 @@ namespace GuitarMaster
                     gridButtons[m, k] = 1;
                     index--;
                     if (index == -1)
-                        index = scale.Length - 1;///////////////////////////////
+                        index = scaleIntervals.Length - 1;///////////////////////////////
                 }
 
                 //Смещение ладов при переходе на следующую струну
@@ -113,7 +121,7 @@ namespace GuitarMaster
             {
                 int index = -1;
                 //Идем по струне вправо, используя шаблон
-                for (int k = j; k < 16; k += scale[index % scale.Length])
+                for (int k = j; k < 16; k += scaleIntervals[index % scaleIntervals.Length])
                 {
                     if (k == j || (k - j) % 12 == 0)
                     {
@@ -124,9 +132,9 @@ namespace GuitarMaster
                     index++;
                 }
 
-                index = scale.Length;//////////////////////////////////
+                index = scaleIntervals.Length;//////////////////////////////////
                 //Идем по струне вправо, используя шаблон
-                for (int k = j; k >= 0; k -= scale[Math.Abs(index % scale.Length)])
+                for (int k = j; k >= 0; k -= scaleIntervals[Math.Abs(index % scaleIntervals.Length)])
                 {
                     if ((j - k) % 12 == 0)
                     {
@@ -136,7 +144,7 @@ namespace GuitarMaster
                     gridButtons[m, k] = 1;
                     index--;
                     if (index == -1)
-                        index = scale.Length - 1;///////////////////////////////
+                        index = scaleIntervals.Length - 1;///////////////////////////////
                 }
 
                 //Смещение ладов при переходе на следующую струну
@@ -179,8 +187,7 @@ namespace GuitarMaster
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-            grid = false;
+            tmpMelodys = new List<Melody>();
 
             gridButtons = new int[6, 16];
 

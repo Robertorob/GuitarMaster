@@ -13,32 +13,42 @@ using MidiExamples;
 using System.Windows.Media;
 using System.IO;
 
-/* Плюшка: можно выводить мелодию в виде текста. Получается её можно проиграть заново.
- * Можно вбить свою мелодию. На входе: ритм, ноты, темп
+/* Можно вбить свою мелодию. На входе: ритм, ноты, темп
  * А еще можно создать базу данных (или просто текстовые доки) и в нёё класть классные мелодии.
- * 
- * Сделать подсветку проигрываемых нот(СДЕЛАНО)
  * 
  * Попробовать разработать алгоритм построения ритма характерный для блюза
  * 
- * Добавить блюзовую гамму, протестировать.(СДЕЛАНО)
- * 
  * Вынести всё это дело в отдельный поток
+ * 
+ * Добавить приемы: секвенция, вертушка, арпеджио, повышение(понижение) октавы
+ * 
+ * Пока мы выдаем мелодию только под аккорд тоники, и сама мелодия не зависит от аккорда,
+ * играются все ноты подряд,поэтому эта мелодия подходит в основном только под аккорд тоники
+ * Для другого аккорда есть два варианта:
+ * - для метода GetNotes подавать на вход другой массив интервалов. В нём будет меньше нот
+ * - либо переделать метод GetNotes, что не хочется
+ * 
+ * Сделать метод перехода на следующую ступень. Next(int position, chord, scale). Этот метод также 
+ * должен возвращать сдвиг. Т.е. будет задействована марковская цепь,  где position - состояние,
+ * и есть матрица вероятностей переходов из одного состояния в другое
+ * 
+ * Сделать ползунок выбора темпа(СДЕЛАНО)
+ * 
+ * Мелодию можно проиграть заново, причем:(СДЕЛАНО)
+ * - в другом темпе(СДЕЛАНО)
+ * - от другой тоники(СДЕЛАНО)
+ * 
+ * Сделать подсветку проигрываемых нот(СДЕЛАНО)
+ * 
+ * Добавить блюзовую гамму, протестировать.(СДЕЛАНО)
  * 
  * Доделать shift.Next() для каждой гаммы. Вбить наборы вероятностей (СДЕЛАНО) 
  * 
- * Пока мы выдаем мелодию только под аккорд тоники, и сама мелодия не зависит от аккорда,
- * играются все ноты подряд(поэтому эта мелодия подходит в основном только под аккорд тоники
- * Сделать метод перехода на следующую ступень. Next(int position, chord, scale). Этот метод также 
- * должен возвращать сдвиг
- * 
- * Следующая задача: определить, что будет хранить массив мелоди(сейчас он хранит номера ступеней от 1 до 7)
+ * Следующая задача: определить, что будет хранить массив мелоди(сейчас он хранит номера ступеней от 1 до 7)(СДЕЛАНО)
  * Добавить новую гамму. И прорисовать её на грифе (СДЕЛАНО)
  * 
  * Мелодия.
- * Сделать рандомный ритм.(СДЕЛАНО) Также можно задавать темп. Попробовать сделать его тоже рандомным
- * 
- * Добавить приемы: секвенция, вертушка, арпеджио, повышение(понижение октавы)
+ * Сделать рандомный ритм.(СДЕЛАНО) Также можно задавать темп(СДЕЛАНО)
  * 
  * Задача: переделать программу.
  * 1. Аккомпанемент. Будет играть один аккорд. Еще надо решить, 
@@ -60,10 +70,12 @@ namespace GuitarMaster
 {
     public partial class Form1 : Form
     {
-        public Button[,] buttons;
         Note tonica;
-        OutputDevice outputDevice;
-        public MediaPlayer player;
+
+        Melody lastMelody;
+        SoundDevices sd;
+        double duration = 6;
+        int notesCount = 16;
 
         public Form1()
         {
@@ -72,20 +84,45 @@ namespace GuitarMaster
 
         private void newGenerateButton_Click(object sender, EventArgs e)
         {    
-            int notesCount = 15;
-            int[] rhythm = Rhythm.GetRhythm(22, notesCount);
+            notesCount = int.Parse(notesCountTextBox.Text);
+            duration = Rhythm.GetDuration(tempoTrackBar.Value, notesCount);
+            if (notesCount <= 0)
+            {
+                MessageBox.Show("Число нот должно быть больше нуля!");
+                return;
+            }
+
+            int[] rhythm = Rhythm.GetRhythm(notesCount + notesCount / 3 + 1, notesCount);
             int[] notes = Notes.NewGetNotes(selectedScale, notesCount, rhythm);
 
+            lastMelody = new Melody(Melody.Number + "-ая мелодия", notes, rhythm, selectedScale.scaleName);
+            tmpMelodys.Add(lastMelody);
+            Melody.Number++;
+
+            rhythmTextBox.Text = "";
+            for (int i = 0; i < rhythm.Length; i++)
+            {
+                rhythmTextBox.Text += rhythm[i].ToString() + " ";
+            }
+            rhythmTextBox.Text += "\r\n";
+            notesTextBox.Text = "";
             for (int i = 0; i < notes.Length; i++)
             {
-                textBox1.Text += notes[i].ToString() + " ";
+                notesTextBox.Text += notes[i].ToString() + " ";
             }
-            textBox1.Text += "\r\n";
+            notesTextBox.Text += "\r\n";
 
-            SoundDevices sd = new SoundDevices(outputDevice, Channel.Channel1);
-            
-            MelodyPlayer.PlayMelodyWithRhythm(sd, notes, rhythm, tonica, 6, grifNotes, buttons);
+            if(sd == null)
+                sd = new SoundDevices(outputDevice, Channel.Channel1);
+
+            MelodyPlayer.PlayMelodyWithRhythm(sd, lastMelody, tonica, duration, grifNotes, buttons);
         }
+
+        private void playAgainButton_Click(object sender, EventArgs e)
+        {
+            if(lastMelody != null)
+                MelodyPlayer.PlayMelodyWithRhythm(sd, lastMelody, tonica, duration, grifNotes, buttons);
+        } 
 
         public static void Replay(MediaPlayer player)
         {
@@ -210,28 +247,6 @@ namespace GuitarMaster
             Accompaniment.PlayAccompanement(outputDevice);
         }
 
-        private void Form1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void grifPBox_Paint(object sender, PaintEventArgs e)
-        {
-            //e.Graphics.DrawRectangle(new System.Drawing.Pen(System.Drawing.Color.Red), 50, 50, 50, 50);
-            //for (int i = 0; i < 6; i++)
-            //{
-            //    for (int j = 0; j < 16; j++)
-            //    {
-            //        if (gridButtons[i, j] == 1)
-            //        {
-            //            int x = buttons[i, j].Location.X - grifPBox.Location.X;
-            //            int y = buttons[i, j].Location.Y - grifPBox.Location.Y;
-            //            e.Graphics.FillEllipse(new System.Drawing.SolidBrush(System.Drawing.Color.Red), x, y, 50, 50);
-            //        }
-            //    }
-            //}
-        }
-
         private void scaleComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int[] scaleIntervals = minorScale;
@@ -258,14 +273,49 @@ namespace GuitarMaster
             }
 
             selectedScale = new MyScale(scaleName, scaleIntervals);
-        }       
+        }
 
-        //private void stopButton_Click(object sender, EventArgs e)
-        //{
-        //    //player.Stop();
-        //    //outputDevice.Close();
-        //}
+        private void notesCountTextBox_TextChanged(object sender, EventArgs e)
+        {
+            int res;
+            if (!int.TryParse(notesCountTextBox.Text, out res))
+            {
+                MessageBox.Show("Вводите целое число!");
+                notesCountTextBox.Text = "16";
+                notesCountTextBox.SelectAll();
+            }
+        }
 
+        private void notesCountTextBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            notesCountTextBox.SelectAll();
+        }
+
+        private void tempoTrackBar_Scroll(object sender, EventArgs e)
+        {
+            duration = (double)( ((double)tempoTrackBar.Value * (-1) / 10) * notesCount ) / 8;
+        }
+
+        private void playYourMelodyButton_Click(object sender, EventArgs e)
+        {
+            int[] notes = Parser.GetMassive(notesTextBox.Text);
+            int[] rhythm = Parser.GetMassive(rhythmTextBox.Text);
+
+            if(notes.Length == 0 || rhythm.Length == 0 || notes.Length < rhythm.Sum())
+            {
+                MessageBox.Show("Неверный формат мелодии!");
+                return;
+            }
+
+            notesCount = notes.Length;
+            duration = Rhythm.GetDuration(tempoTrackBar.Value, notesCount);
+
+            if(sd == null)
+                sd = new SoundDevices(outputDevice, Channel.Channel1);
+
+            Melody melody = new Melody("My melody", notes, rhythm, ScaleName.Other);
+            MelodyPlayer.PlayMelodyWithRhythm(sd, melody, tonica, duration, grifNotes, buttons);
+        }
 
     }
 }

@@ -9,6 +9,17 @@ namespace GuitarMaster
     public static class Rhythm
     {
         /// <summary>
+        /// Возвращает длительность такта в секундах
+        /// </summary>
+        /// <param name="tempo">Значение темпа от -60 до -10</param>
+        /// <param name="notesCount">Количество нот</param>
+        /// <returns></returns>
+        public static double GetDuration(int tempo, int notesCount)
+        {
+            return (double)(((double)tempo * (-1) / 10) * notesCount) / 8;
+        }
+
+        /// <summary>
         /// Метод возвращает массив, описывающий ритм
         /// </summary>
         /// <param name="segmentsCount">Количество долей в такте (количество нот и пауз)</param>
