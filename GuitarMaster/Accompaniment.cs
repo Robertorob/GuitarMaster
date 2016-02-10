@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Midi;
 using System.Threading;
-using MidiExamples;
 using System.Windows.Media;
 
 namespace GuitarMaster

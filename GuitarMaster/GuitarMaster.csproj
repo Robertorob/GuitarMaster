@@ -54,12 +54,6 @@
     <Compile Include="Clock.cs" />
     <Compile Include="Control.cs" />
     <Compile Include="DeviceBase.cs" />
-    <Compile Include="Example01.cs" />
-    <Compile Include="Example02.cs" />
-    <Compile Include="Example03.cs" />
-    <Compile Include="Example05.cs" />
-    <Compile Include="Example06.cs" />
-    <Compile Include="ExampleBase.cs" />
     <Compile Include="ExampleUtil.cs" />
     <Compile Include="Form1Partial.cs">
       <SubType>Form</SubType>
@@ -73,6 +67,7 @@
     <Compile Include="InputDevice.cs" />
     <Compile Include="Instrument.cs" />
     <Compile Include="Interval.cs" />
+    <Compile Include="MyScale.cs" />
     <Compile Include="Notes.cs" />
     <Compile Include="NewNotes.cs" />
     <Compile Include="MelodyPlayer.cs" />
@@ -117,6 +112,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\grif.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

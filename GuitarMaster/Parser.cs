@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Midi;
 using System.Threading;
-using MidiExamples;
 using System.Windows.Media;
 using System.IO;
 
@@ -20,10 +19,10 @@ namespace GuitarMaster
         public string Name { set; get; }
         public int[] Notes;
         public int[] Rhythm;
-        public ScaleName Style;
+        public ScaleName ScaleName;
         public static int Number = 1;
 
-        public Melody(string name, int[] notes, int[] rhythm, ScaleName style)
+        public Melody(string name, int[] notes, int[] rhythm, ScaleName scaleName)
         {
             int sum = rhythm.Sum();
             if (sum > notes.Length)
@@ -38,11 +37,23 @@ namespace GuitarMaster
             this.Name = name;
             this.Notes = notes;
             this.Rhythm = rhythm;
-            this.Style = style;
+            this.ScaleName = scaleName;
         }
     }
     public static class Parser
     {
+        public static string GetString(int[] massive)
+        {
+            string s = "";
+            
+            for (int i = 0; i < massive.Length; i++)
+            {
+                s += massive[i].ToString() + " ";
+            }
+            s += "\r\n";
+            return s;
+        }
+
         public static int[] GetMassive(string text)
         {
             int[] massive;
@@ -56,28 +67,50 @@ namespace GuitarMaster
             }
             return massive;
         }
-        //public static List<Melody> FillMelodyList(string text)
-        //{
-            //var stack = new Stack<Line>();
-            //String all = sr.ReadToEnd();
-            //char[] separators = { '\r', '\n' };
-            //string[] mass = all.Split(separators, StringSplitOptions.RemoveEmptyEntries);
 
-            //Line line = new Line();
-            //for (int i = 0; i < mass.Length; i++)
-            //{
-            //    string[] mass2 = new string[2];
-            //    mass2 = mass[i].Split(new char[] { ' ' });
-            //    line.command = mass2[0];
-            //    if (mass2.Length > 1)
-            //        line.operand = mass2[1];
-            //    stack.Push(line);
-            //}
+        public static List<Melody> GetAllMelodys()
+        {
+            List<Melody> list = new List<Melody>();
+            StreamReader sr = new StreamReader("Melodys.txt");
+            String line = "";
 
-            //InvertStack(ref stack);
+            while ((line = sr.ReadLine()) != null)
+            {
+                if (line == "")
+                    continue;
+                char[] separators = { ';' };
+                string[] tokens = line.Split(separators, StringSplitOptions.RemoveEmptyEntries);
 
-            //return stack;
-            
-        //}
+                string name = tokens[0];
+                string scale = tokens[1];
+                string notesLine = tokens[2];
+                string rhythmLine = tokens[3];
+
+                ScaleName scaleName = MyScale.GetScaleName(scale);
+                
+
+                char[] separators2 = { ' ' };
+                string[] stringNotes = notesLine.Split(separators2, StringSplitOptions.RemoveEmptyEntries);
+                string[] stringRhythm = rhythmLine.Split(separators2, StringSplitOptions.RemoveEmptyEntries);
+
+                int[] notes = new int[stringNotes.Length];
+                int[] rhythm = new int[stringRhythm.Length];
+
+                for (int i = 0; i < rhythm.Length; i++)
+                {
+                    rhythm[i] = int.Parse(stringRhythm[i]);                   
+                }
+                for (int i = 0; i < notes.Length; i++)
+                {
+                    notes[i] = int.Parse(stringNotes[i]);
+                }
+
+                Melody melody = new Melody(name, notes, rhythm, scaleName);
+                list.Add(melody);
+            }
+
+            return list;
+
+        }
     }
 }

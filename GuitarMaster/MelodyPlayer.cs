@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Midi;
 using System.Threading;
-using MidiExamples;
 using System.Windows.Media;
 
 namespace GuitarMaster
@@ -68,6 +67,8 @@ namespace GuitarMaster
             /* Продолжительность звучания одной ноты(или паузы) */
             int oneNoteDur = dur / rhythm.Length;
 
+            Note note = Note.A0;
+
             int j = 0;
             for (int i = 0; i < rhythm.Length; i++)
             {
@@ -87,14 +88,14 @@ namespace GuitarMaster
                     while (n < 40)
                         n = n + 12;
 
-                    Note note = (Note)n;
+                    sd.output.SendNoteOff(sd.channel, note, 80);
+                    note = (Note)n;
 
                     sd.output.SendNoteOn(sd.channel, note, 80);
                     bool visible;
                     Button button = FindButtonAndChangeColor(note, buttons, grifNotes, out visible);                    
                     
-                    System.Threading.Thread.Sleep(oneNoteDur);
-                    sd.output.SendNoteOff(sd.channel, note, 80);
+                    System.Threading.Thread.Sleep(oneNoteDur);                    
 
                     button.BackColor = default(System.Drawing.Color);
                     if (!visible)
@@ -107,6 +108,7 @@ namespace GuitarMaster
                         return;
                 }
             }
+            sd.output.SendNoteOff(sd.channel, note, 80);
         }
 
         public static void PlayMelodyWithRhythm(SoundDevices sd, Melody melody, Note tonica, double duration, Note[,] grifNotes, Button[,] buttons)

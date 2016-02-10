@@ -9,23 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Midi;
 using System.Threading;
-using MidiExamples;
 using System.Windows.Media;
 
 namespace GuitarMaster
 {
-    public enum ScaleName {Minor, Major, Flamenco, Blues, Other}
-    public class MyScale
-    {
-        public ScaleName scaleName;
-        public int[] scaleIntervals;
-
-        public MyScale(ScaleName _scaleNamen, int[] _scale)
-        {
-            scaleName = _scaleNamen;
-            scaleIntervals = _scale;
-        }
-    }
 
     public static partial class Notes
     {

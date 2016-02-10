@@ -9,10 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Midi;
 using System.Threading;
-using MidiExamples;
 using System.Windows.Media;
 using System.IO;
-
+//1 5 8 13 0 5
 /* Можно вбить свою мелодию. На входе: ритм, ноты, темп
  * А еще можно создать базу данных (или просто текстовые доки) и в нёё класть классные мелодии.
  * 
@@ -69,129 +68,58 @@ using System.IO;
 namespace GuitarMaster
 {
     public partial class Form1 : Form
-    {
-        Note tonica;
-
-        Melody lastMelody;
-        SoundDevices sd;
-        double duration = 6;
-        int notesCount = 16;
-
+    {        
         public Form1()
         {
             InitializeComponent();
         }
 
         private void newGenerateButton_Click(object sender, EventArgs e)
-        {    
+        {
             notesCount = int.Parse(notesCountTextBox.Text);
             duration = Rhythm.GetDuration(tempoTrackBar.Value, notesCount);
+            Random random = new Random();
+            int divisor = random.Next(3, 5), addition = random.Next(1, 6);
+
             if (notesCount <= 0)
             {
                 MessageBox.Show("Число нот должно быть больше нуля!");
                 return;
             }
 
-            int[] rhythm = Rhythm.GetRhythm(notesCount + notesCount / 3 + 1, notesCount);
+            int[] rhythm = Rhythm.GetRhythm(notesCount + notesCount / divisor + addition + 1, notesCount);
             int[] notes = Notes.NewGetNotes(selectedScale, notesCount, rhythm);
 
             lastMelody = new Melody(Melody.Number + "-ая мелодия", notes, rhythm, selectedScale.scaleName);
             tmpMelodys.Add(lastMelody);
+            tmpMelodysComboBox.Items.Add(lastMelody.Name + "(" + lastMelody.ScaleName.ToString() + ")");
             Melody.Number++;
 
-            rhythmTextBox.Text = "";
-            for (int i = 0; i < rhythm.Length; i++)
-            {
-                rhythmTextBox.Text += rhythm[i].ToString() + " ";
-            }
-            rhythmTextBox.Text += "\r\n";
-            notesTextBox.Text = "";
-            for (int i = 0; i < notes.Length; i++)
-            {
-                notesTextBox.Text += notes[i].ToString() + " ";
-            }
-            notesTextBox.Text += "\r\n";
+            rhythmTextBox.Text = Parser.GetString(rhythm);
+            notesTextBox.Text = Parser.GetString(notes);
 
             if(sd == null)
                 sd = new SoundDevices(outputDevice, Channel.Channel1);
 
+            SetNameLabels(lastMelody);
             MelodyPlayer.PlayMelodyWithRhythm(sd, lastMelody, tonica, duration, grifNotes, buttons);
         }
 
         private void playAgainButton_Click(object sender, EventArgs e)
         {
-            if(lastMelody != null)
+            if (lastMelody != null)
+            {
+                if (sd == null)
+                    sd = new SoundDevices(outputDevice, Channel.Channel1);
+                SetNameLabels(lastMelody);
                 MelodyPlayer.PlayMelodyWithRhythm(sd, lastMelody, tonica, duration, grifNotes, buttons);
-        } 
-
-        public static void Replay(MediaPlayer player)
-        {
-            if (player.Source.ToString() == "file:///D:/Visual_Studio_Projects/GuitarMaster/GuitarMaster/bin/Debug/Chords/Am.m4a")
-            {
-                player.Open(new Uri(Application.StartupPath + "\\Chords\\F.m4a", UriKind.Absolute));
-                player.Play();
-
-                return;
-            }
-            if (player.Source.ToString() == "file:///D:/Visual_Studio_Projects/GuitarMaster/GuitarMaster/bin/Debug/Chords/F.m4a")
-            {
-                player.Open(new Uri(Application.StartupPath + "\\Chords\\Dm.m4a", UriKind.Absolute));
-                player.Play();
-                return;
-            }
-            if (player.Source.ToString() == "file:///D:/Visual_Studio_Projects/GuitarMaster/GuitarMaster/bin/Debug/Chords/Dm.m4a")
-            {
-                player.Open(new Uri(Application.StartupPath + "\\Chords\\E.m4a", UriKind.Absolute));
-                player.Play();
-                return;
             }
         }
 
-        private void generateButton_Click(object sender, EventArgs e)
+        public void SetNameLabels(Melody melody)
         {
-
-            int[] notes = Notes.GetNotes(Notes.Chords.Am, 1);
-            int[] rhythm = Rhythm.GetRhythm(6, 4);
-
-            for (int i = 0; i < notes.Length; i++)
-            {
-                testTextBox.Text += notes[i].ToString();
-            }
-            testTextBox.Text += " ";
-          
-            player.Open(new Uri(Application.StartupPath + "\\Chords\\Am.m4a", UriKind.Absolute));
-            player.Play();
-
-            SoundDevices sd = new SoundDevices(outputDevice, Channel.Channel1);
-
-            MelodyPlayer.PlayMelody(sd, notes, player);
-
-            notes = Notes.GetNotes(Notes.Chords.F, 2);
-            for (int i = 0; i < notes.Length; i++)
-            {
-                testTextBox.Text += notes[i].ToString();
-            }
-            testTextBox.Text += " ";
-
-            MelodyPlayer.PlayMelody(sd, notes, player);
-
-            notes = Notes.GetNotes(Notes.Chords.Dm, 2);
-            for (int i = 0; i < notes.Length; i++)
-            {
-                testTextBox.Text += notes[i].ToString();
-            }
-            testTextBox.Text += " ";
-
-            MelodyPlayer.PlayMelody(sd, notes, player);
-
-            notes = Notes.GetNotes(Notes.Chords.E, 4);
-            for (int i = 0; i < notes.Length; i++)
-            {
-                testTextBox.Text += notes[i].ToString();
-            }
-            testTextBox.Text += " ";
-
-            MelodyPlayer.PlayMelody(sd, notes, player);
+            nameLabel.Text = melody.Name;
+            scaleLabel.Text = melody.ScaleName.ToString();
         }
 
         private void grifPBox_MouseMove(object sender, MouseEventArgs e)
@@ -240,11 +168,6 @@ namespace GuitarMaster
             }
 
             grid = false;
-        }
-
-        private void accompButton_Click(object sender, EventArgs e)
-        {
-            Accompaniment.PlayAccompanement(outputDevice);
         }
 
         private void scaleComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -307,7 +230,7 @@ namespace GuitarMaster
                 return;
             }
 
-            notesCount = notes.Length;
+            notesCount = rhythm.Sum();
             duration = Rhythm.GetDuration(tempoTrackBar.Value, notesCount);
 
             if(sd == null)
@@ -315,6 +238,42 @@ namespace GuitarMaster
 
             Melody melody = new Melody("My melody", notes, rhythm, ScaleName.Other);
             MelodyPlayer.PlayMelodyWithRhythm(sd, melody, tonica, duration, grifNotes, buttons);
+        }
+
+        private void savedMelodysComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int i = savedMelodysComboBox.SelectedIndex;
+            if (i < 0 || i >= melodyList.Count)
+                return;
+            savedMelody = melodyList[i];
+            SetNameLabels(savedMelody);
+        }
+
+        private void playSavedMelodyButton_Click(object sender, EventArgs e)
+        {
+            if(sd == null)
+                sd = new SoundDevices(outputDevice, Channel.Channel1);
+
+            duration = Rhythm.GetDuration(tempoTrackBar.Value, savedMelody.Notes.Length);
+            MelodyPlayer.PlayMelodyWithRhythm(sd, savedMelody, tonica, duration, grifNotes, buttons);
+        }
+
+        private void tmpMelodysComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int i = tmpMelodysComboBox.SelectedIndex;
+            if (i < 0 || i >= tmpMelodys.Count)
+                return;
+            lastMelody = tmpMelodys[i];
+            SetNameLabels(lastMelody);
+        }
+
+        private void playGeneredMelodyButton_Click(object sender, EventArgs e)
+        {
+            if (sd == null)
+                sd = new SoundDevices(outputDevice, Channel.Channel1);
+
+            duration = Rhythm.GetDuration(tempoTrackBar.Value, lastMelody.Notes.Length);
+            MelodyPlayer.PlayMelodyWithRhythm(sd, lastMelody, tonica, duration, grifNotes, buttons);
         }
 
     }
