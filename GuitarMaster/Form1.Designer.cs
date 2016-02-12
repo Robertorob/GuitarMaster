@@ -127,23 +127,15 @@
             this.scaleComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.clearGrid = new System.Windows.Forms.Button();
-            this.newGenerateButton = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.playYourMelodyButton = new System.Windows.Forms.Button();
-            this.playAgainButton = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.rhythmTextBox = new System.Windows.Forms.TextBox();
-            this.notesTextBox = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.editGeneratedMelodyButton = new System.Windows.Forms.Button();
             this.playGeneredMelodyButton = new System.Windows.Forms.Button();
-            this.playSavedMelodyButton = new System.Windows.Forms.Button();
             this.tmpMelodysComboBox = new System.Windows.Forms.ComboBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.deleteSavedMelodyButton = new System.Windows.Forms.Button();
+            this.editSavedMelodyButton = new System.Windows.Forms.Button();
+            this.playSavedMelodyButton = new System.Windows.Forms.Button();
             this.savedMelodysComboBox = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -160,19 +152,25 @@
             this.label8 = new System.Windows.Forms.Label();
             this.grifPBox = new System.Windows.Forms.PictureBox();
             this.nameLabel = new System.Windows.Forms.Label();
-            this.scaleLabel = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
+            this.saveMelodyButton = new System.Windows.Forms.Button();
+            this.playYourMelodyButton = new System.Windows.Forms.Button();
+            this.playAgainButton = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.rhythmTextBox = new System.Windows.Forms.TextBox();
+            this.notesTextBox = new System.Windows.Forms.TextBox();
+            this.newGenerateButton = new System.Windows.Forms.Button();
+            this.editButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tempoTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grifPBox)).BeginInit();
             this.SuspendLayout();
             // 
             // s10
             // 
-            this.s10.Location = new System.Drawing.Point(126, 438);
+            this.s10.Location = new System.Drawing.Point(129, 392);
             this.s10.Name = "s10";
             this.s10.Size = new System.Drawing.Size(59, 14);
             this.s10.TabIndex = 2;
@@ -181,7 +179,7 @@
             // 
             // s30
             // 
-            this.s30.Location = new System.Drawing.Point(126, 486);
+            this.s30.Location = new System.Drawing.Point(129, 440);
             this.s30.Name = "s30";
             this.s30.Size = new System.Drawing.Size(59, 14);
             this.s30.TabIndex = 3;
@@ -190,7 +188,7 @@
             // 
             // s20
             // 
-            this.s20.Location = new System.Drawing.Point(126, 461);
+            this.s20.Location = new System.Drawing.Point(129, 415);
             this.s20.Name = "s20";
             this.s20.Size = new System.Drawing.Size(59, 14);
             this.s20.TabIndex = 4;
@@ -199,7 +197,7 @@
             // 
             // s40
             // 
-            this.s40.Location = new System.Drawing.Point(126, 510);
+            this.s40.Location = new System.Drawing.Point(129, 464);
             this.s40.Name = "s40";
             this.s40.Size = new System.Drawing.Size(59, 14);
             this.s40.TabIndex = 5;
@@ -208,7 +206,7 @@
             // 
             // s50
             // 
-            this.s50.Location = new System.Drawing.Point(126, 532);
+            this.s50.Location = new System.Drawing.Point(129, 486);
             this.s50.Name = "s50";
             this.s50.Size = new System.Drawing.Size(59, 14);
             this.s50.TabIndex = 6;
@@ -217,7 +215,7 @@
             // 
             // s60
             // 
-            this.s60.Location = new System.Drawing.Point(126, 556);
+            this.s60.Location = new System.Drawing.Point(129, 510);
             this.s60.Name = "s60";
             this.s60.Size = new System.Drawing.Size(59, 14);
             this.s60.TabIndex = 7;
@@ -227,7 +225,7 @@
             // s11
             // 
             this.s11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.s11.Location = new System.Drawing.Point(185, 438);
+            this.s11.Location = new System.Drawing.Point(188, 392);
             this.s11.Name = "s11";
             this.s11.Size = new System.Drawing.Size(79, 14);
             this.s11.TabIndex = 8;
@@ -236,7 +234,7 @@
             // 
             // s21
             // 
-            this.s21.Location = new System.Drawing.Point(185, 461);
+            this.s21.Location = new System.Drawing.Point(188, 415);
             this.s21.Name = "s21";
             this.s21.Size = new System.Drawing.Size(79, 14);
             this.s21.TabIndex = 9;
@@ -245,7 +243,7 @@
             // 
             // s31
             // 
-            this.s31.Location = new System.Drawing.Point(185, 486);
+            this.s31.Location = new System.Drawing.Point(188, 440);
             this.s31.Name = "s31";
             this.s31.Size = new System.Drawing.Size(79, 14);
             this.s31.TabIndex = 10;
@@ -254,7 +252,7 @@
             // 
             // s41
             // 
-            this.s41.Location = new System.Drawing.Point(185, 510);
+            this.s41.Location = new System.Drawing.Point(188, 464);
             this.s41.Name = "s41";
             this.s41.Size = new System.Drawing.Size(79, 14);
             this.s41.TabIndex = 11;
@@ -263,7 +261,7 @@
             // 
             // s51
             // 
-            this.s51.Location = new System.Drawing.Point(185, 532);
+            this.s51.Location = new System.Drawing.Point(188, 486);
             this.s51.Name = "s51";
             this.s51.Size = new System.Drawing.Size(79, 14);
             this.s51.TabIndex = 12;
@@ -272,7 +270,7 @@
             // 
             // s61
             // 
-            this.s61.Location = new System.Drawing.Point(185, 556);
+            this.s61.Location = new System.Drawing.Point(188, 510);
             this.s61.Name = "s61";
             this.s61.Size = new System.Drawing.Size(79, 14);
             this.s61.TabIndex = 13;
@@ -281,7 +279,7 @@
             // 
             // s12
             // 
-            this.s12.Location = new System.Drawing.Point(264, 438);
+            this.s12.Location = new System.Drawing.Point(267, 392);
             this.s12.Name = "s12";
             this.s12.Size = new System.Drawing.Size(71, 14);
             this.s12.TabIndex = 14;
@@ -290,7 +288,7 @@
             // 
             // s22
             // 
-            this.s22.Location = new System.Drawing.Point(264, 461);
+            this.s22.Location = new System.Drawing.Point(267, 415);
             this.s22.Name = "s22";
             this.s22.Size = new System.Drawing.Size(71, 14);
             this.s22.TabIndex = 15;
@@ -299,7 +297,7 @@
             // 
             // s32
             // 
-            this.s32.Location = new System.Drawing.Point(264, 486);
+            this.s32.Location = new System.Drawing.Point(267, 440);
             this.s32.Name = "s32";
             this.s32.Size = new System.Drawing.Size(71, 14);
             this.s32.TabIndex = 16;
@@ -308,7 +306,7 @@
             // 
             // s42
             // 
-            this.s42.Location = new System.Drawing.Point(264, 510);
+            this.s42.Location = new System.Drawing.Point(267, 464);
             this.s42.Name = "s42";
             this.s42.Size = new System.Drawing.Size(71, 14);
             this.s42.TabIndex = 17;
@@ -317,7 +315,7 @@
             // 
             // s52
             // 
-            this.s52.Location = new System.Drawing.Point(264, 532);
+            this.s52.Location = new System.Drawing.Point(267, 486);
             this.s52.Name = "s52";
             this.s52.Size = new System.Drawing.Size(71, 14);
             this.s52.TabIndex = 18;
@@ -326,7 +324,7 @@
             // 
             // s62
             // 
-            this.s62.Location = new System.Drawing.Point(264, 556);
+            this.s62.Location = new System.Drawing.Point(267, 510);
             this.s62.Name = "s62";
             this.s62.Size = new System.Drawing.Size(71, 14);
             this.s62.TabIndex = 19;
@@ -335,7 +333,7 @@
             // 
             // s13
             // 
-            this.s13.Location = new System.Drawing.Point(335, 438);
+            this.s13.Location = new System.Drawing.Point(338, 392);
             this.s13.Name = "s13";
             this.s13.Size = new System.Drawing.Size(65, 14);
             this.s13.TabIndex = 20;
@@ -344,7 +342,7 @@
             // 
             // s23
             // 
-            this.s23.Location = new System.Drawing.Point(334, 461);
+            this.s23.Location = new System.Drawing.Point(337, 415);
             this.s23.Name = "s23";
             this.s23.Size = new System.Drawing.Size(66, 14);
             this.s23.TabIndex = 21;
@@ -353,7 +351,7 @@
             // 
             // s33
             // 
-            this.s33.Location = new System.Drawing.Point(334, 486);
+            this.s33.Location = new System.Drawing.Point(337, 440);
             this.s33.Name = "s33";
             this.s33.Size = new System.Drawing.Size(66, 14);
             this.s33.TabIndex = 22;
@@ -362,7 +360,7 @@
             // 
             // s43
             // 
-            this.s43.Location = new System.Drawing.Point(334, 510);
+            this.s43.Location = new System.Drawing.Point(337, 464);
             this.s43.Name = "s43";
             this.s43.Size = new System.Drawing.Size(66, 14);
             this.s43.TabIndex = 23;
@@ -371,7 +369,7 @@
             // 
             // s53
             // 
-            this.s53.Location = new System.Drawing.Point(334, 532);
+            this.s53.Location = new System.Drawing.Point(337, 486);
             this.s53.Name = "s53";
             this.s53.Size = new System.Drawing.Size(66, 14);
             this.s53.TabIndex = 24;
@@ -380,7 +378,7 @@
             // 
             // s63
             // 
-            this.s63.Location = new System.Drawing.Point(334, 556);
+            this.s63.Location = new System.Drawing.Point(337, 510);
             this.s63.Name = "s63";
             this.s63.Size = new System.Drawing.Size(66, 14);
             this.s63.TabIndex = 25;
@@ -389,7 +387,7 @@
             // 
             // s14
             // 
-            this.s14.Location = new System.Drawing.Point(400, 438);
+            this.s14.Location = new System.Drawing.Point(403, 392);
             this.s14.Name = "s14";
             this.s14.Size = new System.Drawing.Size(63, 14);
             this.s14.TabIndex = 26;
@@ -398,7 +396,7 @@
             // 
             // s24
             // 
-            this.s24.Location = new System.Drawing.Point(400, 461);
+            this.s24.Location = new System.Drawing.Point(403, 415);
             this.s24.Name = "s24";
             this.s24.Size = new System.Drawing.Size(63, 14);
             this.s24.TabIndex = 27;
@@ -407,7 +405,7 @@
             // 
             // s34
             // 
-            this.s34.Location = new System.Drawing.Point(400, 486);
+            this.s34.Location = new System.Drawing.Point(403, 440);
             this.s34.Name = "s34";
             this.s34.Size = new System.Drawing.Size(63, 14);
             this.s34.TabIndex = 28;
@@ -416,7 +414,7 @@
             // 
             // s44
             // 
-            this.s44.Location = new System.Drawing.Point(400, 510);
+            this.s44.Location = new System.Drawing.Point(403, 464);
             this.s44.Name = "s44";
             this.s44.Size = new System.Drawing.Size(63, 14);
             this.s44.TabIndex = 29;
@@ -425,7 +423,7 @@
             // 
             // s54
             // 
-            this.s54.Location = new System.Drawing.Point(400, 532);
+            this.s54.Location = new System.Drawing.Point(403, 486);
             this.s54.Name = "s54";
             this.s54.Size = new System.Drawing.Size(63, 14);
             this.s54.TabIndex = 30;
@@ -434,7 +432,7 @@
             // 
             // s64
             // 
-            this.s64.Location = new System.Drawing.Point(400, 556);
+            this.s64.Location = new System.Drawing.Point(403, 510);
             this.s64.Name = "s64";
             this.s64.Size = new System.Drawing.Size(63, 14);
             this.s64.TabIndex = 31;
@@ -443,7 +441,7 @@
             // 
             // s25
             // 
-            this.s25.Location = new System.Drawing.Point(463, 461);
+            this.s25.Location = new System.Drawing.Point(466, 415);
             this.s25.Name = "s25";
             this.s25.Size = new System.Drawing.Size(59, 14);
             this.s25.TabIndex = 32;
@@ -452,7 +450,7 @@
             // 
             // s15
             // 
-            this.s15.Location = new System.Drawing.Point(463, 438);
+            this.s15.Location = new System.Drawing.Point(466, 392);
             this.s15.Name = "s15";
             this.s15.Size = new System.Drawing.Size(59, 14);
             this.s15.TabIndex = 33;
@@ -461,7 +459,7 @@
             // 
             // s35
             // 
-            this.s35.Location = new System.Drawing.Point(463, 486);
+            this.s35.Location = new System.Drawing.Point(466, 440);
             this.s35.Name = "s35";
             this.s35.Size = new System.Drawing.Size(59, 14);
             this.s35.TabIndex = 34;
@@ -470,7 +468,7 @@
             // 
             // s45
             // 
-            this.s45.Location = new System.Drawing.Point(463, 510);
+            this.s45.Location = new System.Drawing.Point(466, 464);
             this.s45.Name = "s45";
             this.s45.Size = new System.Drawing.Size(59, 14);
             this.s45.TabIndex = 35;
@@ -479,7 +477,7 @@
             // 
             // s55
             // 
-            this.s55.Location = new System.Drawing.Point(463, 532);
+            this.s55.Location = new System.Drawing.Point(466, 486);
             this.s55.Name = "s55";
             this.s55.Size = new System.Drawing.Size(59, 14);
             this.s55.TabIndex = 36;
@@ -488,7 +486,7 @@
             // 
             // s65
             // 
-            this.s65.Location = new System.Drawing.Point(463, 556);
+            this.s65.Location = new System.Drawing.Point(466, 510);
             this.s65.Name = "s65";
             this.s65.Size = new System.Drawing.Size(59, 14);
             this.s65.TabIndex = 37;
@@ -497,7 +495,7 @@
             // 
             // s16
             // 
-            this.s16.Location = new System.Drawing.Point(522, 438);
+            this.s16.Location = new System.Drawing.Point(525, 392);
             this.s16.Name = "s16";
             this.s16.Size = new System.Drawing.Size(56, 14);
             this.s16.TabIndex = 38;
@@ -506,7 +504,7 @@
             // 
             // s26
             // 
-            this.s26.Location = new System.Drawing.Point(522, 461);
+            this.s26.Location = new System.Drawing.Point(525, 415);
             this.s26.Name = "s26";
             this.s26.Size = new System.Drawing.Size(56, 14);
             this.s26.TabIndex = 39;
@@ -515,7 +513,7 @@
             // 
             // s36
             // 
-            this.s36.Location = new System.Drawing.Point(522, 486);
+            this.s36.Location = new System.Drawing.Point(525, 440);
             this.s36.Name = "s36";
             this.s36.Size = new System.Drawing.Size(56, 14);
             this.s36.TabIndex = 40;
@@ -524,7 +522,7 @@
             // 
             // s46
             // 
-            this.s46.Location = new System.Drawing.Point(522, 510);
+            this.s46.Location = new System.Drawing.Point(525, 464);
             this.s46.Name = "s46";
             this.s46.Size = new System.Drawing.Size(56, 14);
             this.s46.TabIndex = 41;
@@ -533,7 +531,7 @@
             // 
             // s56
             // 
-            this.s56.Location = new System.Drawing.Point(522, 532);
+            this.s56.Location = new System.Drawing.Point(525, 486);
             this.s56.Name = "s56";
             this.s56.Size = new System.Drawing.Size(56, 14);
             this.s56.TabIndex = 42;
@@ -542,7 +540,7 @@
             // 
             // s66
             // 
-            this.s66.Location = new System.Drawing.Point(522, 556);
+            this.s66.Location = new System.Drawing.Point(525, 510);
             this.s66.Name = "s66";
             this.s66.Size = new System.Drawing.Size(56, 14);
             this.s66.TabIndex = 43;
@@ -551,7 +549,7 @@
             // 
             // s17
             // 
-            this.s17.Location = new System.Drawing.Point(578, 438);
+            this.s17.Location = new System.Drawing.Point(581, 392);
             this.s17.Name = "s17";
             this.s17.Size = new System.Drawing.Size(53, 14);
             this.s17.TabIndex = 44;
@@ -560,7 +558,7 @@
             // 
             // s27
             // 
-            this.s27.Location = new System.Drawing.Point(578, 461);
+            this.s27.Location = new System.Drawing.Point(581, 415);
             this.s27.Name = "s27";
             this.s27.Size = new System.Drawing.Size(53, 14);
             this.s27.TabIndex = 45;
@@ -569,7 +567,7 @@
             // 
             // s37
             // 
-            this.s37.Location = new System.Drawing.Point(578, 486);
+            this.s37.Location = new System.Drawing.Point(581, 440);
             this.s37.Name = "s37";
             this.s37.Size = new System.Drawing.Size(53, 14);
             this.s37.TabIndex = 46;
@@ -578,7 +576,7 @@
             // 
             // s47
             // 
-            this.s47.Location = new System.Drawing.Point(578, 510);
+            this.s47.Location = new System.Drawing.Point(581, 464);
             this.s47.Name = "s47";
             this.s47.Size = new System.Drawing.Size(53, 14);
             this.s47.TabIndex = 47;
@@ -587,7 +585,7 @@
             // 
             // s57
             // 
-            this.s57.Location = new System.Drawing.Point(578, 532);
+            this.s57.Location = new System.Drawing.Point(581, 486);
             this.s57.Name = "s57";
             this.s57.Size = new System.Drawing.Size(53, 14);
             this.s57.TabIndex = 48;
@@ -596,7 +594,7 @@
             // 
             // s67
             // 
-            this.s67.Location = new System.Drawing.Point(578, 556);
+            this.s67.Location = new System.Drawing.Point(581, 510);
             this.s67.Name = "s67";
             this.s67.Size = new System.Drawing.Size(53, 14);
             this.s67.TabIndex = 49;
@@ -605,7 +603,7 @@
             // 
             // s28
             // 
-            this.s28.Location = new System.Drawing.Point(633, 461);
+            this.s28.Location = new System.Drawing.Point(636, 415);
             this.s28.Name = "s28";
             this.s28.Size = new System.Drawing.Size(48, 14);
             this.s28.TabIndex = 50;
@@ -614,7 +612,7 @@
             // 
             // s18
             // 
-            this.s18.Location = new System.Drawing.Point(633, 438);
+            this.s18.Location = new System.Drawing.Point(636, 392);
             this.s18.Name = "s18";
             this.s18.Size = new System.Drawing.Size(48, 14);
             this.s18.TabIndex = 51;
@@ -623,7 +621,7 @@
             // 
             // s38
             // 
-            this.s38.Location = new System.Drawing.Point(633, 486);
+            this.s38.Location = new System.Drawing.Point(636, 440);
             this.s38.Name = "s38";
             this.s38.Size = new System.Drawing.Size(48, 14);
             this.s38.TabIndex = 52;
@@ -632,7 +630,7 @@
             // 
             // s48
             // 
-            this.s48.Location = new System.Drawing.Point(633, 510);
+            this.s48.Location = new System.Drawing.Point(636, 464);
             this.s48.Name = "s48";
             this.s48.Size = new System.Drawing.Size(48, 14);
             this.s48.TabIndex = 53;
@@ -641,7 +639,7 @@
             // 
             // s58
             // 
-            this.s58.Location = new System.Drawing.Point(633, 532);
+            this.s58.Location = new System.Drawing.Point(636, 486);
             this.s58.Name = "s58";
             this.s58.Size = new System.Drawing.Size(48, 14);
             this.s58.TabIndex = 54;
@@ -650,7 +648,7 @@
             // 
             // s68
             // 
-            this.s68.Location = new System.Drawing.Point(633, 556);
+            this.s68.Location = new System.Drawing.Point(636, 510);
             this.s68.Name = "s68";
             this.s68.Size = new System.Drawing.Size(48, 14);
             this.s68.TabIndex = 55;
@@ -659,7 +657,7 @@
             // 
             // s19
             // 
-            this.s19.Location = new System.Drawing.Point(681, 438);
+            this.s19.Location = new System.Drawing.Point(684, 392);
             this.s19.Name = "s19";
             this.s19.Size = new System.Drawing.Size(48, 14);
             this.s19.TabIndex = 57;
@@ -668,7 +666,7 @@
             // 
             // s29
             // 
-            this.s29.Location = new System.Drawing.Point(681, 461);
+            this.s29.Location = new System.Drawing.Point(684, 415);
             this.s29.Name = "s29";
             this.s29.Size = new System.Drawing.Size(48, 14);
             this.s29.TabIndex = 58;
@@ -677,7 +675,7 @@
             // 
             // s39
             // 
-            this.s39.Location = new System.Drawing.Point(681, 486);
+            this.s39.Location = new System.Drawing.Point(684, 440);
             this.s39.Name = "s39";
             this.s39.Size = new System.Drawing.Size(48, 14);
             this.s39.TabIndex = 59;
@@ -686,7 +684,7 @@
             // 
             // s49
             // 
-            this.s49.Location = new System.Drawing.Point(681, 510);
+            this.s49.Location = new System.Drawing.Point(684, 464);
             this.s49.Name = "s49";
             this.s49.Size = new System.Drawing.Size(48, 14);
             this.s49.TabIndex = 61;
@@ -695,7 +693,7 @@
             // 
             // s59
             // 
-            this.s59.Location = new System.Drawing.Point(681, 532);
+            this.s59.Location = new System.Drawing.Point(684, 486);
             this.s59.Name = "s59";
             this.s59.Size = new System.Drawing.Size(48, 14);
             this.s59.TabIndex = 62;
@@ -704,7 +702,7 @@
             // 
             // s69
             // 
-            this.s69.Location = new System.Drawing.Point(681, 556);
+            this.s69.Location = new System.Drawing.Point(684, 510);
             this.s69.Name = "s69";
             this.s69.Size = new System.Drawing.Size(48, 14);
             this.s69.TabIndex = 63;
@@ -713,7 +711,7 @@
             // 
             // s110
             // 
-            this.s110.Location = new System.Drawing.Point(729, 438);
+            this.s110.Location = new System.Drawing.Point(732, 392);
             this.s110.Name = "s110";
             this.s110.Size = new System.Drawing.Size(44, 14);
             this.s110.TabIndex = 65;
@@ -722,7 +720,7 @@
             // 
             // s210
             // 
-            this.s210.Location = new System.Drawing.Point(729, 461);
+            this.s210.Location = new System.Drawing.Point(732, 415);
             this.s210.Name = "s210";
             this.s210.Size = new System.Drawing.Size(44, 14);
             this.s210.TabIndex = 66;
@@ -731,7 +729,7 @@
             // 
             // s310
             // 
-            this.s310.Location = new System.Drawing.Point(729, 486);
+            this.s310.Location = new System.Drawing.Point(732, 440);
             this.s310.Name = "s310";
             this.s310.Size = new System.Drawing.Size(44, 14);
             this.s310.TabIndex = 67;
@@ -740,7 +738,7 @@
             // 
             // s410
             // 
-            this.s410.Location = new System.Drawing.Point(729, 510);
+            this.s410.Location = new System.Drawing.Point(732, 464);
             this.s410.Name = "s410";
             this.s410.Size = new System.Drawing.Size(44, 14);
             this.s410.TabIndex = 68;
@@ -749,7 +747,7 @@
             // 
             // s510
             // 
-            this.s510.Location = new System.Drawing.Point(729, 532);
+            this.s510.Location = new System.Drawing.Point(732, 486);
             this.s510.Name = "s510";
             this.s510.Size = new System.Drawing.Size(44, 14);
             this.s510.TabIndex = 69;
@@ -758,7 +756,7 @@
             // 
             // s610
             // 
-            this.s610.Location = new System.Drawing.Point(729, 556);
+            this.s610.Location = new System.Drawing.Point(732, 510);
             this.s610.Name = "s610";
             this.s610.Size = new System.Drawing.Size(44, 14);
             this.s610.TabIndex = 70;
@@ -767,7 +765,7 @@
             // 
             // s111
             // 
-            this.s111.Location = new System.Drawing.Point(774, 438);
+            this.s111.Location = new System.Drawing.Point(777, 392);
             this.s111.Name = "s111";
             this.s111.Size = new System.Drawing.Size(40, 14);
             this.s111.TabIndex = 72;
@@ -776,7 +774,7 @@
             // 
             // s211
             // 
-            this.s211.Location = new System.Drawing.Point(774, 461);
+            this.s211.Location = new System.Drawing.Point(777, 415);
             this.s211.Name = "s211";
             this.s211.Size = new System.Drawing.Size(40, 14);
             this.s211.TabIndex = 73;
@@ -785,7 +783,7 @@
             // 
             // s311
             // 
-            this.s311.Location = new System.Drawing.Point(774, 486);
+            this.s311.Location = new System.Drawing.Point(777, 440);
             this.s311.Name = "s311";
             this.s311.Size = new System.Drawing.Size(40, 14);
             this.s311.TabIndex = 74;
@@ -794,7 +792,7 @@
             // 
             // s411
             // 
-            this.s411.Location = new System.Drawing.Point(774, 510);
+            this.s411.Location = new System.Drawing.Point(777, 464);
             this.s411.Name = "s411";
             this.s411.Size = new System.Drawing.Size(40, 14);
             this.s411.TabIndex = 75;
@@ -803,7 +801,7 @@
             // 
             // s511
             // 
-            this.s511.Location = new System.Drawing.Point(774, 532);
+            this.s511.Location = new System.Drawing.Point(777, 486);
             this.s511.Name = "s511";
             this.s511.Size = new System.Drawing.Size(40, 14);
             this.s511.TabIndex = 76;
@@ -812,7 +810,7 @@
             // 
             // s611
             // 
-            this.s611.Location = new System.Drawing.Point(774, 556);
+            this.s611.Location = new System.Drawing.Point(777, 510);
             this.s611.Name = "s611";
             this.s611.Size = new System.Drawing.Size(40, 14);
             this.s611.TabIndex = 77;
@@ -821,7 +819,7 @@
             // 
             // s112
             // 
-            this.s112.Location = new System.Drawing.Point(814, 438);
+            this.s112.Location = new System.Drawing.Point(817, 392);
             this.s112.Name = "s112";
             this.s112.Size = new System.Drawing.Size(40, 14);
             this.s112.TabIndex = 79;
@@ -830,7 +828,7 @@
             // 
             // s212
             // 
-            this.s212.Location = new System.Drawing.Point(814, 461);
+            this.s212.Location = new System.Drawing.Point(817, 415);
             this.s212.Name = "s212";
             this.s212.Size = new System.Drawing.Size(40, 14);
             this.s212.TabIndex = 80;
@@ -839,7 +837,7 @@
             // 
             // s312
             // 
-            this.s312.Location = new System.Drawing.Point(814, 486);
+            this.s312.Location = new System.Drawing.Point(817, 440);
             this.s312.Name = "s312";
             this.s312.Size = new System.Drawing.Size(40, 14);
             this.s312.TabIndex = 81;
@@ -848,7 +846,7 @@
             // 
             // s412
             // 
-            this.s412.Location = new System.Drawing.Point(814, 510);
+            this.s412.Location = new System.Drawing.Point(817, 464);
             this.s412.Name = "s412";
             this.s412.Size = new System.Drawing.Size(40, 14);
             this.s412.TabIndex = 82;
@@ -857,7 +855,7 @@
             // 
             // s512
             // 
-            this.s512.Location = new System.Drawing.Point(814, 532);
+            this.s512.Location = new System.Drawing.Point(817, 486);
             this.s512.Name = "s512";
             this.s512.Size = new System.Drawing.Size(40, 14);
             this.s512.TabIndex = 83;
@@ -866,7 +864,7 @@
             // 
             // s612
             // 
-            this.s612.Location = new System.Drawing.Point(814, 556);
+            this.s612.Location = new System.Drawing.Point(817, 510);
             this.s612.Name = "s612";
             this.s612.Size = new System.Drawing.Size(40, 14);
             this.s612.TabIndex = 84;
@@ -875,7 +873,7 @@
             // 
             // s113
             // 
-            this.s113.Location = new System.Drawing.Point(854, 438);
+            this.s113.Location = new System.Drawing.Point(857, 392);
             this.s113.Name = "s113";
             this.s113.Size = new System.Drawing.Size(35, 14);
             this.s113.TabIndex = 86;
@@ -884,7 +882,7 @@
             // 
             // s213
             // 
-            this.s213.Location = new System.Drawing.Point(854, 461);
+            this.s213.Location = new System.Drawing.Point(857, 415);
             this.s213.Name = "s213";
             this.s213.Size = new System.Drawing.Size(35, 14);
             this.s213.TabIndex = 87;
@@ -893,7 +891,7 @@
             // 
             // s313
             // 
-            this.s313.Location = new System.Drawing.Point(854, 486);
+            this.s313.Location = new System.Drawing.Point(857, 440);
             this.s313.Name = "s313";
             this.s313.Size = new System.Drawing.Size(35, 14);
             this.s313.TabIndex = 88;
@@ -902,7 +900,7 @@
             // 
             // s413
             // 
-            this.s413.Location = new System.Drawing.Point(854, 510);
+            this.s413.Location = new System.Drawing.Point(857, 464);
             this.s413.Name = "s413";
             this.s413.Size = new System.Drawing.Size(35, 14);
             this.s413.TabIndex = 89;
@@ -911,7 +909,7 @@
             // 
             // s513
             // 
-            this.s513.Location = new System.Drawing.Point(854, 532);
+            this.s513.Location = new System.Drawing.Point(857, 486);
             this.s513.Name = "s513";
             this.s513.Size = new System.Drawing.Size(35, 14);
             this.s513.TabIndex = 90;
@@ -920,7 +918,7 @@
             // 
             // s613
             // 
-            this.s613.Location = new System.Drawing.Point(854, 556);
+            this.s613.Location = new System.Drawing.Point(857, 510);
             this.s613.Name = "s613";
             this.s613.Size = new System.Drawing.Size(35, 14);
             this.s613.TabIndex = 91;
@@ -929,7 +927,7 @@
             // 
             // s114
             // 
-            this.s114.Location = new System.Drawing.Point(891, 438);
+            this.s114.Location = new System.Drawing.Point(894, 392);
             this.s114.Name = "s114";
             this.s114.Size = new System.Drawing.Size(35, 14);
             this.s114.TabIndex = 93;
@@ -938,7 +936,7 @@
             // 
             // s214
             // 
-            this.s214.Location = new System.Drawing.Point(891, 461);
+            this.s214.Location = new System.Drawing.Point(894, 415);
             this.s214.Name = "s214";
             this.s214.Size = new System.Drawing.Size(35, 14);
             this.s214.TabIndex = 94;
@@ -947,7 +945,7 @@
             // 
             // s314
             // 
-            this.s314.Location = new System.Drawing.Point(891, 486);
+            this.s314.Location = new System.Drawing.Point(894, 440);
             this.s314.Name = "s314";
             this.s314.Size = new System.Drawing.Size(35, 14);
             this.s314.TabIndex = 95;
@@ -956,7 +954,7 @@
             // 
             // s414
             // 
-            this.s414.Location = new System.Drawing.Point(891, 510);
+            this.s414.Location = new System.Drawing.Point(894, 464);
             this.s414.Name = "s414";
             this.s414.Size = new System.Drawing.Size(35, 14);
             this.s414.TabIndex = 96;
@@ -965,7 +963,7 @@
             // 
             // s514
             // 
-            this.s514.Location = new System.Drawing.Point(891, 532);
+            this.s514.Location = new System.Drawing.Point(894, 486);
             this.s514.Name = "s514";
             this.s514.Size = new System.Drawing.Size(35, 14);
             this.s514.TabIndex = 98;
@@ -974,7 +972,7 @@
             // 
             // s614
             // 
-            this.s614.Location = new System.Drawing.Point(891, 556);
+            this.s614.Location = new System.Drawing.Point(894, 510);
             this.s614.Name = "s614";
             this.s614.Size = new System.Drawing.Size(35, 14);
             this.s614.TabIndex = 99;
@@ -983,7 +981,7 @@
             // 
             // s115
             // 
-            this.s115.Location = new System.Drawing.Point(925, 438);
+            this.s115.Location = new System.Drawing.Point(928, 392);
             this.s115.Name = "s115";
             this.s115.Size = new System.Drawing.Size(35, 14);
             this.s115.TabIndex = 100;
@@ -992,7 +990,7 @@
             // 
             // s215
             // 
-            this.s215.Location = new System.Drawing.Point(925, 461);
+            this.s215.Location = new System.Drawing.Point(928, 415);
             this.s215.Name = "s215";
             this.s215.Size = new System.Drawing.Size(35, 14);
             this.s215.TabIndex = 101;
@@ -1001,7 +999,7 @@
             // 
             // s315
             // 
-            this.s315.Location = new System.Drawing.Point(925, 486);
+            this.s315.Location = new System.Drawing.Point(928, 440);
             this.s315.Name = "s315";
             this.s315.Size = new System.Drawing.Size(35, 14);
             this.s315.TabIndex = 102;
@@ -1010,7 +1008,7 @@
             // 
             // s415
             // 
-            this.s415.Location = new System.Drawing.Point(925, 510);
+            this.s415.Location = new System.Drawing.Point(928, 464);
             this.s415.Name = "s415";
             this.s415.Size = new System.Drawing.Size(35, 14);
             this.s415.TabIndex = 103;
@@ -1019,7 +1017,7 @@
             // 
             // s515
             // 
-            this.s515.Location = new System.Drawing.Point(925, 532);
+            this.s515.Location = new System.Drawing.Point(928, 486);
             this.s515.Name = "s515";
             this.s515.Size = new System.Drawing.Size(35, 14);
             this.s515.TabIndex = 104;
@@ -1028,7 +1026,7 @@
             // 
             // s615
             // 
-            this.s615.Location = new System.Drawing.Point(925, 556);
+            this.s615.Location = new System.Drawing.Point(928, 510);
             this.s615.Name = "s615";
             this.s615.Size = new System.Drawing.Size(35, 14);
             this.s615.TabIndex = 105;
@@ -1044,7 +1042,7 @@
             "Мажор",
             "Фламенко",
             "Блюз"});
-            this.scaleComboBox.Location = new System.Drawing.Point(16, 119);
+            this.scaleComboBox.Location = new System.Drawing.Point(20, 35);
             this.scaleComboBox.Name = "scaleComboBox";
             this.scaleComboBox.Size = new System.Drawing.Size(147, 26);
             this.scaleComboBox.TabIndex = 3;
@@ -1054,166 +1052,61 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(12, 96);
+            this.label1.Location = new System.Drawing.Point(16, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 20);
+            this.label1.Size = new System.Drawing.Size(41, 20);
             this.label1.TabIndex = 110;
-            this.label1.Text = "1. Выберите лад";
+            this.label1.Text = "Лад";
             // 
             // clearGrid
             // 
             this.clearGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.clearGrid.Location = new System.Drawing.Point(17, 427);
+            this.clearGrid.Location = new System.Drawing.Point(12, 381);
             this.clearGrid.Name = "clearGrid";
-            this.clearGrid.Size = new System.Drawing.Size(103, 159);
+            this.clearGrid.Size = new System.Drawing.Size(111, 159);
             this.clearGrid.TabIndex = 4;
             this.clearGrid.Text = "Очистить сетку";
             this.clearGrid.UseVisualStyleBackColor = true;
             this.clearGrid.Click += new System.EventHandler(this.clearGrid_Click);
             // 
-            // newGenerateButton
-            // 
-            this.newGenerateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.newGenerateButton.Location = new System.Drawing.Point(6, 6);
-            this.newGenerateButton.Name = "newGenerateButton";
-            this.newGenerateButton.Size = new System.Drawing.Size(122, 72);
-            this.newGenerateButton.TabIndex = 1;
-            this.newGenerateButton.Text = "Сгенерировать мелодию!";
-            this.newGenerateButton.UseVisualStyleBackColor = true;
-            this.newGenerateButton.Click += new System.EventHandler(this.newGenerateButton_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(12, 345);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(232, 20);
-            this.label2.TabIndex = 112;
-            this.label2.Text = "4. Выберите тонику на грифе";
-            // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tabControl1.Location = new System.Drawing.Point(379, 96);
+            this.tabControl1.Location = new System.Drawing.Point(715, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(603, 325);
+            this.tabControl1.Size = new System.Drawing.Size(248, 231);
             this.tabControl1.TabIndex = 113;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Controls.Add(this.playYourMelodyButton);
-            this.tabPage1.Controls.Add(this.playAgainButton);
-            this.tabPage1.Controls.Add(this.label10);
-            this.tabPage1.Controls.Add(this.label9);
-            this.tabPage1.Controls.Add(this.rhythmTextBox);
-            this.tabPage1.Controls.Add(this.notesTextBox);
-            this.tabPage1.Controls.Add(this.newGenerateButton);
-            this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tabPage1.Location = new System.Drawing.Point(4, 27);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(595, 294);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Главная";
-            // 
-            // button1
-            // 
-            this.button1.BackgroundImage = global::GuitarMaster.Properties.Resources.save;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.Location = new System.Drawing.Point(511, 243);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(52, 45);
-            this.button1.TabIndex = 125;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // playYourMelodyButton
-            // 
-            this.playYourMelodyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.playYourMelodyButton.Location = new System.Drawing.Point(6, 165);
-            this.playYourMelodyButton.Name = "playYourMelodyButton";
-            this.playYourMelodyButton.Size = new System.Drawing.Size(122, 72);
-            this.playYourMelodyButton.TabIndex = 124;
-            this.playYourMelodyButton.Text = "Сыграть свою мелодию";
-            this.playYourMelodyButton.UseVisualStyleBackColor = true;
-            this.playYourMelodyButton.Click += new System.EventHandler(this.playYourMelodyButton_Click);
-            // 
-            // playAgainButton
-            // 
-            this.playAgainButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.playAgainButton.Location = new System.Drawing.Point(6, 84);
-            this.playAgainButton.Name = "playAgainButton";
-            this.playAgainButton.Size = new System.Drawing.Size(122, 72);
-            this.playAgainButton.TabIndex = 2;
-            this.playAgainButton.Text = "Проиграть заново";
-            this.playAgainButton.UseVisualStyleBackColor = true;
-            this.playAgainButton.Click += new System.EventHandler(this.playAgainButton_Click);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(149, 128);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(48, 20);
-            this.label10.TabIndex = 116;
-            this.label10.Text = "Ритм";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(144, 11);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(50, 20);
-            this.label9.TabIndex = 115;
-            this.label9.Text = "Ноты";
-            // 
-            // rhythmTextBox
-            // 
-            this.rhythmTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.rhythmTextBox.Location = new System.Drawing.Point(200, 127);
-            this.rhythmTextBox.Multiline = true;
-            this.rhythmTextBox.Name = "rhythmTextBox";
-            this.rhythmTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.rhythmTextBox.Size = new System.Drawing.Size(363, 110);
-            this.rhythmTextBox.TabIndex = 114;
-            // 
-            // notesTextBox
-            // 
-            this.notesTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.notesTextBox.Location = new System.Drawing.Point(200, 11);
-            this.notesTextBox.Multiline = true;
-            this.notesTextBox.Name = "notesTextBox";
-            this.notesTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.notesTextBox.Size = new System.Drawing.Size(363, 109);
-            this.notesTextBox.TabIndex = 113;
             // 
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage3.Controls.Add(this.editGeneratedMelodyButton);
             this.tabPage3.Controls.Add(this.playGeneredMelodyButton);
-            this.tabPage3.Controls.Add(this.playSavedMelodyButton);
             this.tabPage3.Controls.Add(this.tmpMelodysComboBox);
-            this.tabPage3.Controls.Add(this.label17);
-            this.tabPage3.Controls.Add(this.label16);
-            this.tabPage3.Controls.Add(this.savedMelodysComboBox);
             this.tabPage3.Location = new System.Drawing.Point(4, 27);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(595, 294);
+            this.tabPage3.Size = new System.Drawing.Size(240, 200);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Библиотека";
+            this.tabPage3.Text = "Сгенерированные";
+            // 
+            // editGeneratedMelodyButton
+            // 
+            this.editGeneratedMelodyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.editGeneratedMelodyButton.Location = new System.Drawing.Point(12, 97);
+            this.editGeneratedMelodyButton.Name = "editGeneratedMelodyButton";
+            this.editGeneratedMelodyButton.Size = new System.Drawing.Size(123, 44);
+            this.editGeneratedMelodyButton.TabIndex = 7;
+            this.editGeneratedMelodyButton.Text = "Изменить";
+            this.editGeneratedMelodyButton.UseVisualStyleBackColor = true;
             // 
             // playGeneredMelodyButton
             // 
             this.playGeneredMelodyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.playGeneredMelodyButton.Location = new System.Drawing.Point(329, 90);
+            this.playGeneredMelodyButton.Location = new System.Drawing.Point(12, 49);
             this.playGeneredMelodyButton.Name = "playGeneredMelodyButton";
             this.playGeneredMelodyButton.Size = new System.Drawing.Size(123, 44);
             this.playGeneredMelodyButton.TabIndex = 5;
@@ -1221,60 +1114,75 @@
             this.playGeneredMelodyButton.UseVisualStyleBackColor = true;
             this.playGeneredMelodyButton.Click += new System.EventHandler(this.playGeneredMelodyButton_Click);
             // 
-            // playSavedMelodyButton
-            // 
-            this.playSavedMelodyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.playSavedMelodyButton.Location = new System.Drawing.Point(19, 90);
-            this.playSavedMelodyButton.Name = "playSavedMelodyButton";
-            this.playSavedMelodyButton.Size = new System.Drawing.Size(123, 44);
-            this.playSavedMelodyButton.TabIndex = 4;
-            this.playSavedMelodyButton.Text = "Сыграть";
-            this.playSavedMelodyButton.UseVisualStyleBackColor = true;
-            this.playSavedMelodyButton.Click += new System.EventHandler(this.playSavedMelodyButton_Click);
-            // 
             // tmpMelodysComboBox
             // 
             this.tmpMelodysComboBox.FormattingEnabled = true;
-            this.tmpMelodysComboBox.Location = new System.Drawing.Point(329, 42);
+            this.tmpMelodysComboBox.Location = new System.Drawing.Point(12, 17);
             this.tmpMelodysComboBox.Name = "tmpMelodysComboBox";
             this.tmpMelodysComboBox.Size = new System.Drawing.Size(199, 26);
             this.tmpMelodysComboBox.TabIndex = 3;
             this.tmpMelodysComboBox.SelectedIndexChanged += new System.EventHandler(this.tmpMelodysComboBox_SelectedIndexChanged);
             // 
-            // label17
+            // tabPage1
             // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label17.Location = new System.Drawing.Point(326, 21);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(199, 18);
-            this.label17.TabIndex = 2;
-            this.label17.Text = "Сгенерированные мелодии";
+            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.deleteSavedMelodyButton);
+            this.tabPage1.Controls.Add(this.editSavedMelodyButton);
+            this.tabPage1.Controls.Add(this.playSavedMelodyButton);
+            this.tabPage1.Controls.Add(this.savedMelodysComboBox);
+            this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tabPage1.Location = new System.Drawing.Point(4, 27);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(240, 200);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Сохраненные";
             // 
-            // label16
+            // deleteSavedMelodyButton
             // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label16.Location = new System.Drawing.Point(19, 21);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(168, 18);
-            this.label16.TabIndex = 1;
-            this.label16.Text = "Сохраненные мелодии";
+            this.deleteSavedMelodyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.deleteSavedMelodyButton.Location = new System.Drawing.Point(12, 147);
+            this.deleteSavedMelodyButton.Name = "deleteSavedMelodyButton";
+            this.deleteSavedMelodyButton.Size = new System.Drawing.Size(123, 44);
+            this.deleteSavedMelodyButton.TabIndex = 13;
+            this.deleteSavedMelodyButton.Text = "Удалить";
+            this.deleteSavedMelodyButton.UseVisualStyleBackColor = true;
+            // 
+            // editSavedMelodyButton
+            // 
+            this.editSavedMelodyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.editSavedMelodyButton.Location = new System.Drawing.Point(12, 97);
+            this.editSavedMelodyButton.Name = "editSavedMelodyButton";
+            this.editSavedMelodyButton.Size = new System.Drawing.Size(123, 44);
+            this.editSavedMelodyButton.TabIndex = 12;
+            this.editSavedMelodyButton.Text = "Изменить";
+            this.editSavedMelodyButton.UseVisualStyleBackColor = true;
+            // 
+            // playSavedMelodyButton
+            // 
+            this.playSavedMelodyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.playSavedMelodyButton.Location = new System.Drawing.Point(12, 49);
+            this.playSavedMelodyButton.Name = "playSavedMelodyButton";
+            this.playSavedMelodyButton.Size = new System.Drawing.Size(123, 44);
+            this.playSavedMelodyButton.TabIndex = 11;
+            this.playSavedMelodyButton.Text = "Сыграть";
+            this.playSavedMelodyButton.UseVisualStyleBackColor = true;
+            this.playSavedMelodyButton.Click += new System.EventHandler(this.playSavedMelodyButton_Click);
             // 
             // savedMelodysComboBox
             // 
             this.savedMelodysComboBox.FormattingEnabled = true;
-            this.savedMelodysComboBox.Location = new System.Drawing.Point(19, 40);
+            this.savedMelodysComboBox.Location = new System.Drawing.Point(12, 17);
             this.savedMelodysComboBox.Name = "savedMelodysComboBox";
             this.savedMelodysComboBox.Size = new System.Drawing.Size(199, 26);
-            this.savedMelodysComboBox.TabIndex = 0;
+            this.savedMelodysComboBox.TabIndex = 9;
             this.savedMelodysComboBox.SelectedIndexChanged += new System.EventHandler(this.savedMelodysComboBox_SelectedIndexChanged);
             // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label15.Location = new System.Drawing.Point(17, 293);
+            this.label15.Location = new System.Drawing.Point(21, 191);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(65, 13);
             this.label15.TabIndex = 123;
@@ -1284,7 +1192,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label14.Location = new System.Drawing.Point(267, 293);
+            this.label14.Location = new System.Drawing.Point(271, 191);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(52, 13);
             this.label14.TabIndex = 122;
@@ -1294,7 +1202,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label13.Location = new System.Drawing.Point(136, 293);
+            this.label13.Location = new System.Drawing.Point(140, 191);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(64, 13);
             this.label13.TabIndex = 121;
@@ -1303,7 +1211,7 @@
             // tempoTrackBar
             // 
             this.tempoTrackBar.LargeChange = 1;
-            this.tempoTrackBar.Location = new System.Drawing.Point(16, 261);
+            this.tempoTrackBar.Location = new System.Drawing.Point(20, 159);
             this.tempoTrackBar.Maximum = -10;
             this.tempoTrackBar.Minimum = -60;
             this.tempoTrackBar.Name = "tempoTrackBar";
@@ -1315,7 +1223,7 @@
             // notesCountTextBox
             // 
             this.notesCountTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.notesCountTextBox.Location = new System.Drawing.Point(16, 187);
+            this.notesCountTextBox.Location = new System.Drawing.Point(20, 100);
             this.notesCountTextBox.Name = "notesCountTextBox";
             this.notesCountTextBox.Size = new System.Drawing.Size(103, 24);
             this.notesCountTextBox.TabIndex = 119;
@@ -1327,27 +1235,27 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label12.Location = new System.Drawing.Point(12, 245);
+            this.label12.Location = new System.Drawing.Point(16, 143);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(144, 20);
+            this.label12.Size = new System.Drawing.Size(47, 20);
             this.label12.TabIndex = 118;
-            this.label12.Text = "3. Выберите темп";
+            this.label12.Text = "Темп";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(12, 164);
+            this.label11.Location = new System.Drawing.Point(16, 77);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(217, 20);
+            this.label11.Size = new System.Drawing.Size(131, 20);
             this.label11.TabIndex = 117;
-            this.label11.Text = "2. Введите количество нот";
+            this.label11.Text = "Количество нот";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(964, 553);
+            this.label3.Location = new System.Drawing.Point(967, 507);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(18, 18);
             this.label3.TabIndex = 114;
@@ -1357,7 +1265,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(966, 435);
+            this.label4.Location = new System.Drawing.Point(969, 389);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(16, 18);
             this.label4.TabIndex = 115;
@@ -1367,7 +1275,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(965, 457);
+            this.label5.Location = new System.Drawing.Point(968, 411);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(18, 18);
             this.label5.TabIndex = 116;
@@ -1377,7 +1285,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(963, 482);
+            this.label6.Location = new System.Drawing.Point(966, 436);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(20, 18);
             this.label6.TabIndex = 117;
@@ -1387,7 +1295,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(963, 507);
+            this.label7.Location = new System.Drawing.Point(966, 461);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(19, 18);
             this.label7.TabIndex = 118;
@@ -1397,7 +1305,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(965, 528);
+            this.label8.Location = new System.Drawing.Point(968, 482);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(17, 18);
             this.label8.TabIndex = 119;
@@ -1406,7 +1314,7 @@
             // grifPBox
             // 
             this.grifPBox.Image = global::GuitarMaster.Properties.Resources.grif;
-            this.grifPBox.Location = new System.Drawing.Point(126, 427);
+            this.grifPBox.Location = new System.Drawing.Point(129, 381);
             this.grifPBox.Name = "grifPBox";
             this.grifPBox.Size = new System.Drawing.Size(834, 159);
             this.grifPBox.TabIndex = 1;
@@ -1417,50 +1325,122 @@
             // 
             this.nameLabel.AutoSize = true;
             this.nameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nameLabel.Location = new System.Drawing.Point(12, 33);
+            this.nameLabel.Location = new System.Drawing.Point(19, 221);
             this.nameLabel.Name = "nameLabel";
             this.nameLabel.Size = new System.Drawing.Size(254, 31);
             this.nameLabel.TabIndex = 124;
             this.nameLabel.Text = "Название мелодии";
             // 
-            // scaleLabel
+            // saveMelodyButton
             // 
-            this.scaleLabel.AutoSize = true;
-            this.scaleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.scaleLabel.Location = new System.Drawing.Point(626, 33);
-            this.scaleLabel.Name = "scaleLabel";
-            this.scaleLabel.Size = new System.Drawing.Size(97, 31);
-            this.scaleLabel.TabIndex = 125;
-            this.scaleLabel.Text = "Гамма";
+            this.saveMelodyButton.BackgroundImage = global::GuitarMaster.Properties.Resources.save;
+            this.saveMelodyButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.saveMelodyButton.Location = new System.Drawing.Point(710, 265);
+            this.saveMelodyButton.Name = "saveMelodyButton";
+            this.saveMelodyButton.Size = new System.Drawing.Size(107, 98);
+            this.saveMelodyButton.TabIndex = 135;
+            this.saveMelodyButton.UseVisualStyleBackColor = true;
+            this.saveMelodyButton.Click += new System.EventHandler(this.saveMelodyButton_Click);
             // 
-            // label18
+            // playYourMelodyButton
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label18.Location = new System.Drawing.Point(16, 9);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(83, 20);
-            this.label18.TabIndex = 126;
-            this.label18.Text = "Название";
+            this.playYourMelodyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.playYourMelodyButton.Location = new System.Drawing.Point(570, 260);
+            this.playYourMelodyButton.Name = "playYourMelodyButton";
+            this.playYourMelodyButton.Size = new System.Drawing.Size(123, 102);
+            this.playYourMelodyButton.TabIndex = 134;
+            this.playYourMelodyButton.Text = "Сыграть из текстбокса";
+            this.playYourMelodyButton.UseVisualStyleBackColor = true;
+            this.playYourMelodyButton.Click += new System.EventHandler(this.playYourMelodyButton_Click);
             // 
-            // label19
+            // playAgainButton
             // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label19.Location = new System.Drawing.Point(628, 9);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(58, 20);
-            this.label19.TabIndex = 127;
-            this.label19.Text = "Гамма";
+            this.playAgainButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.playAgainButton.Location = new System.Drawing.Point(570, 20);
+            this.playAgainButton.Name = "playAgainButton";
+            this.playAgainButton.Size = new System.Drawing.Size(123, 97);
+            this.playAgainButton.TabIndex = 129;
+            this.playAgainButton.Text = "Проиграть заново";
+            this.playAgainButton.UseVisualStyleBackColor = true;
+            this.playAgainButton.Click += new System.EventHandler(this.playAgainButton_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label10.Location = new System.Drawing.Point(21, 316);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(48, 20);
+            this.label10.TabIndex = 133;
+            this.label10.Text = "Ритм";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(21, 265);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(50, 20);
+            this.label9.TabIndex = 132;
+            this.label9.Text = "Ноты";
+            // 
+            // rhythmTextBox
+            // 
+            this.rhythmTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.rhythmTextBox.Location = new System.Drawing.Point(75, 316);
+            this.rhythmTextBox.Multiline = true;
+            this.rhythmTextBox.Name = "rhythmTextBox";
+            this.rhythmTextBox.ReadOnly = true;
+            this.rhythmTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.rhythmTextBox.Size = new System.Drawing.Size(349, 47);
+            this.rhythmTextBox.TabIndex = 131;
+            // 
+            // notesTextBox
+            // 
+            this.notesTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.notesTextBox.Location = new System.Drawing.Point(75, 265);
+            this.notesTextBox.Multiline = true;
+            this.notesTextBox.Name = "notesTextBox";
+            this.notesTextBox.ReadOnly = true;
+            this.notesTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.notesTextBox.Size = new System.Drawing.Size(349, 45);
+            this.notesTextBox.TabIndex = 130;
+            // 
+            // newGenerateButton
+            // 
+            this.newGenerateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.newGenerateButton.Location = new System.Drawing.Point(441, 21);
+            this.newGenerateButton.Name = "newGenerateButton";
+            this.newGenerateButton.Size = new System.Drawing.Size(123, 97);
+            this.newGenerateButton.TabIndex = 128;
+            this.newGenerateButton.Text = "Сгенерировать мелодию!";
+            this.newGenerateButton.UseVisualStyleBackColor = true;
+            this.newGenerateButton.Click += new System.EventHandler(this.newGenerateButton_Click);
+            // 
+            // editButton
+            // 
+            this.editButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.editButton.Location = new System.Drawing.Point(441, 261);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(123, 101);
+            this.editButton.TabIndex = 136;
+            this.editButton.Text = "Редактировать";
+            this.editButton.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1004, 598);
-            this.Controls.Add(this.label19);
-            this.Controls.Add(this.label18);
-            this.Controls.Add(this.scaleLabel);
+            this.ClientSize = new System.Drawing.Size(994, 558);
+            this.Controls.Add(this.editButton);
+            this.Controls.Add(this.newGenerateButton);
+            this.Controls.Add(this.playYourMelodyButton);
+            this.Controls.Add(this.saveMelodyButton);
+            this.Controls.Add(this.playAgainButton);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.rhythmTextBox);
+            this.Controls.Add(this.notesTextBox);
             this.Controls.Add(this.nameLabel);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -1487,7 +1467,6 @@
             this.Controls.Add(this.s614);
             this.Controls.Add(this.scaleComboBox);
             this.Controls.Add(this.s514);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.s414);
             this.Controls.Add(this.s314);
             this.Controls.Add(this.s214);
@@ -1582,10 +1561,8 @@
             this.Text = "GuitarMaster";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tempoTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grifPBox)).EndInit();
             this.ResumeLayout(false);
@@ -1695,21 +1672,14 @@
         private System.Windows.Forms.ComboBox scaleComboBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button clearGrid;
-        private System.Windows.Forms.Button newGenerateButton;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TextBox notesTextBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox rhythmTextBox;
-        private System.Windows.Forms.Button playAgainButton;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox notesCountTextBox;
         private System.Windows.Forms.Label label12;
@@ -1717,19 +1687,24 @@
         private System.Windows.Forms.TrackBar tempoTrackBar;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button playYourMelodyButton;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.ComboBox savedMelodysComboBox;
         private System.Windows.Forms.ComboBox tmpMelodysComboBox;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Button playSavedMelodyButton;
         private System.Windows.Forms.Label nameLabel;
-        private System.Windows.Forms.Label scaleLabel;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button playGeneredMelodyButton;
+        private System.Windows.Forms.Button editGeneratedMelodyButton;
+        private System.Windows.Forms.Button deleteSavedMelodyButton;
+        private System.Windows.Forms.Button editSavedMelodyButton;
+        private System.Windows.Forms.Button playSavedMelodyButton;
+        private System.Windows.Forms.ComboBox savedMelodysComboBox;
+        private System.Windows.Forms.Button saveMelodyButton;
+        private System.Windows.Forms.Button playYourMelodyButton;
+        private System.Windows.Forms.Button playAgainButton;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox rhythmTextBox;
+        private System.Windows.Forms.TextBox notesTextBox;
+        private System.Windows.Forms.Button newGenerateButton;
+        private System.Windows.Forms.Button editButton;
     }
 }
 

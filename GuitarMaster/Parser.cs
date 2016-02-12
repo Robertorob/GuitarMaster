@@ -50,7 +50,6 @@ namespace GuitarMaster
             {
                 s += massive[i].ToString() + " ";
             }
-            s += "\r\n";
             return s;
         }
 
@@ -71,7 +70,7 @@ namespace GuitarMaster
         public static List<Melody> GetAllMelodys()
         {
             List<Melody> list = new List<Melody>();
-            StreamReader sr = new StreamReader("Melodys.txt");
+            StreamReader sr = new StreamReader("Melodys.txt", Encoding.Default);
             String line = "";
 
             while ((line = sr.ReadLine()) != null)
@@ -109,8 +108,20 @@ namespace GuitarMaster
                 list.Add(melody);
             }
 
+            sr.Close();
             return list;
 
+        }
+
+        public static void SaveMelodyToFile(Melody melody)
+        {
+            string line =  melody.Name + ";" + melody.ScaleName.ToString() + ";" + GetString(melody.Notes) + ";" + GetString(melody.Rhythm) + ";";
+            using (StreamWriter sw = new StreamWriter("Melodys.txt", true, Encoding.GetEncoding(1251)))
+            {
+                sw.WriteLine(line);
+            }
+
+            
         }
     }
 }

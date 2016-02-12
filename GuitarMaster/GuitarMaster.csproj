@@ -55,14 +55,14 @@
     <Compile Include="Control.cs" />
     <Compile Include="DeviceBase.cs" />
     <Compile Include="ExampleUtil.cs" />
-    <Compile Include="Form1Partial.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1Partial.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="InputDevice.cs" />
     <Compile Include="Instrument.cs" />

@@ -32,7 +32,7 @@ namespace GuitarMaster
 
         OutputDevice outputDevice;
         public MediaPlayer player;
-        SoundDevices sd;               
+        SoundDevices sd;
 
         List<Melody> tmpMelodys;
         List<Melody> melodyList;
@@ -46,8 +46,12 @@ namespace GuitarMaster
                 savedMelodysComboBox.Items.Add(melodyList[i].Name + "(" + melodyList[i].ScaleName.ToString() + ")");
             }
             savedMelodysComboBox.SelectedIndex = 5;
+            nameLabel.Text = "Сгенерируйте мелодию!";
+            notesTextBox.Text = "";
+            rhythmTextBox.Text = "";
+            notesCountTextBox.Text = "8";
 
-            Melody.Number = melodyList.Count + 1;
+            //Melody.Number = melodyList.Count + 1;
 
             tmpMelodys = new List<Melody>();
 
@@ -366,7 +370,7 @@ namespace GuitarMaster
         private void accompButton_Click(object sender, EventArgs e)
         {
             Accompaniment.PlayAccompanement(outputDevice);
-        }      
+        }
 
     }
 }
