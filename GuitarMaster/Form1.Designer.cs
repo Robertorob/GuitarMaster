@@ -130,8 +130,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.editGeneratedMelodyButton = new System.Windows.Forms.Button();
-            this.playGeneredMelodyButton = new System.Windows.Forms.Button();
-            this.tmpMelodysComboBox = new System.Windows.Forms.ComboBox();
+            this.playGeneratedMelodyButton = new System.Windows.Forms.Button();
+            this.generatedMelodysComboBox = new System.Windows.Forms.ComboBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.deleteSavedMelodyButton = new System.Windows.Forms.Button();
             this.editSavedMelodyButton = new System.Windows.Forms.Button();
@@ -160,7 +160,7 @@
             this.rhythmTextBox = new System.Windows.Forms.TextBox();
             this.notesTextBox = new System.Windows.Forms.TextBox();
             this.newGenerateButton = new System.Windows.Forms.Button();
-            this.editButton = new System.Windows.Forms.Button();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1079,13 +1079,14 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(248, 231);
             this.tabControl1.TabIndex = 113;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage3.Controls.Add(this.editGeneratedMelodyButton);
-            this.tabPage3.Controls.Add(this.playGeneredMelodyButton);
-            this.tabPage3.Controls.Add(this.tmpMelodysComboBox);
+            this.tabPage3.Controls.Add(this.playGeneratedMelodyButton);
+            this.tabPage3.Controls.Add(this.generatedMelodysComboBox);
             this.tabPage3.Location = new System.Drawing.Point(4, 27);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -1102,26 +1103,27 @@
             this.editGeneratedMelodyButton.TabIndex = 7;
             this.editGeneratedMelodyButton.Text = "Изменить";
             this.editGeneratedMelodyButton.UseVisualStyleBackColor = true;
+            this.editGeneratedMelodyButton.Click += new System.EventHandler(this.editGeneratedMelodyButton_Click);
             // 
-            // playGeneredMelodyButton
+            // playGeneratedMelodyButton
             // 
-            this.playGeneredMelodyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.playGeneredMelodyButton.Location = new System.Drawing.Point(12, 49);
-            this.playGeneredMelodyButton.Name = "playGeneredMelodyButton";
-            this.playGeneredMelodyButton.Size = new System.Drawing.Size(123, 44);
-            this.playGeneredMelodyButton.TabIndex = 5;
-            this.playGeneredMelodyButton.Text = "Сыграть";
-            this.playGeneredMelodyButton.UseVisualStyleBackColor = true;
-            this.playGeneredMelodyButton.Click += new System.EventHandler(this.playGeneredMelodyButton_Click);
+            this.playGeneratedMelodyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.playGeneratedMelodyButton.Location = new System.Drawing.Point(12, 49);
+            this.playGeneratedMelodyButton.Name = "playGeneratedMelodyButton";
+            this.playGeneratedMelodyButton.Size = new System.Drawing.Size(123, 44);
+            this.playGeneratedMelodyButton.TabIndex = 5;
+            this.playGeneratedMelodyButton.Text = "Сыграть";
+            this.playGeneratedMelodyButton.UseVisualStyleBackColor = true;
+            this.playGeneratedMelodyButton.Click += new System.EventHandler(this.playGeneredMelodyButton_Click);
             // 
-            // tmpMelodysComboBox
+            // generatedMelodysComboBox
             // 
-            this.tmpMelodysComboBox.FormattingEnabled = true;
-            this.tmpMelodysComboBox.Location = new System.Drawing.Point(12, 17);
-            this.tmpMelodysComboBox.Name = "tmpMelodysComboBox";
-            this.tmpMelodysComboBox.Size = new System.Drawing.Size(199, 26);
-            this.tmpMelodysComboBox.TabIndex = 3;
-            this.tmpMelodysComboBox.SelectedIndexChanged += new System.EventHandler(this.tmpMelodysComboBox_SelectedIndexChanged);
+            this.generatedMelodysComboBox.FormattingEnabled = true;
+            this.generatedMelodysComboBox.Location = new System.Drawing.Point(12, 17);
+            this.generatedMelodysComboBox.Name = "generatedMelodysComboBox";
+            this.generatedMelodysComboBox.Size = new System.Drawing.Size(199, 26);
+            this.generatedMelodysComboBox.TabIndex = 3;
+            this.generatedMelodysComboBox.SelectedIndexChanged += new System.EventHandler(this.generatedMelodysComboBox_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -1147,6 +1149,7 @@
             this.deleteSavedMelodyButton.TabIndex = 13;
             this.deleteSavedMelodyButton.Text = "Удалить";
             this.deleteSavedMelodyButton.UseVisualStyleBackColor = true;
+            this.deleteSavedMelodyButton.Click += new System.EventHandler(this.deleteSavedMelodyButton_Click);
             // 
             // editSavedMelodyButton
             // 
@@ -1157,6 +1160,7 @@
             this.editSavedMelodyButton.TabIndex = 12;
             this.editSavedMelodyButton.Text = "Изменить";
             this.editSavedMelodyButton.UseVisualStyleBackColor = true;
+            this.editSavedMelodyButton.Click += new System.EventHandler(this.editSavedMelodyButton_Click);
             // 
             // playSavedMelodyButton
             // 
@@ -1335,9 +1339,9 @@
             // 
             this.saveMelodyButton.BackgroundImage = global::GuitarMaster.Properties.Resources.save;
             this.saveMelodyButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.saveMelodyButton.Location = new System.Drawing.Point(710, 265);
+            this.saveMelodyButton.Location = new System.Drawing.Point(581, 265);
             this.saveMelodyButton.Name = "saveMelodyButton";
-            this.saveMelodyButton.Size = new System.Drawing.Size(107, 98);
+            this.saveMelodyButton.Size = new System.Drawing.Size(114, 102);
             this.saveMelodyButton.TabIndex = 135;
             this.saveMelodyButton.UseVisualStyleBackColor = true;
             this.saveMelodyButton.Click += new System.EventHandler(this.saveMelodyButton_Click);
@@ -1345,7 +1349,7 @@
             // playYourMelodyButton
             // 
             this.playYourMelodyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.playYourMelodyButton.Location = new System.Drawing.Point(570, 260);
+            this.playYourMelodyButton.Location = new System.Drawing.Point(441, 265);
             this.playYourMelodyButton.Name = "playYourMelodyButton";
             this.playYourMelodyButton.Size = new System.Drawing.Size(123, 102);
             this.playYourMelodyButton.TabIndex = 134;
@@ -1356,7 +1360,7 @@
             // playAgainButton
             // 
             this.playAgainButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.playAgainButton.Location = new System.Drawing.Point(570, 20);
+            this.playAgainButton.Location = new System.Drawing.Point(581, 20);
             this.playAgainButton.Name = "playAgainButton";
             this.playAgainButton.Size = new System.Drawing.Size(123, 97);
             this.playAgainButton.TabIndex = 129;
@@ -1411,28 +1415,27 @@
             this.newGenerateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.newGenerateButton.Location = new System.Drawing.Point(441, 21);
             this.newGenerateButton.Name = "newGenerateButton";
-            this.newGenerateButton.Size = new System.Drawing.Size(123, 97);
+            this.newGenerateButton.Size = new System.Drawing.Size(134, 97);
             this.newGenerateButton.TabIndex = 128;
             this.newGenerateButton.Text = "Сгенерировать мелодию!";
             this.newGenerateButton.UseVisualStyleBackColor = true;
             this.newGenerateButton.Click += new System.EventHandler(this.newGenerateButton_Click);
             // 
-            // editButton
+            // nameTextBox
             // 
-            this.editButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.editButton.Location = new System.Drawing.Point(441, 261);
-            this.editButton.Name = "editButton";
-            this.editButton.Size = new System.Drawing.Size(123, 101);
-            this.editButton.TabIndex = 136;
-            this.editButton.Text = "Редактировать";
-            this.editButton.UseVisualStyleBackColor = true;
+            this.nameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nameTextBox.Location = new System.Drawing.Point(25, 220);
+            this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.Size = new System.Drawing.Size(298, 32);
+            this.nameTextBox.TabIndex = 137;
+            this.nameTextBox.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(994, 558);
-            this.Controls.Add(this.editButton);
+            this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.newGenerateButton);
             this.Controls.Add(this.playYourMelodyButton);
             this.Controls.Add(this.saveMelodyButton);
@@ -1688,9 +1691,9 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.ComboBox tmpMelodysComboBox;
+        private System.Windows.Forms.ComboBox generatedMelodysComboBox;
         private System.Windows.Forms.Label nameLabel;
-        private System.Windows.Forms.Button playGeneredMelodyButton;
+        private System.Windows.Forms.Button playGeneratedMelodyButton;
         private System.Windows.Forms.Button editGeneratedMelodyButton;
         private System.Windows.Forms.Button deleteSavedMelodyButton;
         private System.Windows.Forms.Button editSavedMelodyButton;
@@ -1704,7 +1707,7 @@
         private System.Windows.Forms.TextBox rhythmTextBox;
         private System.Windows.Forms.TextBox notesTextBox;
         private System.Windows.Forms.Button newGenerateButton;
-        private System.Windows.Forms.Button editButton;
+        private System.Windows.Forms.TextBox nameTextBox;
     }
 }
 

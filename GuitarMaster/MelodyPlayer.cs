@@ -63,9 +63,18 @@ namespace GuitarMaster
         {
             /* Продолжительность такта в миллисекундах */
             int dur = (int)(duration * 1000);
+            
+            int divisor = 0, k = 0, l = 0;
+            while(k < notes.Length && l < rhythm.Length)
+            {
+                divisor++;
+                if (rhythm[l] == 1)
+                    k++;
 
+                l++;
+            }
             /* Продолжительность звучания одной ноты(или паузы) */
-            int oneNoteDur = dur / rhythm.Length;
+            int oneNoteDur = dur / divisor;
 
             Note note = Note.A0;
 

@@ -62,7 +62,16 @@ namespace GuitarMaster
 
             for (int i = 0; i < massive.Length; i++)
             {
-                massive[i] = int.Parse(mass[i]);
+                int res;
+                bool success = int.TryParse(mass[i], out res);
+                if (!success)
+                {
+                    return null;
+                }
+                else
+                {
+                    massive[i] = res;
+                }
             }
             return massive;
         }
@@ -119,9 +128,18 @@ namespace GuitarMaster
             using (StreamWriter sw = new StreamWriter("Melodys.txt", true, Encoding.GetEncoding(1251)))
             {
                 sw.WriteLine(line);
-            }
+            }   
+        }
 
-            
+        public static void RewriteMelodysFile(List<Melody> list)
+        {
+            StreamWriter sw = new StreamWriter("Melodys.txt", false, Encoding.GetEncoding(1251));
+            for (int i = 0; i < list.Count; i++)
+            {
+                string line = list[i].Name + ";" + list[i].ScaleName.ToString() + ";" + GetString(list[i].Notes) + ";" + GetString(list[i].Rhythm) + ";";
+                sw.WriteLine(line);
+            }
+            sw.Close();
         }
     }
 }

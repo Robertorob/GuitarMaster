@@ -22,6 +22,8 @@ namespace GuitarMaster
         public int[,] gridButtons;//кнопки, которые показывают сетку
 
         public bool grid = false;
+        public bool editGenerated = false;
+        public bool editSaved = false;
 
         public int[] minorScale, majorScale, flamencoScale, bluesScale;
         public MyScale selectedScale;
@@ -34,18 +36,19 @@ namespace GuitarMaster
         public MediaPlayer player;
         SoundDevices sd;
 
-        List<Melody> tmpMelodys;
-        List<Melody> melodyList;
+        List<Melody> generatedMelodysList;
+        List<Melody> savedMelodysList;
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            melodyList = new List<Melody>();
-            melodyList = Parser.GetAllMelodys();
-            for (int i = 0; i < melodyList.Count; i++)
+            savedMelodysList = new List<Melody>();
+            savedMelodysList = Parser.GetAllMelodys();
+            for (int i = 0; i < savedMelodysList.Count; i++)
             {
-                savedMelodysComboBox.Items.Add(melodyList[i].Name + "(" + melodyList[i].ScaleName.ToString() + ")");
+                savedMelodysComboBox.Items.Add(savedMelodysList[i].Name + "(" + savedMelodysList[i].ScaleName.ToString() + ")");
             }
-            savedMelodysComboBox.SelectedIndex = 5;
+            if(savedMelodysComboBox.Items.Count != 0)
+                savedMelodysComboBox.SelectedIndex = 0;
             nameLabel.Text = "Сгенерируйте мелодию!";
             notesTextBox.Text = "";
             rhythmTextBox.Text = "";
@@ -53,7 +56,7 @@ namespace GuitarMaster
 
             //Melody.Number = melodyList.Count + 1;
 
-            tmpMelodys = new List<Melody>();
+            generatedMelodysList = new List<Melody>();
 
             gridButtons = new int[6, 16];
 

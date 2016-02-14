@@ -77,26 +77,18 @@ namespace GuitarMaster
         }
 
         private void newGenerateButton_Click(object sender, EventArgs e)
-        {
-            notesCount = int.Parse(notesCountTextBox.Text);
+        {            
             duration = Rhythm.GetDuration(tempoTrackBar.Value, notesCount);
             Random random = new Random();
-            int divisor = random.Next(3, 5), addition = random.Next(1, 4);
-
-            if (notesCount <= 0)
-            {
-                MessageBox.Show("Число нот должно быть больше нуля!");
-                notesCountTextBox.Text = "8";
-                return;
-            }
+            int divisor = random.Next(3, 5), addition = random.Next(1, 4);           
 
             int[] rhythm = Rhythm.GetRhythm(notesCount + notesCount / divisor + addition, notesCount);
             int[] notes = Notes.NewGetNotes(selectedScale, notesCount, rhythm);
 
             lastMelody = new Melody(Melody.Number + "-ая мелодия", notes, rhythm, selectedScale.scaleName);
-            tmpMelodys.Add(lastMelody);
-            tmpMelodysComboBox.Items.Add(lastMelody.Name + "(" + lastMelody.ScaleName.ToString() + ")");
-            tmpMelodysComboBox.SelectedIndex = tmpMelodys.IndexOf(lastMelody);
+            generatedMelodysList.Add(lastMelody);
+            generatedMelodysComboBox.Items.Add(lastMelody.Name + "(" + lastMelody.ScaleName.ToString() + ")");
+            generatedMelodysComboBox.SelectedIndex = generatedMelodysList.IndexOf(lastMelody);
             Melody.Number++;
 
             rhythmTextBox.Text = Parser.GetString(rhythm);
@@ -213,12 +205,15 @@ namespace GuitarMaster
         private void notesCountTextBox_TextChanged(object sender, EventArgs e)
         {
             int res;
-            if (!int.TryParse(notesCountTextBox.Text, out res))
+            if (!int.TryParse(notesCountTextBox.Text, out res) && notesCountTextBox.Text != "")
             {
                 MessageBox.Show("Вводите целое число!");
-                notesCountTextBox.Text = "16";
+                notesCountTextBox.Text = "8";
                 notesCountTextBox.SelectAll();
+                return;
             }
+            if(notesCountTextBox.Text != "")
+                notesCount = int.Parse(notesCountTextBox.Text);
         }
 
         private void notesCountTextBox_MouseClick(object sender, MouseEventArgs e)
@@ -236,14 +231,14 @@ namespace GuitarMaster
             int[] notes = Parser.GetMassive(notesTextBox.Text);
             int[] rhythm = Parser.GetMassive(rhythmTextBox.Text);
 
-            if(notes.Length == 0 || rhythm.Length == 0 || notes.Length < rhythm.Sum())
+            if (notes.Length == 0 || rhythm.Length == 0)
             {
                 MessageBox.Show("Неверный формат мелодии!");
                 return;
             }
 
-            notesCount = rhythm.Sum();
-            duration = Rhythm.GetDuration(tempoTrackBar.Value, notesCount);
+            notesCountTextBox.Text = notes.Length.ToString();
+            duration = Rhythm.GetDuration(tempoTrackBar.Value, notes.Length);
 
             if(sd == null)
                 sd = new SoundDevices(outputDevice, Channel.Channel1);
@@ -255,9 +250,9 @@ namespace GuitarMaster
         private void savedMelodysComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int i = savedMelodysComboBox.SelectedIndex;
-            if (i < 0 || i >= melodyList.Count)
+            if (i < 0 || i >= savedMelodysList.Count)
                 return;
-            savedMelody = melodyList[i];
+            savedMelody = savedMelodysList[i];
 
             SetLabelsNameNotesAndRhythm(savedMelody);
             saveMelodyButton.Enabled = false;
@@ -278,12 +273,12 @@ namespace GuitarMaster
             }
         }
 
-        private void tmpMelodysComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void generatedMelodysComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int i = tmpMelodysComboBox.SelectedIndex;
-            if (i < 0 || i >= tmpMelodys.Count)
+            int i = generatedMelodysComboBox.SelectedIndex;
+            if (i < 0 || i >= generatedMelodysList.Count)
                 return;
-            lastMelody = tmpMelodys[i];
+            lastMelody = generatedMelodysList[i];
 
             SetLabelsNameNotesAndRhythm(lastMelody);
             saveMelodyButton.Enabled = true;
@@ -308,15 +303,15 @@ namespace GuitarMaster
         {
             if (lastMelody != null)
             {
-                if (!melodyList.Contains(lastMelody))
+                if (!savedMelodysList.Contains(lastMelody))
                 {
                     SetLabelsNameNotesAndRhythm(lastMelody);
                     saveMelodyButton.Enabled = true;
 
                     Parser.SaveMelodyToFile(lastMelody);
-                    melodyList.Add(lastMelody);
+                    savedMelodysList.Add(lastMelody);
                     savedMelodysComboBox.Items.Add(lastMelody.Name + "(" + lastMelody.ScaleName.ToString() + ")");
-                    MessageBox.Show("Мелодия успешно сохранена");
+                    MessageBox.Show("Мелодия \"" + lastMelody.Name + "(" + lastMelody.ScaleName.ToString() + ")" + "\" успешно сохранена");
                 }
                 else
                 {
@@ -327,6 +322,187 @@ namespace GuitarMaster
             }
         }
 
+        private void deleteSavedMelodyButton_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Действительно хотите удалить мелодию\n\"" + savedMelody.Name + "(" + savedMelody.ScaleName.ToString() + ")\"" + "?", "Внимание", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                savedMelodysList.Remove(savedMelody);               
+                Parser.RewriteMelodysFile(savedMelodysList);
+
+                int i = savedMelodysComboBox.SelectedIndex;
+                savedMelodysComboBox.Items.RemoveAt(i);
+                if (i - 1 >= 0)
+                    savedMelodysComboBox.SelectedIndex = i - 1;
+            }
+        }
+
+        private void editGeneratedMelodyButton_Click(object sender, EventArgs e)
+        {
+            if (!editGenerated && lastMelody != null)
+            {
+                editGeneratedMelodyButton.Text = "Применить";
+
+                nameTextBox.Text = lastMelody.Name;
+                SetLabelsNameNotesAndRhythm(lastMelody);
+
+                nameTextBox.Visible = true;
+                notesTextBox.ReadOnly = false;
+                rhythmTextBox.ReadOnly = false;
+
+                newGenerateButton.Enabled = false;
+                playAgainButton.Enabled = false;
+                playYourMelodyButton.Enabled = false;
+                saveMelodyButton.Enabled = false;
+                playGeneratedMelodyButton.Enabled = false;
+                generatedMelodysComboBox.Enabled = false;
+
+                nameLabel.Visible = false;
+
+                editGenerated = true;
+                return;
+            }
+            if(editGenerated && lastMelody != null)
+            {               
+                int[] notes = Parser.GetMassive(notesTextBox.Text);
+                int[] rhythm = Parser.GetMassive(rhythmTextBox.Text);
+                if (notes == null || rhythm == null)
+                {
+                    MessageBox.Show("Неверный формат мелодии. Подробности смотрите в описании программы");
+                    notesTextBox.Text = Parser.GetString(lastMelody.Notes);
+                    rhythmTextBox.Text = Parser.GetString(lastMelody.Rhythm);
+                }
+                else
+                {
+                    if (MessageBox.Show("Действительно хотите изменить мелодию\n\"" + lastMelody.Name + "(" + lastMelody.ScaleName.ToString() + ")\"" + "?", "Внимание", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    {
+                        int i = generatedMelodysList.IndexOf(lastMelody);
+                        generatedMelodysComboBox.Items.RemoveAt(i);
+                        generatedMelodysComboBox.Items.Insert(i, nameTextBox.Text + "(Other)");
+
+                        int j = generatedMelodysList.IndexOf(lastMelody);
+                        generatedMelodysList.RemoveAt(i);
+                        lastMelody = new Melody(nameTextBox.Text, notes, rhythm, ScaleName.Other);
+                        generatedMelodysList.Insert(j, lastMelody);
+
+                        /* Здесь срабатывает событие и меняется значение notesCountTextBox */
+                        generatedMelodysComboBox.SelectedIndex = i;
+                        nameLabel.Text = lastMelody.Name + "(Other)";
+                    }
+                    else
+                    {
+                        notesTextBox.Text = Parser.GetString(lastMelody.Notes);
+                        rhythmTextBox.Text = Parser.GetString(lastMelody.Rhythm);
+                    }
+                }
+
+                editGeneratedMelodyButton.Text = "Изменить";
+                nameTextBox.Visible = false;
+                nameLabel.Visible = true;
+                editGenerated = false;
+
+                notesTextBox.ReadOnly = true;
+                rhythmTextBox.ReadOnly = true;
+
+                newGenerateButton.Enabled = true;
+                playAgainButton.Enabled = true;
+                playYourMelodyButton.Enabled = true;
+                saveMelodyButton.Enabled = true;
+                playGeneratedMelodyButton.Enabled = true;
+                generatedMelodysComboBox.Enabled = true;
+            }
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (editGenerated)
+            {
+                tabControl1.SelectedIndex = 0;
+            }
+            if (editSaved)
+            {
+                tabControl1.SelectedIndex = 1;
+            }
+        }
+
+        private void editSavedMelodyButton_Click(object sender, EventArgs e)
+        {
+            if (!editSaved && savedMelody != null)
+            {
+                editSavedMelodyButton.Text = "Применить";///////////
+
+                SetLabelsNameNotesAndRhythm(savedMelody);
+                nameTextBox.Text = savedMelody.Name;
+
+                nameTextBox.Visible = true;
+                notesTextBox.ReadOnly = false;
+                rhythmTextBox.ReadOnly = false;
+
+                newGenerateButton.Enabled = false;
+                playAgainButton.Enabled = false;
+                playYourMelodyButton.Enabled = false;
+                saveMelodyButton.Enabled = false;
+                playSavedMelodyButton.Enabled = false;
+                playSavedMelodyButton.Enabled = false;
+                deleteSavedMelodyButton.Enabled = false;
+                savedMelodysComboBox.Enabled = false;///////////
+
+                nameLabel.Visible = false;
+
+                editSaved = true;/////////////
+                return;
+            }
+            if (editSaved && savedMelody != null)
+            {
+                int[] notes = Parser.GetMassive(notesTextBox.Text);
+                int[] rhythm = Parser.GetMassive(rhythmTextBox.Text);
+                if (notes == null || rhythm == null)
+                {
+                    MessageBox.Show("Неверный формат мелодии. Подробности смотрите в описании программы");
+                    notesTextBox.Text = Parser.GetString(savedMelody.Notes);
+                    rhythmTextBox.Text = Parser.GetString(savedMelody.Rhythm);
+                }
+                else
+                {
+                    if (MessageBox.Show("Действительно хотите изменить мелодию\n\"" + savedMelody.Name + "(" + savedMelody.ScaleName.ToString() + ")\"" + "?", "Внимание", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    {
+                        int i = savedMelodysList.IndexOf(savedMelody);//////////////////////
+                        savedMelodysComboBox.Items.RemoveAt(i);
+                        savedMelodysComboBox.Items.Insert(i, nameTextBox.Text + "(Other)");
+
+                        int j = savedMelodysList.IndexOf(savedMelody);
+                        savedMelodysList.RemoveAt(i);
+                        savedMelody = new Melody(nameTextBox.Text, notes, rhythm, ScaleName.Other);
+                        savedMelodysList.Insert(j, savedMelody);
+
+                        /* Здесь срабатывает событие и меняется значение notesCountTextBox */
+                        savedMelodysComboBox.SelectedIndex = i;
+                        nameLabel.Text = savedMelody.Name + "(Other)";
+                        Parser.RewriteMelodysFile(savedMelodysList);
+                    }
+                    else
+                    {
+                        notesTextBox.Text = Parser.GetString(savedMelody.Notes);
+                        rhythmTextBox.Text = Parser.GetString(savedMelody.Rhythm);
+                    }
+                }
+
+                editSavedMelodyButton.Text = "Изменить";
+                nameTextBox.Visible = false;
+                nameLabel.Visible = true;
+                editSaved = false;
+
+                notesTextBox.ReadOnly = true;
+                rhythmTextBox.ReadOnly = true;
+
+                newGenerateButton.Enabled = true;
+                playAgainButton.Enabled = true;
+                playYourMelodyButton.Enabled = true;
+                saveMelodyButton.Enabled = true;
+                playSavedMelodyButton.Enabled = true;
+                deleteSavedMelodyButton.Enabled = true;
+                savedMelodysComboBox.Enabled = true;
+            }
+        }
         
 
     }
