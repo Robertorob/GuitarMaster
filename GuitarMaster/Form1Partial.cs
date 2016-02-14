@@ -375,5 +375,43 @@ namespace GuitarMaster
             Accompaniment.PlayAccompanement(outputDevice);
         }
 
+        public enum SetEnableMode { All, Saved, Generated };
+        public void SetEnable(bool value, SetEnableMode mode)
+        {
+            newGenerateButton.Enabled = value;
+            playAgainButton.Enabled = value;
+            playYourMelodyButton.Enabled = value;
+            playSavedMelodyButton.Enabled = value;
+            playGeneratedMelodyButton.Enabled = value;
+            tabControl1.Enabled = value;
+            playSavedMelodyButton.Enabled = value;
+            deleteSavedMelodyButton.Enabled = value;
+            saveMelodyButton.Enabled = value;
+            stopButton.Enabled = value;
+
+            switch (mode)
+            {
+                case SetEnableMode.All:
+                    stopButton.Enabled = true;
+                    break;
+                case SetEnableMode.Saved:
+                    tabControl1.Enabled = true;
+                    notesTextBox.ReadOnly = value;
+                    rhythmTextBox.ReadOnly = value;
+                    nameLabel.Visible = value;
+                    savedMelodysComboBox.Enabled = value;
+                    break;
+                case SetEnableMode.Generated:
+                    tabControl1.Enabled = true;
+                    notesTextBox.ReadOnly = value;
+                    rhythmTextBox.ReadOnly = value;
+                    nameLabel.Visible = value;
+                    generatedMelodysComboBox.Enabled = value;
+                    break;
+            }
+        }
+
+        
+
     }
 }

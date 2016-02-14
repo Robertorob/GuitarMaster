@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.s10 = new System.Windows.Forms.Button();
             this.s30 = new System.Windows.Forms.Button();
             this.s20 = new System.Windows.Forms.Button();
@@ -161,6 +162,8 @@
             this.notesTextBox = new System.Windows.Forms.TextBox();
             this.newGenerateButton = new System.Windows.Forms.Button();
             this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.stopButton = new System.Windows.Forms.Button();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1114,7 +1117,7 @@
             this.playGeneratedMelodyButton.TabIndex = 5;
             this.playGeneratedMelodyButton.Text = "Сыграть";
             this.playGeneratedMelodyButton.UseVisualStyleBackColor = true;
-            this.playGeneratedMelodyButton.Click += new System.EventHandler(this.playGeneredMelodyButton_Click);
+            this.playGeneratedMelodyButton.Click += new System.EventHandler(this.playGeneratedMelodyButton_Click);
             // 
             // generatedMelodysComboBox
             // 
@@ -1430,11 +1433,28 @@
             this.nameTextBox.TabIndex = 137;
             this.nameTextBox.Visible = false;
             // 
+            // stopButton
+            // 
+            this.stopButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.stopButton.Location = new System.Drawing.Point(441, 136);
+            this.stopButton.Name = "stopButton";
+            this.stopButton.Size = new System.Drawing.Size(263, 102);
+            this.stopButton.TabIndex = 138;
+            this.stopButton.Text = "Стоп";
+            this.stopButton.UseVisualStyleBackColor = true;
+            this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
+            // 
+            // timer
+            // 
+            this.timer.Interval = 500;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(994, 558);
+            this.Controls.Add(this.stopButton);
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.newGenerateButton);
             this.Controls.Add(this.playYourMelodyButton);
@@ -1708,6 +1728,8 @@
         private System.Windows.Forms.TextBox notesTextBox;
         private System.Windows.Forms.Button newGenerateButton;
         private System.Windows.Forms.TextBox nameTextBox;
+        private System.Windows.Forms.Button stopButton;
+        private System.Windows.Forms.Timer timer;
     }
 }
 

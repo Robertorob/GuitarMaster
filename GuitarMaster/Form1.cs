@@ -75,12 +75,15 @@ namespace GuitarMaster
         {
             InitializeComponent();
         }
-
+        CancellationTokenSource cts;
+        Task task;
         private void newGenerateButton_Click(object sender, EventArgs e)
-        {            
+        {
+            SetEnable(false, SetEnableMode.All);
+
             duration = Rhythm.GetDuration(tempoTrackBar.Value, notesCount);
             Random random = new Random();
-            int divisor = random.Next(3, 5), addition = random.Next(1, 4);           
+            int divisor = random.Next(3, 5), addition = random.Next(1, 4);
 
             int[] rhythm = Rhythm.GetRhythm(notesCount + notesCount / divisor + addition, notesCount);
             int[] notes = Notes.NewGetNotes(selectedScale, notesCount, rhythm);
@@ -94,16 +97,26 @@ namespace GuitarMaster
             rhythmTextBox.Text = Parser.GetString(rhythm);
             notesTextBox.Text = Parser.GetString(notes);
 
-            if(sd == null)
+            if (sd == null)
                 sd = new SoundDevices(outputDevice, Channel.Channel1);
 
             SetLabelsNameNotesAndRhythm(lastMelody);
             saveMelodyButton.Enabled = true;
-            MelodyPlayer.PlayMelodyWithRhythm(sd, lastMelody, tonica, duration, grifNotes, buttons);
+
+            cts = new CancellationTokenSource();
+            stopButton.Select();
+            timer.Start();
+            task = Task.Run(() =>
+            {
+                MelodyPlayer.PlayMelodyWithRhythm(sd, lastMelody, tonica, duration, grifNotes, buttons, cts.Token);
+            }, cts.Token);
+           
         }
 
         private void playAgainButton_Click(object sender, EventArgs e)
         {
+            SetEnable(false, SetEnableMode.All);
+
             if (lastMelody != null)
             {
                 if (sd == null)
@@ -113,7 +126,13 @@ namespace GuitarMaster
                 saveMelodyButton.Enabled = true;
 
                 duration = Rhythm.GetDuration(tempoTrackBar.Value, notesCount);
-                MelodyPlayer.PlayMelodyWithRhythm(sd, lastMelody, tonica, duration, grifNotes, buttons);
+                cts = new CancellationTokenSource();
+                stopButton.Select();
+                timer.Start();
+                task = Task.Run(() =>
+                {
+                    MelodyPlayer.PlayMelodyWithRhythm(sd, lastMelody, tonica, duration, grifNotes, buttons, cts.Token);
+                }, cts.Token);
             }
         }
 
@@ -228,6 +247,8 @@ namespace GuitarMaster
 
         private void playYourMelodyButton_Click(object sender, EventArgs e)
         {
+            SetEnable(false, SetEnableMode.All);
+
             int[] notes = Parser.GetMassive(notesTextBox.Text);
             int[] rhythm = Parser.GetMassive(rhythmTextBox.Text);
 
@@ -244,7 +265,13 @@ namespace GuitarMaster
                 sd = new SoundDevices(outputDevice, Channel.Channel1);
 
             Melody melody = new Melody("My melody", notes, rhythm, ScaleName.Other);
-            MelodyPlayer.PlayMelodyWithRhythm(sd, melody, tonica, duration, grifNotes, buttons);
+            cts = new CancellationTokenSource();
+            stopButton.Select();
+            timer.Start();
+            task = Task.Run(() =>
+            {
+                MelodyPlayer.PlayMelodyWithRhythm(sd, melody, tonica, duration, grifNotes, buttons, cts.Token);
+            }, cts.Token);
         }
 
         private void savedMelodysComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -260,6 +287,8 @@ namespace GuitarMaster
 
         private void playSavedMelodyButton_Click(object sender, EventArgs e)
         {
+            SetEnable(false, SetEnableMode.All);
+
             if (savedMelody != null)
             {
                 if (sd == null)
@@ -269,7 +298,13 @@ namespace GuitarMaster
                 saveMelodyButton.Enabled = false;
 
                 duration = Rhythm.GetDuration(tempoTrackBar.Value, savedMelody.Notes.Length);
-                MelodyPlayer.PlayMelodyWithRhythm(sd, savedMelody, tonica, duration, grifNotes, buttons);
+                cts = new CancellationTokenSource();
+                stopButton.Select();
+                timer.Start();
+                task = Task.Run(() =>
+                {
+                    MelodyPlayer.PlayMelodyWithRhythm(sd, savedMelody, tonica, duration, grifNotes, buttons, cts.Token);
+                }, cts.Token);
             }
         }
 
@@ -284,8 +319,10 @@ namespace GuitarMaster
             saveMelodyButton.Enabled = true;
         }
 
-        private void playGeneredMelodyButton_Click(object sender, EventArgs e)
+        private void playGeneratedMelodyButton_Click(object sender, EventArgs e)
         {
+            SetEnable(false, SetEnableMode.All);
+
             if (lastMelody != null)
             {
                 if (sd == null)
@@ -295,7 +332,13 @@ namespace GuitarMaster
                 saveMelodyButton.Enabled = true;
 
                 duration = Rhythm.GetDuration(tempoTrackBar.Value, lastMelody.Notes.Length);
-                MelodyPlayer.PlayMelodyWithRhythm(sd, lastMelody, tonica, duration, grifNotes, buttons);
+                cts = new CancellationTokenSource();
+                stopButton.Select();
+                timer.Start();
+                task = Task.Run(() =>
+                {
+                    MelodyPlayer.PlayMelodyWithRhythm(sd, lastMelody, tonica, duration, grifNotes, buttons, cts.Token);
+                }, cts.Token);
             }
         }
 
@@ -341,24 +384,13 @@ namespace GuitarMaster
             if (!editGenerated && lastMelody != null)
             {
                 editGeneratedMelodyButton.Text = "Применить";
-
                 nameTextBox.Text = lastMelody.Name;
                 SetLabelsNameNotesAndRhythm(lastMelody);
 
                 nameTextBox.Visible = true;
-                notesTextBox.ReadOnly = false;
-                rhythmTextBox.ReadOnly = false;
-
-                newGenerateButton.Enabled = false;
-                playAgainButton.Enabled = false;
-                playYourMelodyButton.Enabled = false;
-                saveMelodyButton.Enabled = false;
-                playGeneratedMelodyButton.Enabled = false;
-                generatedMelodysComboBox.Enabled = false;
-
-                nameLabel.Visible = false;
-
                 editGenerated = true;
+
+                SetEnable(false, SetEnableMode.Generated);       
                 return;
             }
             if(editGenerated && lastMelody != null)
@@ -394,21 +426,11 @@ namespace GuitarMaster
                         rhythmTextBox.Text = Parser.GetString(lastMelody.Rhythm);
                     }
                 }
-
                 editGeneratedMelodyButton.Text = "Изменить";
                 nameTextBox.Visible = false;
-                nameLabel.Visible = true;
                 editGenerated = false;
 
-                notesTextBox.ReadOnly = true;
-                rhythmTextBox.ReadOnly = true;
-
-                newGenerateButton.Enabled = true;
-                playAgainButton.Enabled = true;
-                playYourMelodyButton.Enabled = true;
-                saveMelodyButton.Enabled = true;
-                playGeneratedMelodyButton.Enabled = true;
-                generatedMelodysComboBox.Enabled = true;
+                SetEnable(true, SetEnableMode.Generated);                
             }
         }
 
@@ -428,27 +450,15 @@ namespace GuitarMaster
         {
             if (!editSaved && savedMelody != null)
             {
-                editSavedMelodyButton.Text = "Применить";///////////
+                editSavedMelodyButton.Text = "Применить";
 
                 SetLabelsNameNotesAndRhythm(savedMelody);
                 nameTextBox.Text = savedMelody.Name;
 
                 nameTextBox.Visible = true;
-                notesTextBox.ReadOnly = false;
-                rhythmTextBox.ReadOnly = false;
+                editSaved = true;
 
-                newGenerateButton.Enabled = false;
-                playAgainButton.Enabled = false;
-                playYourMelodyButton.Enabled = false;
-                saveMelodyButton.Enabled = false;
-                playSavedMelodyButton.Enabled = false;
-                playSavedMelodyButton.Enabled = false;
-                deleteSavedMelodyButton.Enabled = false;
-                savedMelodysComboBox.Enabled = false;///////////
-
-                nameLabel.Visible = false;
-
-                editSaved = true;/////////////
+                SetEnable(false, SetEnableMode.Saved);
                 return;
             }
             if (editSaved && savedMelody != null)
@@ -465,7 +475,7 @@ namespace GuitarMaster
                 {
                     if (MessageBox.Show("Действительно хотите изменить мелодию\n\"" + savedMelody.Name + "(" + savedMelody.ScaleName.ToString() + ")\"" + "?", "Внимание", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     {
-                        int i = savedMelodysList.IndexOf(savedMelody);//////////////////////
+                        int i = savedMelodysList.IndexOf(savedMelody);
                         savedMelodysComboBox.Items.RemoveAt(i);
                         savedMelodysComboBox.Items.Insert(i, nameTextBox.Text + "(Other)");
 
@@ -488,19 +498,30 @@ namespace GuitarMaster
 
                 editSavedMelodyButton.Text = "Изменить";
                 nameTextBox.Visible = false;
-                nameLabel.Visible = true;
-                editSaved = false;
+                editSaved = false;               
 
-                notesTextBox.ReadOnly = true;
-                rhythmTextBox.ReadOnly = true;
+                SetEnable(true, SetEnableMode.Saved);
+            }
+        }
 
-                newGenerateButton.Enabled = true;
-                playAgainButton.Enabled = true;
-                playYourMelodyButton.Enabled = true;
-                saveMelodyButton.Enabled = true;
-                playSavedMelodyButton.Enabled = true;
-                deleteSavedMelodyButton.Enabled = true;
-                savedMelodysComboBox.Enabled = true;
+        private void stopButton_Click(object sender, EventArgs e)
+        {
+            if(cts != null)
+                cts.Cancel();
+            outputDevice.SilenceAllNotes();
+            SetEnable(true, SetEnableMode.All);
+            timer.Stop();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if (task != null)
+            {
+                if (task.IsCanceled || task.IsCompleted)
+                {
+                    SetEnable(true, SetEnableMode.All);
+                    timer.Stop();
+                }
             }
         }
         

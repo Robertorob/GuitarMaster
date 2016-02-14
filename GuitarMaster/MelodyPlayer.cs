@@ -37,9 +37,11 @@ namespace GuitarMaster
                     {
                         buttons[i, j].BackColor = System.Drawing.Color.Red;
                         visible = buttons[i, j].Visible;
-                        buttons[i, j].Visible = true;
-                        if (Form1.ActiveForm != null)
-                            Form1.ActiveForm.Refresh();
+                        if(buttons[i,j].InvokeRequired)
+                            buttons[i,j].Invoke(new Action(() => {buttons[i,j].Visible = true;}));
+                        //buttons[i, j].Visible = true;
+                        if (Form1.ActiveForm != null && Form1.ActiveForm.InvokeRequired)
+                            Form1.ActiveForm.Invoke(new Action(() => { Form1.ActiveForm.Refresh(); }));
                         return buttons[i, j];
                     }
                 }
@@ -59,7 +61,7 @@ namespace GuitarMaster
         /// <param name="rhythm">Массив, описывающий ритм</param>
         /// <param name="tonica">Нота, от которой играется мелодия</param>
         /// <param name="duration">Продолжительность такта в секундах с точностью до тысячных</param>
-        public static void PlayMelodyWithRhythm(SoundDevices sd, int[] notes, int[] rhythm, Note tonica, double duration, Note[,] grifNotes, Button[,] buttons)
+        public static void PlayMelodyWithRhythm(SoundDevices sd, int[] notes, int[] rhythm, Note tonica, double duration, Note[,] grifNotes, Button[,] buttons, CancellationToken ct)
         {
             /* Продолжительность такта в миллисекундах */
             int dur = (int)(duration * 1000);
@@ -81,6 +83,8 @@ namespace GuitarMaster
             int j = 0;
             for (int i = 0; i < rhythm.Length; i++)
             {
+                if (ct.IsCancellationRequested)
+                    return;
                 if (rhythm[i] == 0)
                 {
                     System.Threading.Thread.Sleep(oneNoteDur);
@@ -107,10 +111,11 @@ namespace GuitarMaster
                     System.Threading.Thread.Sleep(oneNoteDur);                    
 
                     button.BackColor = default(System.Drawing.Color);
-                    if (!visible)
-                        button.Visible = false;
-                    if(Form1.ActiveForm != null)
-                        Form1.ActiveForm.Refresh();
+                    if (!visible && button.InvokeRequired)
+                        button.Invoke(new Action(() => { button.Visible = false; }));
+
+                    if (Form1.ActiveForm != null && Form1.ActiveForm.InvokeRequired)
+                        Form1.ActiveForm.Invoke(new Action(() => { Form1.ActiveForm.Refresh(); }));
 
                     j++;
                     if (j == notes.Length)
@@ -120,11 +125,12 @@ namespace GuitarMaster
             sd.output.SendNoteOff(sd.channel, note, 80);
         }
 
-        public static void PlayMelodyWithRhythm(SoundDevices sd, Melody melody, Note tonica, double duration, Note[,] grifNotes, Button[,] buttons)
+        public static void PlayMelodyWithRhythm(SoundDevices sd, Melody melody, Note tonica, double duration, Note[,] grifNotes, Button[,] buttons, CancellationToken ct)
         {
+            sd.output.SilenceAllNotes();
             int[] notes = melody.Notes;
             int[] rhythm = melody.Rhythm;
-            PlayMelodyWithRhythm(sd, notes, rhythm, tonica, duration, grifNotes, buttons);
+            PlayMelodyWithRhythm(sd, notes, rhythm, tonica, duration, grifNotes, buttons, ct);
         }
 
         public static void PlayMelody(SoundDevices sd, int[] phrase, MediaPlayer player)
