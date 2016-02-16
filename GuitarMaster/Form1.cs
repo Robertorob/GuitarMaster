@@ -468,6 +468,7 @@ namespace GuitarMaster
                     if (MessageBox.Show("Действительно хотите изменить мелодию\n\"" + savedMelody.Name + "(" + savedMelody.ScaleName.ToString() + ")\"" + "?", "Внимание", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     {
                         RefreshListAndCombobox(savedMelodysList, savedMelody, savedMelodysComboBox, notes, rhythm);
+                        Parser.RewriteMelodysFile(savedMelodysList);
                     }
                     else
                     {
@@ -509,16 +510,16 @@ namespace GuitarMaster
         {
             int i = list.IndexOf(melody);
             cmb.Items.RemoveAt(i);
-            cmb.Items.Insert(i, nameTextBox.Text + "(Other)");
+            cmb.Items.Insert(i, nameTextBox.Text + "(" + melody.ScaleName.ToString() + ")");
 
             int j = list.IndexOf(melody);
             list.RemoveAt(i);
-            melody = new Melody(nameTextBox.Text, notes, rhythm, ScaleName.Other);
+            melody = new Melody(nameTextBox.Text, notes, rhythm, melody.ScaleName);
             list.Insert(j, melody);
 
             /* Здесь срабатывает событие и меняется значение notesCountTextBox */
             cmb.SelectedIndex = i;
-            nameLabel.Text = melody.Name + "(Other)";
+            nameLabel.Text = melody.Name + "(" + melody.ScaleName.ToString() + ")";
         }
 
     }
