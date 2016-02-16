@@ -24,11 +24,12 @@ namespace GuitarMaster
         public bool grid = false;
         public bool editGenerated = false;
         public bool editSaved = false;
+        public bool isGenerated = false;
 
         public int[] minorScale, majorScale, flamencoScale, bluesScale;
         public MyScale selectedScale;
         Note tonica;
-        Melody lastMelody, savedMelody;
+        Melody generatedMelody, savedMelody;
         double duration = 6;
         int notesCount = 16;
 
@@ -386,7 +387,8 @@ namespace GuitarMaster
             tabControl1.Enabled = value;
             playSavedMelodyButton.Enabled = value;
             deleteSavedMelodyButton.Enabled = value;
-            saveMelodyButton.Enabled = value;
+            if(isGenerated)
+                saveMelodyButton.Enabled = value;
             stopButton.Enabled = value;
 
             switch (mode)
