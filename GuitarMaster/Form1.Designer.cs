@@ -1219,12 +1219,12 @@
             // 
             this.tempoTrackBar.LargeChange = 1;
             this.tempoTrackBar.Location = new System.Drawing.Point(20, 159);
-            this.tempoTrackBar.Maximum = -10;
+            this.tempoTrackBar.Maximum = -5;
             this.tempoTrackBar.Minimum = -60;
             this.tempoTrackBar.Name = "tempoTrackBar";
             this.tempoTrackBar.Size = new System.Drawing.Size(303, 45);
             this.tempoTrackBar.TabIndex = 120;
-            this.tempoTrackBar.Value = -35;
+            this.tempoTrackBar.Value = -33;
             this.tempoTrackBar.Scroll += new System.EventHandler(this.tempoTrackBar_Scroll);
             // 
             // notesCountTextBox

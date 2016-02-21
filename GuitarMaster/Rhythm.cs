@@ -16,7 +16,7 @@ namespace GuitarMaster
         /// <returns></returns>
         public static double GetDuration(int tempo, int notesCount)
         {
-            return (double)(((double)tempo * (-1) / 10) * notesCount) / 8;
+            return (    ((double)tempo * (-1) / 10) * (double)notesCount    ) / 8;
         }
 
         /// <summary>

@@ -241,7 +241,7 @@ namespace GuitarMaster
 
         private void tempoTrackBar_Scroll(object sender, EventArgs e)
         {
-            duration = (double)( ((double)tempoTrackBar.Value * (-1) / 10) * notesCount ) / 8;
+            duration = Rhythm.GetDuration(tempoTrackBar.Value, notesCount);
         }
 
         private void playYourMelodyButton_Click(object sender, EventArgs e)
