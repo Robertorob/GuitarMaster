@@ -16,7 +16,7 @@ namespace GuitarMaster
 
     public static partial class Notes
     {
-        public static int[] NewGetNotes(MyScale scale, int countOfNotes, int[] rhythm)
+        public static int[] GetNotes(MyScale scale, int countOfNotes, int[] rhythm)
         {
             int[] notes = new int[countOfNotes];
             notes[0] = 1;
@@ -100,7 +100,7 @@ namespace GuitarMaster
                 notes[i] = notes[i - 1] + sum;
             }
 
-            notes[notes.Length - 1] = 1;
+            //notes[notes.Length - 1] = 1;
 
             return notes;
         }

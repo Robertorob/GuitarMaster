@@ -73,6 +73,8 @@ namespace GuitarMaster
                     massive[i] = res;
                 }
             }
+            if (massive.Length == 0)
+                return null;
             return massive;
         }
 

@@ -84,7 +84,7 @@ namespace GuitarMaster
             int divisor = random.Next(3, 5), addition = random.Next(1, 4);
 
             int[] rhythm = Rhythm.GetRhythm(notesCount + notesCount / divisor + addition, notesCount);
-            int[] notes = Notes.NewGetNotes(selectedScale, notesCount, rhythm);
+            int[] notes = Notes.GetNotes(selectedScale, notesCount, rhythm);
 
             generatedMelody = new Melody(Melody.Number + "-ая мелодия", notes, rhythm, selectedScale.scaleName);
             generatedMelodysList.Add(generatedMelody);
@@ -137,7 +137,7 @@ namespace GuitarMaster
 
         public void SetLabelsNameNotesAndRhythm(Melody melody)
         {
-            nameLabel.Text = melody.Name + " (" + melody.ScaleName.ToString() + ")";
+            nameLabel.Text = melody.Name + "(" + melody.ScaleName.ToString() + ")";
 
             notesTextBox.Text = Parser.GetString(melody.Notes);
             rhythmTextBox.Text = Parser.GetString(melody.Rhythm);
@@ -386,14 +386,14 @@ namespace GuitarMaster
         {
             if (!editGenerated && generatedMelody != null)
             {
-                editGeneratedMelodyButton.Text = "Применить";
+                editGeneratedMelodyButton.Text = "Применить";           
                 nameTextBox.Text = generatedMelody.Name;
                 SetLabelsNameNotesAndRhythm(generatedMelody);
 
                 nameTextBox.Visible = true;
                 editGenerated = true;
 
-                SetEnable(false, SetEnableMode.Generated);       
+                SetEnable(false, SetEnableMode.Generated);
                 return;
             }
             if(editGenerated && generatedMelody != null)
