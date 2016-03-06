@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GuitarMaster
 {
-    public enum ScaleName { Minor, Major, Flamenco, Blues, Other }
+    public enum ScaleName { Minor, Major, Flamenco, Blues, Other, Flamenco2 }
 
     public class MyScale
     {
@@ -35,6 +35,9 @@ namespace GuitarMaster
                     break;
                 case "Flamenco":
                     scaleName = ScaleName.Flamenco;
+                    break;
+                case "Flamenco2":
+                    scaleName = ScaleName.Flamenco2;
                     break;
 
             }

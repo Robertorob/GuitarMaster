@@ -91,7 +91,12 @@ namespace GuitarMaster
             if (scaleName == ScaleName.Flamenco && values.Length == 8)
             {
                 probabilities = new int[] { 2, 75, 9, 3, 3, 3, 3, 2 };
-            }            
+            }
+
+            if (scaleName == ScaleName.Flamenco2 && values.Length == 8)
+            {
+                probabilities = new int[] { 2, 75, 9, 3, 3, 3, 3, 2 };
+            }
 
             if (scaleName == ScaleName.Blues && values.Length == 7)
             {

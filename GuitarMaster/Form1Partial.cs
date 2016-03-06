@@ -26,7 +26,7 @@ namespace GuitarMaster
         public bool editSaved = false;
         public bool isGenerated = false;
 
-        public int[] minorScale, majorScale, flamencoScale, bluesScale;
+        public int[] minorScale, majorScale, flamencoScale, bluesScale, flamenco2Scale;
         public MyScale selectedScale;
         Note tonica;
         Melody generatedMelody, savedMelody;
@@ -53,7 +53,7 @@ namespace GuitarMaster
             nameLabel.Text = "Сгенерируйте мелодию!";
             notesTextBox.Text = "";
             rhythmTextBox.Text = "";
-            notesCountTextBox.Text = "8";
+            notesCountTextBox.Text = "16";
 
             //Melody.Number = melodyList.Count + 1;
 
@@ -68,6 +68,7 @@ namespace GuitarMaster
             majorScale = new int[7] { 2, 2, 1, 2, 2, 2, 1 };
             flamencoScale = new int[7] { 1, 3, 1, 2, 1, 3, 1 };
             bluesScale = new int[] { 3, 2, 1, 1, 3, 2 };
+            flamenco2Scale = new int[7] { 1, 3, 1, 2, 1, 2, 2 };
 
             int[] scaleIntervals = minorScale;
             ScaleName scaleName = ScaleName.Minor;

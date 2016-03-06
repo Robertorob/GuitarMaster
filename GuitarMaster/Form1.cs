@@ -75,10 +75,13 @@ namespace GuitarMaster
         {
             InitializeComponent();
         }
+
         CancellationTokenSource cts;
         Task task;
+
         private void newGenerateButton_Click(object sender, EventArgs e)
-        {            
+        {
+            tabControl1.SelectedIndex = 0;
             duration = Rhythm.GetDuration(tempoTrackBar.Value, notesCount);
             Random random = new Random();
             int divisor = random.Next(3, 5), addition = random.Next(1, 4);
@@ -114,6 +117,7 @@ namespace GuitarMaster
 
         private void playAgainButton_Click(object sender, EventArgs e)
         {
+            tabControl1.SelectedIndex = 0;
             SetEnable(false, SetEnableMode.All);
 
             if (generatedMelody != null)
@@ -215,6 +219,10 @@ namespace GuitarMaster
                     scaleIntervals = bluesScale;
                     scaleName = ScaleName.Blues;
                     break;
+                case 4:
+                    scaleIntervals = flamenco2Scale;
+                    scaleName = ScaleName.Flamenco2;
+                    break;
             }
 
             selectedScale = new MyScale(scaleName, scaleIntervals);
@@ -226,7 +234,7 @@ namespace GuitarMaster
             if (!int.TryParse(notesCountTextBox.Text, out res) && notesCountTextBox.Text != "")
             {
                 MessageBox.Show("Вводите целое число!");
-                notesCountTextBox.Text = "8";
+                notesCountTextBox.Text = "16";
                 notesCountTextBox.SelectAll();
                 return;
             }

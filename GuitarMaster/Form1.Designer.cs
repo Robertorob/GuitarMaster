@@ -1044,7 +1044,8 @@
             "Минор",
             "Мажор",
             "Фламенко",
-            "Блюз"});
+            "Блюз",
+            "Фламенко2"});
             this.scaleComboBox.Location = new System.Drawing.Point(20, 35);
             this.scaleComboBox.Name = "scaleComboBox";
             this.scaleComboBox.Size = new System.Drawing.Size(147, 26);
